@@ -1,52 +1,17 @@
 package com.coffeestore.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
-
-import javax.sql.DataSource;
-import java.util.Properties;
 
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.coffeestore")
-public class WebConfig implements WebMvcConfigurer {
-    @Override
-    public void configureDefaultServletHandling(
-            DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+public class ApplicationConfig implements WebMvcConfigurer {
+    // this file is like application.properties in Spring Boot
 
-
-    //////////// servlet ////////////
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("src/main/webapp/WEB-INF/resources/**").addResourceLocations("src/main/webapp/WEB-INF/resources");
-    }
-
-    @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setViewClass(JstlView.class);
-        resolver.setPrefix("src/main/webapp/WEB-INF/pages/");
-        resolver.setSuffix(".jsp");
-
-        return resolver;
-    }
-
-
-    //////////// ApplicationConfig //////////// this config is like application.properties in Spring Boot
 //    @Bean(name = "sessionFactory")
 //    public LocalSessionFactoryBean sessionFactory() {
 //        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();

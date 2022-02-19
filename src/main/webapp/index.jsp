@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
     <head>
         <title>Start Page</title>
@@ -6,5 +6,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+    <a href="/hello">go to hello page</a>
     </body>
 </html>
