@@ -8,6 +8,9 @@
 //import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 //import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //
+//import javax.persistence.EntityManagerFactory;
+//import javax.persistence.Persistence;
+//
 //
 //@Configuration
 //@EnableWebMvc
@@ -15,13 +18,19 @@
 //public class ApplicationConfig implements WebMvcConfigurer {
 //    // this file is like application.properties in Spring Boot
 //
-//    @Bean
-//    public MultipartResolver multipartResolver() {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//        multipartResolver.setMaxUploadSize(10240000);
-//        return multipartResolver;
-//    }
+////    @Bean
+////    public MultipartResolver multipartResolver() {
+////        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+////        multipartResolver.setMaxUploadSize(10240000);
+////        return multipartResolver;
+////    }
 //
+//    @Bean
+//    public EntityManagerFactory entityManagerFactory() {
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CoffeeStoreDb");
+//
+//        return entityManagerFactory;
+//    }
 //    /////////////////// private methods ///////////////////
 //
 //
