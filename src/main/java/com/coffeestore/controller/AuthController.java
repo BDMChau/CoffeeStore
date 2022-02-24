@@ -36,7 +36,7 @@ public class AuthController {
         }
 
         model.addAttribute("errorMsg", errorMsg);
-        return "home";
+        return "redirect:home";
     }
 
     @RequestMapping("/register")
