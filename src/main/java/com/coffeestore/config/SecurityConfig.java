@@ -1,42 +1,94 @@
-//package com.coffeestore.config;
-//
-//import javax.sql.DataSource;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//
-//@EnableWebSecurity
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//
-////    @Autowired
-////    private DataSource dataSource;
-////
-////    protected void configure(HttpSecurity http) throws Exception {
-////        http.csrf().disable()
-////                .formLogin()
-////                .loginPage("/login")
-////                .and()
-////                .authorizeRequests()
-////                .antMatchers("/cart/**")
-////                .hasAuthority("ROLE_USER")
-////                .antMatchers("/get*/**")
-////                .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-////                .antMatchers("/admin*/**")
-////                .hasAuthority("ROLE_ADMIN")
-////                .anyRequest().permitAll().and().logout()
-////                .logoutUrl("/logout");
-////
-////    }
-////
-////    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-////        auth.inMemoryAuthentication().withUser("sulong@gmail.com").password("2222").authorities("ROLE_ADMIN");
-////
-////        auth.jdbcAuthentication().dataSource(dataSource)
-////                .usersByUsernameQuery("SELECT emailId, password, enabled FROM users WHERE emailId=?")
-////                .authoritiesByUsernameQuery("SELECT emailId, authorities FROM authorities WHERE emailId=?");
-////
-////    }
-//
-//}
+package com.coffeestore.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import javax.sql.DataSource;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final DataSource dataSource;
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        System.err.println(dataSource);
+
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .authoritiesByUsernameQuery("SELECT username, authorityType FROM authorities WHERE email = ?")
+                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE email = ?")
+                .passwordEncoder(passwordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+//                .antMatchers("/customer/**").access("hasRole('USER')")
+                .and().logout().logoutSuccessUrl("/")
+                .and().formLogin().loginPage("/login")
+                .successHandler(savedRequestAwareAuthenticationSuccessHandler())
+                .loginProcessingUrl("/login")
+                .failureUrl("/login?error")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/").and()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+                .rememberMe().key("remember-me").rememberMeParameter("remember-me").rememberMeCookieName("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
+
+    }
+
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/**");//ignore resource file,can access
+    }
+
+
+    //Remember me bean setting
+
+
+    public PersistentTokenRepository persistentTokenRepository() {
+
+        JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepositoryImpl.setDataSource(dataSource);
+        return jdbcTokenRepositoryImpl;
+    }
+
+    @Bean
+    public SavedRequestAwareAuthenticationSuccessHandler savedRequestAwareAuthenticationSuccessHandler() {
+
+        SavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+
+        return authenticationSuccessHandler;
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+}
