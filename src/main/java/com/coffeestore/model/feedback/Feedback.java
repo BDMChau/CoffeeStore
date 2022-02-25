@@ -2,7 +2,7 @@ package com.coffeestore.model.feedback;
 
 import com.coffeestore.model.order.Order;
 import com.coffeestore.model.product.Product;
-import com.coffeestore.model.users.Users;
+import com.coffeestore.model.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -36,7 +36,7 @@ public class Feedback {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Users user_id;
+    private User user_id;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)

@@ -57,7 +57,7 @@
             </c:if>
 
             <c:if test="${not empty msg}">
-                <div class="error" style="color:#337AB7">
+                <div class="error" style="color:#45BD62">
                         ${msg}
                 </div>
             </c:if>

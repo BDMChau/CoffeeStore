@@ -1,5 +1,6 @@
 package com.coffeestore.service.user;
 
+import com.coffeestore.model.user.Role;
 import com.coffeestore.model.user.User;
 import com.coffeestore.repository.user.RoleRepository;
 import com.coffeestore.repository.user.UserRepository;
@@ -35,7 +36,10 @@ public class UserService {
 //        user.setGender();
         user.setCreated_at(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
 
-        userRepository.save(user);
+        Role role = roleRepository.getOne(1L); // role: USER
+        user.setRole_id(role);
+
+        userRepository.saveAndFlush(user);
     }
 
 

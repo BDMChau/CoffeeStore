@@ -1,4 +1,4 @@
-package com.coffeestore.model.users;
+package com.coffeestore.model.user;
 
 import com.coffeestore.model.feedback.Feedback;
 import com.coffeestore.model.order.Order;
@@ -19,7 +19,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -57,6 +57,9 @@ public class Users {
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String password;
+
+    @Transient
+    private String passwordConfirm;
 
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = true)
     private Calendar birthday;

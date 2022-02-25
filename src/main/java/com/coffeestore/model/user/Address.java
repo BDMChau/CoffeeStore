@@ -1,4 +1,4 @@
-package com.coffeestore.model.users;
+package com.coffeestore.model.user;
 
 import com.coffeestore.model.order.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -34,7 +34,7 @@ public class Address {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Users user_id;
+    private User user_id;
 
     @JsonBackReference
     @OneToMany(mappedBy = "address_id", cascade = CascadeType.ALL)
