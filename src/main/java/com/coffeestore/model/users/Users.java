@@ -1,4 +1,4 @@
-package com.coffeestore.model.user;
+package com.coffeestore.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -16,7 +16,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "users")
-public class User {
+public class Users {
     @Id
     @SequenceGenerator(
             name = "user_sequence",

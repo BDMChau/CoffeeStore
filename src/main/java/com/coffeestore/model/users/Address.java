@@ -30,8 +30,8 @@ public class Address {
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id")
-    private Users users_id;
+    @JoinColumn(name = "user_id")
+    private Users user_id;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String city_province;

@@ -1,4 +1,4 @@
 package com.coffeestore.model.product;
 
-public class Image {
+public class Product_image {
 }
