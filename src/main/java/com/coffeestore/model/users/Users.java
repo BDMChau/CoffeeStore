@@ -1,6 +1,5 @@
-package com.coffeestore.model.user;
+package com.coffeestore.model.users;
 
-import com.coffeestore.model.product.CategoryProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -9,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Collection;
 
 @Entity
@@ -16,8 +16,8 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "user")
-public class User {
+@Table(name = "users")
+public class Users {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -31,7 +31,7 @@ public class User {
     private Long id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "users_id", cascade = CascadeType.ALL)
     private Collection<Address> addresses;
 
     @JsonManagedReference
@@ -48,8 +48,8 @@ public class User {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String password;
 
-    @Column(columnDefinition = "DateTime", nullable = true)
-    private String birthday;
+    @Column(columnDefinition = "Date", nullable = true)
+    private Calendar birthday;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String avatar;
@@ -57,12 +57,9 @@ public class User {
     @Column(columnDefinition = "integer", nullable = true)
     private String gender;
 
-    @Column(columnDefinition = "Time stamp with time zone", nullable = true)
-    private String created_at;
+    @Column(columnDefinition = "Timestamp with time zone", nullable = true)
+    private Calendar created_at;
 
     @Column(columnDefinition = "varchar", nullable = true)
     private String phone;
-
-
-
 }
