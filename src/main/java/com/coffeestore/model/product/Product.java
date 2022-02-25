@@ -1,5 +1,7 @@
 package com.coffeestore.model.product;
 
+import com.coffeestore.model.feedback.Feedback;
+import com.coffeestore.model.order.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Entity
@@ -33,6 +36,18 @@ public class Product {
     @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
     private Collection<CategoryProduct> categoryProducts;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    private Collection<OrderDetail> orderDetails;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    private Collection<ProductImage> productImages;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    private Collection<Feedback> feedbacks;
+
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
@@ -40,6 +55,9 @@ public class Product {
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String name;
+
+    @Column(columnDefinition = "NUMERIC", nullable = true)
+    private BigDecimal price;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;

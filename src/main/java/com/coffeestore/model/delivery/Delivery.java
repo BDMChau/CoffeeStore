@@ -1,10 +1,8 @@
 package com.coffeestore.model.delivery;
 
-import com.coffeestore.model.product.CategoryProduct;
-import com.coffeestore.model.product.Nation;
+import com.coffeestore.model.order.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,9 +34,9 @@ public class Delivery {
 //    @JoinColumn(name = "nation_id")
 //    private Nation nation_id;
 //
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)
-//    private Collection<CategoryProduct> categoryProducts;
+    @JsonBackReference
+    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)
+    private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String name;

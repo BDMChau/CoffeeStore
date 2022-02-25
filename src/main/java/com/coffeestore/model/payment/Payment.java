@@ -1,11 +1,14 @@
 package com.coffeestore.model.payment;
 
+import com.coffeestore.model.order.Order;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -31,9 +34,9 @@ public class Payment {
 //    @JoinColumn(name = "nation_id")
 //    private Nation nation_id;
 //
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)
-//    private Collection<CategoryProduct> categoryProducts;
+    @JsonBackReference
+    @OneToMany(mappedBy = "payment_id", cascade = CascadeType.ALL)
+    private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String name;

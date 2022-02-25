@@ -1,5 +1,7 @@
-package com.coffeestore.model.user;
+package com.coffeestore.model.users;
 
+import com.coffeestore.model.order.Order;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -7,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -27,14 +30,15 @@ public class Address {
     )
     private Long id;
 
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
-//    private Collection<CategoryProduct> categoryProducts;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private Users user_id;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "address_id", cascade = CascadeType.ALL)
+    private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String city_province;
