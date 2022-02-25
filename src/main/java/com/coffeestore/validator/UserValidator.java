@@ -27,9 +27,9 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
         if (user.getName().length() < 6 || user.getName().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+            errors.rejectValue("name", "Size.userForm.username");
         }
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             errors.rejectValue("email", "Duplicate.userForm.email");

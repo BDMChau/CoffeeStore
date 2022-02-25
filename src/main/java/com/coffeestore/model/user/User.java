@@ -58,7 +58,7 @@ public class User {
     private String avatar;
 
     @Column(columnDefinition = "integer", nullable = true)
-    private String gender;
+    private Integer gender;
 
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = true)
     private Calendar created_at;

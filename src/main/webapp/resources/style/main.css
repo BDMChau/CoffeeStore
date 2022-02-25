@@ -2,7 +2,8 @@
 
 /*Navbar*/
 nav.navbar.navbar-inverse.navbar-fixed-top{
-    /*position: relative;*/
+    position: relative;
+    width: 100vw;
 }
 
 /* LOGO STYLE */
@@ -20,3 +21,4 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     height: auto;
     margin-top: -5px;
 }
+

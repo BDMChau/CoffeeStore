@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page isELIgnored="false"%>
 <html lang="en">
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -15,11 +15,10 @@
 
     <title>Coffee Store</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 </head>
 <body>
 <div class="navbar-wrapper" style="margin-top:0;">
-    <div class="container">
-
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -79,10 +78,10 @@
 
                         <c:if test="${pageContext.request.userPrincipal.name == null}">
 
-                            <li><a href="<c:url  value="/login"/>">
+                            <li><a href="<c:url  value="/auth/login"/>">
                                 Login
                             </a></li>
-                            <li><a href="<c:url  value="/register"/>">
+                            <li><a href="<c:url  value="/auth/register"/>">
                                 Register
                             </a></li>
                         </c:if>
@@ -96,7 +95,6 @@
         </nav>
 
     </div>
-</div>
 </body>
 
 </html>

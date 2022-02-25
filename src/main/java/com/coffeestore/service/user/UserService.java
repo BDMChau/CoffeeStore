@@ -13,6 +13,8 @@ import java.util.TimeZone;
 
 @Service
 public class UserService {
+    private String avatarDefault = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
+
     @Autowired
     private UserRepository userRepository;
 
@@ -24,13 +26,13 @@ public class UserService {
 
     public void register(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setName();
-        user.setEmail();
-        user.setPhone();
-        user.setAddresses();
-        user.setAvatar();
-        user.setBirthday();
-        user.setGender();
+        user.setName(user.getName());
+        user.setEmail(user.getEmail());
+//        user.setPhone();
+//        user.setAddresses();
+        user.setAvatar(avatarDefault);
+//        user.setBirthday();
+//        user.setGender();
         user.setCreated_at(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
 
         userRepository.save(user);

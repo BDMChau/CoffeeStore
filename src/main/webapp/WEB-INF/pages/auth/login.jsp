@@ -3,12 +3,12 @@
 
 <div class="container-wrapper">
     <div class="container">
-        <div class="page-header title">
-            <h3>Login with Email and Password</h3>
-        </div>
-
         <div class="form-layout">
-            <form name="loginForm" action="<c:url value="/login" />" method="post"
+            <div class="page-header title">
+                <h3>Login</h3>
+            </div>
+
+            <form name="loginForm" action="<c:url value="/auth/login" />" method="post"
                   class="form-horizontal">
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -54,8 +54,7 @@
                 <div class="form-group has-success">
                     <label class="col-xs-3 control-label"></label>
                     <div class="col-xs-9">
-                        <input type="submit" value="Submit" class="btn btn-default">
-
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                     </div>
                 </div>
             </form>
