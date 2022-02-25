@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Collection;
 
 @Entity
@@ -47,8 +48,11 @@ public class User {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String password;
 
+    @Transient
+    private String passwordConfirm;
+
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = true)
-    private String birthday;
+    private Calendar birthday;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String avatar;
@@ -57,7 +61,7 @@ public class User {
     private String gender;
 
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = true)
-    private String created_at;
+    private Calendar created_at;
 
     @Column(columnDefinition = "varchar", nullable = true)
     private String phone;

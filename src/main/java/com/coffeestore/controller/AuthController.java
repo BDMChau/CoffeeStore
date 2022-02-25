@@ -1,48 +1,59 @@
 package com.coffeestore.controller;
 
+import com.coffeestore.model.user.User;
+import com.coffeestore.service.auth.SecurityService;
+import com.coffeestore.service.user.UserService;
+import com.coffeestore.validator.UserValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Map;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthController {
+    @Autowired
+    private UserService userService;
 
-    @RequestMapping("/login")
-    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
-        if (error != null) {
-            model.addAttribute("error", "Invalid username or password");
-        }
+    @Autowired
+    private SecurityService securityService;
 
-        return "login";
-    }
+    @Autowired
+    private UserValidator userValidator;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPage(@RequestParam(value = "error", required = false) String error,
-                            @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
-        String errorMsg = null;
-        if(error != null) {
-            System.err.println(error);
-            errorMsg = "Username or password is incorrect!";
-            return "login";
-        }
-        if(logout != null) {
-            errorMsg = "Logged out!";
-        }
+    //////// login ////////
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null) model.addAttribute("errorMsg", "Your email or/and password is invalid!");
+        if (logout != null) model.addAttribute("msg", "Logged out!");
 
-        model.addAttribute("errorMsg", errorMsg);
-        return "redirect:home";
-    }
+        if(error == null || logout == null) return "redirect:home";
 
-    @RequestMapping("/register")
-    public String register () {
-        return "register";
+        return "auth/login";
     }
 
 
+    //////// register ////////
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("userForm", new User());
+
+        return "auth/register";
+    }
+
+    @PostMapping("/register")
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+        userValidator.validate(userForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "auth/register";
+        }
+
+        userService.register(userForm);
+
+        securityService.autoLogin(userForm.getEmail(), userForm.getPasswordConfirm());
+
+        return "auth/login";
+    }
 }
