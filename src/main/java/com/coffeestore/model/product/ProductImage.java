@@ -1,4 +1,4 @@
-package com.coffeestore.model.feedback;
+package com.coffeestore.model.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -13,30 +13,30 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "feedback_image")
-public class FeedbackImage {
+@Table(name = "product_image")
+public class ProductImage {
     @Id
     @SequenceGenerator(
-            name = "feedback_image_sequence",
-            sequenceName = "feedback_image_sequence",
+            name = "product_image_sequence",
+            sequenceName = "product_image_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "feedback_image_sequence" // same as NAME in SequenceGenerator
+            generator = "product_image_sequence" // same as NAME in SequenceGenerator
     )
     private Long id;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feedback_id")
-    private Feedback feedback_id;
-
+    @JoinColumn(name = "product_id")
+    private Product product_id;
+//
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)
 //    private Collection<Order> orders;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String image_url;
 
 }
