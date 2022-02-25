@@ -1,4 +1,4 @@
-package com.coffeestore.model.user;
+package com.coffeestore.model.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,14 +27,11 @@ public class Address {
     )
     private Long id;
 
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
-//    private Collection<CategoryProduct> categoryProducts;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user_id;
+    @JoinColumn(name = "users_id")
+    private Users users_id;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String city_province;

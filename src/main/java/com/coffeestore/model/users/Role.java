@@ -1,4 +1,4 @@
-package com.coffeestore.model.user;
+package com.coffeestore.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -28,14 +28,9 @@ public class Role {
     )
     private Long id;
 
-//    @JsonManagedReference
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "nation_id")
-//    private Nation nation_id;
-
     @JsonBackReference
     @OneToMany(mappedBy = "role_id", cascade = CascadeType.ALL)
-    private Collection<User> users;
+    private Collection<Users> users;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String name;

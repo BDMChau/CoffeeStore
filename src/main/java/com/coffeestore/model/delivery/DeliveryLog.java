@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 @Entity
 @Getter
@@ -44,7 +45,7 @@ public class DeliveryLog {
     private String status;
 
     @Column(columnDefinition = "timestamp with time zone", nullable = false)
-    private String created_at;
+    private Calendar created_at;
 
 
 
