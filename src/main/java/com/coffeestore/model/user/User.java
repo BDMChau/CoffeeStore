@@ -47,7 +47,7 @@ public class User {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String password;
 
-    @Column(columnDefinition = "DateTime", nullable = true)
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = true)
     private String birthday;
 
     @Column(columnDefinition = "TEXT", nullable = true)
@@ -56,7 +56,7 @@ public class User {
     @Column(columnDefinition = "integer", nullable = true)
     private String gender;
 
-    @Column(columnDefinition = "Time stamp with time zone", nullable = true)
+    @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = true)
     private String created_at;
 
     @Column(columnDefinition = "varchar", nullable = true)
