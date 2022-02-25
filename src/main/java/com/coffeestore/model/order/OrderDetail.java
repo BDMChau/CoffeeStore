@@ -44,7 +44,7 @@ public class OrderDetail {
 //    private Collection<CategoryProduct> categoryProducts;
 
     @Column(columnDefinition = "INT", nullable = false)
-    private String product_quantity;
+    private int product_quantity;
 
     @Column(columnDefinition = "NUMERIC", nullable = true)
     private BigDecimal product_price;

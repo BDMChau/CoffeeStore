@@ -53,7 +53,7 @@ public class Feedback {
     private Collection<FeedbackImage> feedbackImages;
 
     @Column(columnDefinition = "INT", nullable = false)
-    private String rating_star;
+    private int rating_star;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;
