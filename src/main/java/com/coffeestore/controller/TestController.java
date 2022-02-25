@@ -30,7 +30,7 @@ public class TestController {
 
 
 
-        @RequestMapping("/customer/cart")
+        @RequestMapping("/user/cart")
         public String cart () {
             return "home";
         }

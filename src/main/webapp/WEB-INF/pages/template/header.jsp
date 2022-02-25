@@ -67,7 +67,7 @@
                             <li><a>Welcome:${pageContext.request.userPrincipal.name} </a></li>
 
 
-                            <li><a href="<c:url value="/customer/cart"/>">Cart</a>
+                            <li><a href="<c:url value="/user/cart"/>">Cart</a>
                             </li>
 
 
