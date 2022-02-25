@@ -32,12 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        System.err.println(dataSource);
 
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .authoritiesByUsernameQuery("SELECT username, authorityType FROM authorities WHERE email = ?")
-                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE email = ?")
-                .passwordEncoder(passwordEncoder());
     }
 
     @Override
