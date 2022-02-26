@@ -22,7 +22,6 @@ public class TestController {
             String email = request.getUserPrincipal().getName();
             user = userService.getUserByEmail(email);
         }
-        System.err.println(user);
         if(user == null) return "home";
 
         HttpSession session = request.getSession();
