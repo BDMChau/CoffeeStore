@@ -6,6 +6,11 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     width: 100vw;
 }
 
+.navbar-nav{
+    font-weight: 600;
+    text-align: center;
+}
+
 /* LOGO STYLE */
 .navbartop {
     position: absolute;
@@ -17,8 +22,45 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     margin: auto;
 }
 .logo{
-    width: 30px;
+    width: 45px;
     height: auto;
     margin-top: -5px;
 }
 
+.control-label{
+    text-align: left;
+    width: 8rem !important;
+    padding: 0;
+    color: black !important;
+}
+
+.navbar-nav>li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+}
+
+
+/*//////*/
+.line{
+    height: 1px;
+    margin: 10px 50px;
+    background: grey;
+}
+
+@media only screen and (max-width: 768px) {
+    .pull-right{
+        float: none !important;
+    }
+
+    .navbar-nav>li {
+        height: unset;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .line{
+        display: none !important;
+    }
+}

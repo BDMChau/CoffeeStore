@@ -44,7 +44,7 @@
 
             <spring:bind path="passwordConfirm">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="col-xs-3 control-label" for="passwordConfirm">Confirm Password:</label>
+                    <label class="col-xs-3 control-label" for="passwordConfirm" style="width: 16rem">Confirm Password:</label>
 
                     <form:input type="password" path="passwordConfirm" class="form-control"
                                 placeholder="Confirm your password"/>

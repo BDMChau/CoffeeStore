@@ -10,20 +10,8 @@
                 <h3>Login</h3>
             </div>
 
-            <form name="formLogin" action="login" method="POST"
+            <form name="formLogin" action="/auth/login" method="POST"
                   class="form-horizontal">
-
-                <div class="form-group has-success">
-                    <label class="col-xs-3 control-label"></label>
-                    <div class="col-xs-9">
-                        <c:if test="${not empty errorMsg}">
-                            <div class="error" style="color:#ff0000">
-                                    ${errorMsg}
-                            </div>
-                        </c:if>
-                    </div>
-                </div>
-
 
                 <div class="form-group has-success">
                     <label class="col-xs-3 control-label" for="email">Email:</label>
@@ -50,11 +38,23 @@
                     </div>
                 </div>
 
+                <div class="form-group has-success">
+                    <label class="col-xs-3 control-label"></label>
+                    <div class="col-xs-9">
+                        <c:if test="${not empty errorMsg}">
+                            <div class="error" style="color:#ff0000">
+                                    ${errorMsg}
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
 
                 <div class="form-group has-success">
                     <label class="col-xs-3 control-label"></label>
                     <div class="col-xs-9">
-                        <button class="btn btn-md btn-primary btn-block" type="submit" style="margin-bottom: 10px">Login</button>
+                        <button class="btn btn-md btn-primary btn-block" type="submit" style="margin-bottom: 10px">
+                            Login
+                        </button>
 
                         <a href="/auth/register">Register new account?</a>
                     </div>
