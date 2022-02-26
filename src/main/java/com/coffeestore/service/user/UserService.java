@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.TimeZone;
 
 @Service
@@ -25,7 +27,10 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void register(User user) {
+    public boolean register(User user) {
+        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
+        if(userOptional.isPresent()) return false;
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setName(user.getName());
         user.setEmail(user.getEmail());
@@ -40,6 +45,7 @@ public class UserService {
         user.setRole_id(role);
 
         userRepository.saveAndFlush(user);
+        return true;
     }
 
 

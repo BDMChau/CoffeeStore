@@ -1,4 +1,6 @@
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="container-wrapper">
@@ -8,10 +10,8 @@
                 <h3>Login</h3>
             </div>
 
-            <form name="loginForm" action="<c:url value="/auth/login" />" method="post"
+            <form name="formLogin" action="login" method="POST"
                   class="form-horizontal">
-
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                 <div class="form-group has-success">
                     <label class="col-xs-3 control-label"></label>
@@ -54,9 +54,13 @@
                 <div class="form-group has-success">
                     <label class="col-xs-3 control-label"></label>
                     <div class="col-xs-9">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <button class="btn btn-md btn-primary btn-block" type="submit" style="margin-bottom: 10px">Login</button>
+
+                        <a href="/auth/register">Register new account?</a>
                     </div>
                 </div>
+
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
         </div>
 

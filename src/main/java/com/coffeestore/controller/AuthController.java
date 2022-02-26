@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Controller
@@ -39,6 +40,17 @@ public class AuthController {
 
         return "auth/login";
     }
+
+
+//    @PostMapping("/login")
+//    public String login(String error, String logout) {
+//        System.err.println("AAAAAAAAAAAA");
+//        System.err.println("AAAAAAAAAAAA");
+//        System.err.println("AAAAAAAAAAAA");
+//
+//
+//        return "auth/login";
+//    }
 
 
     //////// register ////////
@@ -72,7 +84,11 @@ public class AuthController {
         }
 
 
-        userService.register(userForm);
+        boolean isCreated = userService.register(userForm);
+        if(!isCreated) {
+            model.addAttribute("errMsg", "Email is existed!");
+            return "auth/register";
+        }
 
 //        securityService.autoLogin(userForm.getEmail(), userForm.getPasswordConfirm());
 

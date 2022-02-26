@@ -36,25 +36,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.csrf().disable().authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('admin')")
                 .antMatchers("/user/**").authenticated()
-                .and().logout().logoutSuccessUrl("/")
-                .and().formLogin().loginPage("/login")
+                .and().logout().logoutSuccessUrl("/").permitAll()
+                .and().formLogin().loginPage("/auth/login")
+//                .loginProcessingUrl("/j_spring_security_login")
                 .successHandler(savedRequestAwareAuthenticationSuccessHandler())
-                .loginProcessingUrl("/login")
-                .failureUrl("/login?error")
+                .failureUrl("/auth/login?error")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/").and()
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+//                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
                 .rememberMe().key("remember-me").rememberMeParameter("remember-me").rememberMeCookieName("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
 
     }
