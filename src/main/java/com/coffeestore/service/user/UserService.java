@@ -49,4 +49,10 @@ public class UserService {
     }
 
 
+    public User getUserByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if(userOptional.isPresent()) return null;
+
+        return userOptional.get();
+    }
 }
