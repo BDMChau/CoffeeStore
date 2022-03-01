@@ -37,7 +37,7 @@ public class CategoryProduct {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Category product_id;
+    private Product product_id;
 
 
 }
