@@ -34,10 +34,10 @@ public class Address {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "address_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = true)

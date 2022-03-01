@@ -33,21 +33,21 @@ public class User {
     private Long id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Address> addresses;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
-    private Role role_id;
+    private Role role;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String name;

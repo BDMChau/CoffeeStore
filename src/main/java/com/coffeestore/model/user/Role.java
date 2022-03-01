@@ -29,7 +29,7 @@ public class Role {
     private Long id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "role_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private Collection<User> users;
 
     @Column(columnDefinition = "TEXT", nullable = true)

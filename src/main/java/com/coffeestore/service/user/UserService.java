@@ -42,7 +42,7 @@ public class UserService {
         user.setCreated_at(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
 
         Role role = roleRepository.getOne(1L); // role: USER
-        user.setRole_id(role);
+        user.setRole(role);
 
         userRepository.saveAndFlush(user);
         return true;

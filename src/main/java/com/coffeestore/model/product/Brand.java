@@ -35,7 +35,7 @@ public class Brand {
 //    private Nation nation_id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "brand_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private Collection<Product> products;
 
     @Column(columnDefinition = "TEXT", nullable = true)
