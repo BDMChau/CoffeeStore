@@ -40,29 +40,29 @@ public class Order {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user_id;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id")
-    private Payment payment;
+    private Payment payment_id;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
+    private Delivery delivery_id;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
-    private Address address;
+    private Address address_id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL)
     private Collection<OrderDetail> orderDetails;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
 
     @Column(columnDefinition = "TEXT", nullable = false)

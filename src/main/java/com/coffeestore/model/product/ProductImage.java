@@ -30,7 +30,7 @@ public class ProductImage {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Product product_id;
 //
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)

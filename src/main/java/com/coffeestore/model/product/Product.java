@@ -33,25 +33,25 @@ public class Product {
     private Long id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
     private Collection<CategoryProduct> categoryProducts;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
     private Collection<OrderDetail> orderDetails;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
     private Collection<ProductImage> productImages;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
-    private Brand brand;
+    private Brand brand_id;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String name;

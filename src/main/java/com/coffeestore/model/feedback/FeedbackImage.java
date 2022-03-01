@@ -30,7 +30,7 @@ public class FeedbackImage {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feedback_id")
-    private Feedback feedback;
+    private Feedback feedback_id;
 
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)

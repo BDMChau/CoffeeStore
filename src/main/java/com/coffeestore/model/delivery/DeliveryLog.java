@@ -31,7 +31,7 @@ public class DeliveryLog {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
+    private Delivery delivery_id;
 //
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)

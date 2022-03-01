@@ -32,12 +32,12 @@ public class OrderDetail {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Order order_id;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Product product_id;
 //
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)

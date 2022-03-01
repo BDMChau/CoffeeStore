@@ -35,7 +35,7 @@ public class Payment {
 //    private Nation nation_id;
 //
     @JsonBackReference
-    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "payment_id", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = false)

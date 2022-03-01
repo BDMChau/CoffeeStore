@@ -35,7 +35,7 @@ public class Delivery {
 //    private Nation nation_id;
 //
     @JsonBackReference
-    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = false)
