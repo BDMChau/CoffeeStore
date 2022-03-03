@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="container-wrapper">
-    <div class="container">
-        <div class="form-layout">
+<%--<div class="container-wrapper">--%>
+<%--    <div class="container">--%>
+<%--        <div class="form-layout">--%>
             <div class="page-header title">
                 <h3>Login</h3>
             </div>
@@ -62,11 +62,11 @@
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
-        </div>
+<%--        </div>--%>
 
-    </div>
+<%--    </div>--%>
 
-</div>
+<%--</div>--%>
 
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>

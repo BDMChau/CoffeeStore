@@ -57,5 +57,10 @@ public class TestController {
         return "admin";
     }
 
+    @RequestMapping("/user-info")
+    public String userInfoPage() {
+        return "user/user_info";
+    }
+
 
 }
