@@ -1,7 +1,7 @@
 package com.coffeestore.model.product;
 
 import com.coffeestore.model.feedback.Feedback;
-import com.coffeestore.model.orders.OrderDetail;
+import com.coffeestore.model.order.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

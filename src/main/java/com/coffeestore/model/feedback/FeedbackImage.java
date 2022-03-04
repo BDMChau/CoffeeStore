@@ -32,9 +32,7 @@ public class FeedbackImage {
     @JoinColumn(name = "feedback_id")
     private Feedback feedback;
 
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)
-//    private Collection<Order> orders;
+
 
     @Column(columnDefinition = "TEXT")
     private String image_url;

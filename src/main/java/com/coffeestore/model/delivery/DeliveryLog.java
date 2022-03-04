@@ -32,11 +32,6 @@ public class DeliveryLog {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
-//
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)
-//    private Collection<CategoryProduct> categoryProducts;
-
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;

@@ -34,7 +34,7 @@ public class ProductImage {
 //
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "delivery_id", cascade = CascadeType.ALL)
-//    private Collection<Order> orders;
+//    private Collection<Orders> Orders;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String image_url;

@@ -1,6 +1,7 @@
 package com.coffeestore.model.delivery;
 
-import com.coffeestore.model.orders.Order;
+
+import com.coffeestore.model.order.Orders;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -36,7 +37,7 @@ public class Delivery {
 //
     @JsonBackReference
     @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
-    private Collection<Order> orders;
+    private Collection<Orders> Orders;
 
     @JsonBackReference
     @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
