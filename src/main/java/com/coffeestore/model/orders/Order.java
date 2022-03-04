@@ -1,4 +1,4 @@
-package com.coffeestore.model.order;
+package com.coffeestore.model.orders;
 
 import com.coffeestore.model.delivery.Delivery;
 import com.coffeestore.model.feedback.Feedback;
@@ -40,29 +40,29 @@ public class Order {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id")
-    private Payment payment_id;
+    private Payment payment;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery_id;
+    private Delivery delivery;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
-    private Address address_id;
+    private Address address;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Collection<OrderDetail> orderDetails;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
 
     @Column(columnDefinition = "TEXT", nullable = false)

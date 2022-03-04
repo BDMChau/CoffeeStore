@@ -2,7 +2,6 @@ package com.coffeestore.model.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,7 +34,7 @@ public class Brand {
 //    private Nation nation_id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "brand_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private Collection<Product> products;
 
     @Column(columnDefinition = "TEXT", nullable = true)

@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -42,11 +40,38 @@ public class UserService {
         user.setCreated_at(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
 
         Role role = roleRepository.getOne(1L); // role: USER
-        user.setRole_id(role);
+        user.setRole(role);
 
         userRepository.saveAndFlush(user);
         return true;
     }
+
+
+
+//    public boolean updateProfile(User user){
+//        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
+//        if(userOptional.isEmpty()) {
+//            return false;
+//        }
+//
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setName(user.getName());
+//        user.setEmail(user.getEmail());
+////        user.setPhone();
+////        user.setAddresses();
+//        user.setAvatar(avatarDefault);
+////        user.setBirthday();
+////        user.setGender();
+//        user.setCreated_at(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
+//
+//        Role role = roleRepository.getOne(1L); // role: USER
+//        user.setRole(role);
+//
+//        userRepository.saveAndFlush(user);
+//
+//        userRepository.saveAndFlush(user);
+//        return true;
+//    }
 
 
     public User getUserByEmail(String email) {

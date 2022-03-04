@@ -1,6 +1,6 @@
 package com.coffeestore.model.user;
 
-import com.coffeestore.model.order.Order;
+import com.coffeestore.model.orders.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -34,10 +34,10 @@ public class Address {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "address_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = true)

@@ -1,7 +1,7 @@
 package com.coffeestore.model.product;
 
 import com.coffeestore.model.feedback.Feedback;
-import com.coffeestore.model.order.OrderDetail;
+import com.coffeestore.model.orders.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -33,25 +33,25 @@ public class Product {
     private Long id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Collection<CategoryProduct> categoryProducts;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Collection<OrderDetail> orderDetails;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Collection<ProductImage> productImages;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
-    private Brand brand_id;
+    private Brand brand;
 
     @Column(columnDefinition = "TEXT", nullable = true)
     private String name;

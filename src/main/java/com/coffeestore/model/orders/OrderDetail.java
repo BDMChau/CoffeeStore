@@ -1,4 +1,4 @@
-package com.coffeestore.model.order;
+package com.coffeestore.model.orders;
 
 import com.coffeestore.model.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -32,12 +32,12 @@ public class OrderDetail {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order_id;
+    private Order order;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Product product_id;
+    private Product product;
 //
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)

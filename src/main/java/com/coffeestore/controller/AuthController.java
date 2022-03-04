@@ -95,4 +95,6 @@ public class AuthController {
         model.addAttribute("msg", "Register successfully!");
         return "auth/register";
     }
+
+
 }

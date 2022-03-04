@@ -16,12 +16,12 @@
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+                    <div class="col-md-6"><label class="labels">Name</label><input id="ip_name" type="text" class="form-control" placeholder="first name" value=""></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input id="ip_phoneNumber" type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                    <div class="col-md-12"><label class="labels">Address</label><input id="ip_address" type="text" class="form-control" placeholder="enter address" value=""></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input id="ip_email" type="text" class="form-control" placeholder="enter email id" value=""></div>
                     <div class="col-md-12"><label class="labels">Gender</label>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="ir_male" value="option1">
@@ -36,7 +36,7 @@
                         <label class="form-check-label" for="ir_other">Other</label>
                     </div>
                     </div>
-                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" id="ip_password" value=""></div>
                 </div>
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
             </div>

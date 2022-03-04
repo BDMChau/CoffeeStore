@@ -1,6 +1,6 @@
 package com.coffeestore.model.payment;
 
-import com.coffeestore.model.order.Order;
+import com.coffeestore.model.orders.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -35,7 +35,7 @@ public class Payment {
 //    private Nation nation_id;
 //
     @JsonBackReference
-    @OneToMany(mappedBy = "payment_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     @Column(columnDefinition = "TEXT", nullable = false)

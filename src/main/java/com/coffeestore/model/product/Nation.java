@@ -29,7 +29,7 @@ public class Nation {
     private Long id;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "nation_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nation", cascade = CascadeType.ALL)
     private Collection<Category> categories;
 
 

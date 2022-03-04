@@ -1,7 +1,6 @@
 package com.coffeestore.repository.order;
 
-import com.coffeestore.model.feedback.Feedback;
-import com.coffeestore.model.order.Order;
+import com.coffeestore.model.orders.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

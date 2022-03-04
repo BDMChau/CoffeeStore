@@ -32,10 +32,10 @@ public class Category {
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nation_id")
-    private Nation nation_id;
+    private Nation nation;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "category_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Collection<CategoryProduct> categoryProducts;
 
     @Column(columnDefinition = "TEXT", nullable = true)
