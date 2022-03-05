@@ -1,4 +1,4 @@
-package com.coffeestore.api;
+package com.coffeestore.api.GHN;
 
 import org.springframework.stereotype.Service;
 

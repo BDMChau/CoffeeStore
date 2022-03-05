@@ -63,4 +63,12 @@ public class TestController {
     }
 
 
+    @RequestMapping("/paywithvnpay")
+    public String payWithVnpay() {
+        return "payment/vnpay/index";
+    }
+
+
+
+
 }
