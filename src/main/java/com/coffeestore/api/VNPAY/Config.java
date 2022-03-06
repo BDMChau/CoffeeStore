@@ -20,8 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Config {
 
+    // account bank NCB
+    public static String bank_holder = "NGUYEN VAN A";
+    public static String bank_number = "9704198526191432198";
+    public static String release_date = "07/15";
+    public static String pass_otp = "123456";
+
+
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_Returnurl = "http://localhost:8080/vnpay_jsp/vnpay_return.jsp";
+    public static String vnp_Returnurl = "http://localhost:8080/payment/url_redirect_vnpay";
     public static String vnp_TmnCode = "XV63V2QW";
     public static String vnp_HashSecret = "HWZSFAHOOLDAEKDIKRYUKMIZFVHEGTCY";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
@@ -73,7 +80,7 @@ public class Config {
                 sb.append("&");
             }
         }
-        return new HashAndEncrypt().HMAC_SHA512(Config.vnp_HashSecret, sb.toString());
+        return new HashAndEncrypt().HMAC_SHA512(vnp_HashSecret, sb.toString());
     }
 
     public static String getIpAddress(HttpServletRequest request) {
