@@ -1,4 +1,4 @@
-package com.coffeestore.repository.user;
+package com.coffeestore.query.repository.user;
 
 import com.coffeestore.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
