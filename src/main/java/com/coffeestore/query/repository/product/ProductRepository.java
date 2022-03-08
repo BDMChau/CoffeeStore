@@ -2,6 +2,7 @@ package com.coffeestore.query.repository.product;
 
 import com.coffeestore.model.product.Product;
 import com.coffeestore.query.dto.ProductDto;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -30,7 +31,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
            "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
            "WHERE br.id =?1 ")
-    List<ProductDto> getProductsByBrandId(Long brand_id);
+    List<ProductDto> getProductsByBrandId(Long brand_id, Pageable pageable);
 
 //    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
 //           "  br.id, br.description, br.logo, br.name "+
