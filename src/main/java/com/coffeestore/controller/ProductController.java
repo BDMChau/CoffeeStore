@@ -2,10 +2,12 @@ package com.coffeestore.controller;
 
 import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.service.product.ProductService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/")
+@Controller
+@RequestMapping("/product")
 public class ProductController {
 
     private final ProductService productService;
@@ -14,7 +16,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product/{product_id}")
+    @GetMapping("/{product_id}")
     public String getProduct(@PathVariable String product_id, Model model) {
 
         Long productId = 0L;
