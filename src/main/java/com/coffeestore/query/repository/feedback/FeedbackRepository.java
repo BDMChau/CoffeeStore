@@ -1,4 +1,4 @@
-package com.coffeestore.repository.feedback;
+package com.coffeestore.query.repository.feedback;
 
 import com.coffeestore.model.feedback.Feedback;
 import org.springframework.data.jpa.repository.JpaRepository;

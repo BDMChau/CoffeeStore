@@ -23,7 +23,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource({"classpath:database.properties"})
 @ComponentScan({"com.coffeestore"})
-@EnableJpaRepositories(basePackages = "com.coffeestore.repository")
+@EnableJpaRepositories(basePackages = "com.coffeestore.query.repository")
 public class PersistenceJPAConfig {
 
     @Autowired

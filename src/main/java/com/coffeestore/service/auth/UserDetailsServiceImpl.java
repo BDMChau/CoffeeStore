@@ -2,7 +2,7 @@ package com.coffeestore.service.auth;
 
 
 import com.coffeestore.model.user.User;
-import com.coffeestore.repository.user.UserRepository;
+import com.coffeestore.query.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

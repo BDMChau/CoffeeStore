@@ -41,10 +41,7 @@ public class TestController {
         return "contact";
     }
 
-    @RequestMapping("/products")
-    public String product() {
-        return "products";
-    }
+
 
 
     @RequestMapping("/user/cart")

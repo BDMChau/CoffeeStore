@@ -2,8 +2,8 @@ package com.coffeestore.service.user;
 
 import com.coffeestore.model.user.Role;
 import com.coffeestore.model.user.User;
-import com.coffeestore.repository.user.RoleRepository;
-import com.coffeestore.repository.user.UserRepository;
+import com.coffeestore.query.repository.user.RoleRepository;
+import com.coffeestore.query.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
