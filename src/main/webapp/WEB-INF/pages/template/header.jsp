@@ -23,7 +23,6 @@
 
 <%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">--%>
 
-<%--    <link href="<c:url value="/resources/style/main.css"/>" rel="stylesheet">--%>
 
 
 <%--&lt;%&ndash;    user_info page&ndash;%&gt;--%>
@@ -132,7 +131,7 @@
     <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
     <!-- title -->
-    <title>Fruitkha</title>
+    <title>Coffee Store</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
@@ -155,6 +154,10 @@
     <link rel="stylesheet" href="../../../resources/assets/css/main.css">
     <!-- responsive -->
     <link rel="stylesheet" href="../../../resources/assets/css/responsive.css">
+
+    <%--    /////////////////////////////////  --%>
+    <%--   custom style     --%>
+    <link href="<c:url value="/resources/style/main.css"/>" rel="stylesheet">
 
 </head>
 <body>
