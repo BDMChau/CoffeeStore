@@ -15,6 +15,12 @@
     <!-- title -->
     <title>Coffee Store</title>
 
+
+    <%--    /////////////////////////////////  --%>
+    <%--   custom style     --%>
+    <link href="<c:url value="/resources/style/main.css"/>" rel="stylesheet">
+
+
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
     <!-- google font -->
@@ -37,9 +43,6 @@
     <!-- responsive -->
     <link rel="stylesheet" href="../../../resources/assets/css/responsive.css">
 
-    <%--    /////////////////////////////////  --%>
-    <%--   custom style     --%>
-    <link href="<c:url value="/resources/style/main.css"/>" rel="stylesheet">
 
 </head>
 <body>
