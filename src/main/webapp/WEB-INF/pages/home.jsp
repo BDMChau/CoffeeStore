@@ -1,17 +1,58 @@
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
 
 <!-- hero area -->
-<div class="hero-area hero-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9 offset-lg-2 text-center">
-                <div class="hero-text">
-                    <div class="hero-text-tablecell">
-                        <p class="subtitle">Fresh & Organic</p>
-                        <h1>Delicious Seasonal Fruits</h1>
-                        <div class="hero-btns">
-                            <a href="shop.html" class="boxed-btn">Fruit Collection</a>
-                            <a href="contact.html" class="bordered-btn">Contact Us</a>
+<div class="homepage-slider">
+    <!-- single home slider -->
+    <div class="single-homepage-slider homepage-bg-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+                    <div class="hero-text">
+                        <div class="hero-text-tablecell">
+                            <p class="subtitle">Fresh & Organic</p>
+                            <h1>Delicious Seasonal Fruits</h1>
+                            <div class="hero-btns">
+                                <a href="shop.html" class="boxed-btn">Fruit Collection</a>
+                                <a href="contact.html" class="bordered-btn">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- single home slider -->
+    <div class="single-homepage-slider homepage-bg-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 text-center">
+                    <div class="hero-text">
+                        <div class="hero-text-tablecell">
+                            <p class="subtitle">Fresh Everyday</p>
+                            <h1>100% Organic Collection</h1>
+                            <div class="hero-btns">
+                                <a href="shop.html" class="boxed-btn">Visit Shop</a>
+                                <a href="contact.html" class="bordered-btn">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- single home slider -->
+    <div class="single-homepage-slider homepage-bg-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 text-right">
+                    <div class="hero-text">
+                        <div class="hero-text-tablecell">
+                            <p class="subtitle">Mega Sale Going On!</p>
+                            <h1>Get December Discount</h1>
+                            <div class="hero-btns">
+                                <a href="shop.html" class="boxed-btn">Visit Shop</a>
+                                <a href="contact.html" class="bordered-btn">Contact Us</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -19,7 +60,7 @@
         </div>
     </div>
 </div>
-<!-- end hero area -->
+<!-- end home page slider --><!-- end hero area -->
 
 <!-- features list section -->
 <div class="list-section pt-80 pb-80">
@@ -85,7 +126,7 @@
                     </div>
                     <h3>Strawberry</h3>
                     <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="./cart.jsp" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
@@ -95,7 +136,7 @@
                     </div>
                     <h3>Berry</h3>
                     <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="./cart.jsp" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
@@ -105,7 +146,7 @@
                     </div>
                     <h3>Lemon</h3>
                     <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="./cart.jsp" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -137,7 +178,7 @@
                 <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
                 <!--Countdown Timer-->
                 <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2020/2/01"><div class="counter-column"><div class="inner"><span class="count">00</span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
-                <a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                <a href="./cart.jsp" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
             </div>
         </div>
     </div>
@@ -227,7 +268,7 @@
     <div class="container">
         <h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
         <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
-        <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
+        <a href="cart.jsp" class="cart-btn btn-lg">Shop Now</a>
     </div>
 </section>
 <!-- end shop banner -->

@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bdmch
-  Date: 02/24/2022
-  Time: 17:03
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@include file="/WEB-INF/pages/template/header.jsp" %>
 
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<h2>about page</h2>
+<button type="button" class="btn btn-primary">Primary</button>
+
+
+<%@include file="/WEB-INF/pages/template/footer.jsp" %>

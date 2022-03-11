@@ -44,7 +44,7 @@ public class TestController {
 
 
 
-    @RequestMapping("/user/cart")
+    @RequestMapping("/cart")
     public String cart() {
         return "home";
     }

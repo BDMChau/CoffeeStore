@@ -1,5 +1,7 @@
 
-
+.row{
+    background-color: black !important;
+}
 /*Navbar*/
 nav.navbar.navbar-inverse.navbar-fixed-top{
     position: relative;
