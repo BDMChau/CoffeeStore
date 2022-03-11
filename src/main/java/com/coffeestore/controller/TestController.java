@@ -44,20 +44,20 @@ public class TestController {
 
 
 
-    @RequestMapping("/user/cart")
-    public String cart() {
-        return "home";
-    }
-
-    @RequestMapping("/admin")
-    public String adminPage() {
-        return "admin";
-    }
-
-    @RequestMapping("/user-info")
-    public String userInfoPage() {
-        return "user/user_info";
-    }
+//    @RequestMapping("/user/cart")
+//    public String cart() {
+//        return "home";
+//    }
+//
+//    @RequestMapping("/admin")
+//    public String adminPage() {
+//        return "admin";
+//    }
+//
+//    @RequestMapping("/user-info")
+//    public String userInfoPage() {
+//        return "user/user_info";
+//    }
 
 
     @RequestMapping("/paywithvnpay")
