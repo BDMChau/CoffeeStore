@@ -12,19 +12,12 @@
 
 <div>
 
-    <p>${product_info.bra_id}</p>
-    <p>${product_info.bra_description}</p>
-    <p>${product_info.bra_logo}</p>
-    <p>${product_info.bra_name}</p>
+    <p>${brand_info.id}</p>
+    <img>${brand_info.background_img}</img>
+    <img src="{brand">
+    <p>${brand_info.description}</p>
+    <p>${brand_info.logo}</p>
 
-    <p>${product_info.pr_id}</p>
-    <p>${product_info.pr_description}</p>
-    <p>${product_info.pr_name}</p>
-    <p>${product_info.pr_price}</p>
-
-    <p>${product_info.prImg_id}</p>
-    <p>${product_info.prImg_url}</p>
+    <p>${brand_info.name}</p>
 
 </div>
-
-

@@ -29,11 +29,6 @@ public class ProductController {
         return "product";
     }
 
-    @GetMapping("/brand/{brand_id}") // products of id
-    public String getProductsOfBrand(@PathVariable String product_id, Model model) {
 
-
-        return "product";
-    }
 
 }
