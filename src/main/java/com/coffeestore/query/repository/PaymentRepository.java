@@ -1,4 +1,4 @@
-package com.coffeestore.query.repository.payment;
+package com.coffeestore.query.repository;
 
 import com.coffeestore.model.payment.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;

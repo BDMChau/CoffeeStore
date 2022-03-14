@@ -2,7 +2,7 @@ package com.coffeestore.service.product;
 
 import com.coffeestore.helpers.OffsetBasedPageRequest;
 import com.coffeestore.query.dto.ProductDto;
-import com.coffeestore.query.repository.product.ProductRepository;
+import com.coffeestore.query.repository.ProductRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

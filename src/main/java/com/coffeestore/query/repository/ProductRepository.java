@@ -1,4 +1,4 @@
-package com.coffeestore.query.repository.product;
+package com.coffeestore.query.repository;
 
 import com.coffeestore.model.product.Product;
 import com.coffeestore.query.dto.ProductDto;

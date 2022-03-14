@@ -1,4 +1,4 @@
-package com.coffeestore.query.repository.order;
+package com.coffeestore.query.repository;
 
 
 import com.coffeestore.model.order.Orders;

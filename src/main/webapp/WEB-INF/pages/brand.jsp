@@ -13,11 +13,12 @@
 <div>
 
     <p>${brand_info.id}</p>
-    <img>${brand_info.background_img}</img>
-    <img src="{brand">
+<%--    <img>${brand_info.background_img}</img>--%>
+    <img src="${brand_info.background_img}">
     <p>${brand_info.description}</p>
     <p>${brand_info.logo}</p>
 
     <p>${brand_info.name}</p>
 
 </div>
+<%@include file="/WEB-INF/pages/template/footer.jsp" %>
