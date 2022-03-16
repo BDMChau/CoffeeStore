@@ -62,4 +62,15 @@ public class Product {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;
 
+    @Column(columnDefinition = "INT", nullable = true)
+    private int count_views;
+
+    @Column(columnDefinition = "INT", nullable = true)
+    private int count_purchased;
+
+    @Column(columnDefinition = "INT", nullable = true)
+    private int count_rating;
+
+    @Column(columnDefinition = "float", nullable = true)
+    private float rating_star;
 }

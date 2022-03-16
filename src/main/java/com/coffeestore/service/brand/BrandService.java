@@ -28,7 +28,7 @@ public class BrandService {
     public List<ProductDto> getProductsByBrand(Long brandId, int from, int amount) {
         Pageable pageable =  new OffsetBasedPageRequest(from, amount);
 
-        List<ProductDto> productDtoList = brandRepository.getProductByBrandId(brandId,pageable);
+        List<ProductDto> productDtoList = brandRepository.getProductsByBrandId(brandId,pageable);
         if (productDtoList.isEmpty()){
             return new ArrayList<>();
         }

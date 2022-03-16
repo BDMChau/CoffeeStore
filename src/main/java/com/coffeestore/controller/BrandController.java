@@ -41,12 +41,6 @@ public class BrandController {
         if (!brand_id.equals("")) {
             brandId = Long.parseLong(brand_id);
         }
-        if(page ==0){
-            Brand brand = brandService.GetBrandInfo(brandId);
-            model.addAttribute("brand_info", brand);
-            return "brand";
-        }
-
             if(page <= 0){
                 model.addAttribute("err","something wrong!");
 
