@@ -1,5 +1,7 @@
 
-
+.row{
+    background-color: pink !important;
+}
 /*Navbar*/
 nav.navbar.navbar-inverse.navbar-fixed-top{
     position: relative;
@@ -49,6 +51,14 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     background: grey;
 }
 
+contact_form_area p_100{
+    background-color: #FF4D4F !important;
+    position: absolute;
+}
+
+
+
+
 @media only screen and (max-width: 768px) {
     .pull-right{
         float: none !important;
@@ -64,3 +74,4 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
         display: none !important;
     }
 }
+

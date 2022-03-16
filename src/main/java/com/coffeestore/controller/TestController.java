@@ -36,28 +36,46 @@ public class TestController {
         return "about";
     }
 
+    @RequestMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
     @RequestMapping("/contact")
     public String contact() {
         return "contact";
     }
 
+    @RequestMapping("/cart")
+    public String cart() {
+        return "cart";
+    }
+
+    @RequestMapping("/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
+    @RequestMapping("/brand")
+    public String brandPage() {
+        return "brand";
+    }
 
 
+    @RequestMapping("/user")
+    public String userPage() {
+        return "user";
+    }
 
-//    @RequestMapping("/user/cart")
-//    public String cart() {
-//        return "home";
-//    }
-//
-//    @RequestMapping("/admin")
-//    public String adminPage() {
-//        return "admin";
-//    }
-//
-//    @RequestMapping("/user-info")
-//    public String userInfoPage() {
-//        return "user/user_info";
-//    }
+    @RequestMapping("/shop")
+    public String shopPage() {
+        return "shop";
+    }
+
+    @RequestMapping("/user-info")
+    public String userInfoPage() {
+        return "user/user_info";
+    }
 
 
     @RequestMapping("/paywithvnpay")
@@ -67,5 +85,9 @@ public class TestController {
 
 
 
+    @RequestMapping("/userrr")
+    public String user() {
+        return "userrr";
+    }
 
 }
