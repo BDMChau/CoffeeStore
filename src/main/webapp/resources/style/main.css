@@ -1,6 +1,6 @@
 
 .row{
-    background-color: black !important;
+    background-color: pink !important;
 }
 /*Navbar*/
 nav.navbar.navbar-inverse.navbar-fixed-top{
@@ -50,6 +50,12 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     margin: 10px 50px;
     background: grey;
 }
+
+contact_form_area p_100{
+    background-color: #FF4D4F !important;
+    position: absolute;
+}
+
 
 
 

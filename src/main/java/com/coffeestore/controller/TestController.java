@@ -36,6 +36,11 @@ public class TestController {
         return "about";
     }
 
+    @RequestMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
     @RequestMapping("/contact")
     public String contact() {
         return "contact";
