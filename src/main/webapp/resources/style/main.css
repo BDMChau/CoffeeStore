@@ -51,6 +51,8 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     background: grey;
 }
 
+
+
 @media only screen and (max-width: 768px) {
     .pull-right{
         float: none !important;
@@ -66,3 +68,4 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
         display: none !important;
     }
 }
+

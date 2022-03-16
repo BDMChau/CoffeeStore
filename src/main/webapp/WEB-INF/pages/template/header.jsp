@@ -197,11 +197,13 @@
                                 <ul class="sub-menu">
                                     <li><a href="404.jsp">404 page</a></li>
                                     <li><a href="about.jsp">About</a></li>
-                                    <li><a href="../cart.jsp">Cart</a></li>
+                                    <li><a href="/cart">Cart</a></li>
                                     <li><a href="checkout.jsp">Check Out</a></li>
                                     <li><a href="contact.jsp">Contact</a></li>
                                     <li><a href="news.jsp">News</a></li>
-                                    <li><a href="shop.jsp">Shop</a></li>
+                                    <li><a href="/shop">Shop</a></li>
+                                    <li><a href="/brand">Brand</a></li>
+                                    <li><a href="/userrr">User-Info</a> </li>
                                 </ul>
                             </li>
                             <li><a href="news.jsp">News</a>

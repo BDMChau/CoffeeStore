@@ -41,17 +41,30 @@ public class TestController {
         return "contact";
     }
 
-
-
-
     @RequestMapping("/cart")
     public String cart() {
-        return "home";
+        return "cart";
     }
 
     @RequestMapping("/admin")
     public String adminPage() {
         return "admin";
+    }
+
+    @RequestMapping("/brand")
+    public String brandPage() {
+        return "brand";
+    }
+
+
+    @RequestMapping("/user")
+    public String userPage() {
+        return "user";
+    }
+
+    @RequestMapping("/shop")
+    public String shopPage() {
+        return "shop";
     }
 
     @RequestMapping("/user-info")
@@ -67,5 +80,9 @@ public class TestController {
 
 
 
+    @RequestMapping("/userrr")
+    public String user() {
+        return "userrr";
+    }
 
 }
