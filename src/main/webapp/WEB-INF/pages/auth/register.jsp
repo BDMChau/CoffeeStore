@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="container-wrapper">
+<div class="register-page pt-150 pb-150" style="width: 80%">
     <div class="container">
         <div class="page-header title">
             <h3>Register</h3>
@@ -44,7 +44,8 @@
 
             <spring:bind path="passwordConfirm">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="col-xs-3 control-label" for="passwordConfirm" style="width: 16rem">Confirm Password:</label>
+                    <label class="col-xs-3 control-label" for="passwordConfirm" style="width: 16rem">Confirm
+                        Password:</label>
 
                     <form:input type="password" path="passwordConfirm" class="form-control"
                                 placeholder="Confirm your password"/>
@@ -64,14 +65,16 @@
                 </div>
             </c:if>
 
-            <button class="btn btn-md btn-primary btn-block" type="submit" style="margin-bottom: 10px">Register</button>
+            <button class="btn btn-md btn-primary" type="submit"
+                    style="margin-bottom: 10px; width: 10rem; height: 2.5rem">Register
+            </button>
 
 
-            <a href="/auth/login">Already have an account?</a>
+            <div>
+                <a href="/auth/login">Already have an account?</a>
+            </div>
         </form:form>
     </div>
-
-</div>
 
 </div>
 

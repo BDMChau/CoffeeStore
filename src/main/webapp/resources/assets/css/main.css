@@ -524,12 +524,6 @@ ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-lin
   color: #051922;
 }
 
-.top-header-area {
-  position: absolute;
-  z-index: 999;
-  width: 100%;
-  padding: 25px 0;
-}
 
 .top-header-area.white ul.navbar-nav li.nav-item a.nav-link, .top-header-area.white ul.navbar-nav li.nav-item.active a.nav-link {
   color: #fff;
@@ -611,7 +605,8 @@ nav.main-menu > ul li:last-child {
 
 .site-logo {
   float: left;
-  max-width: 150px;
+  max-width: 90px;
+  transform: scale(1.5);
 }
 
 ul.sub-menu li:last-child {
@@ -671,7 +666,7 @@ nav.mean-nav > ul > li:first-child > a {
 }
 
 .site-logo {
-  padding: 6px 0;
+  padding: 0px 0;
 }
 
 .top-header-area.sepherate-header ul li > a, .top-header-area.sepherate-header .header-icons a {
@@ -721,16 +716,23 @@ nav.main-menu li a {
   z-index: 999 !important;
 }
 
+.top-header-area {
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  background: #66767E;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  padding: 25px 0;
+}
+
 .sticky-wrapper.is-sticky .top-header-area {
   background-color: #051922;
   padding: 15px 0;
 }
 
-.top-header-area {
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
+
 
 ul.navbar-nav {
   margin: 0 auto;
@@ -864,22 +866,23 @@ a.mobile-show {
 .footer-area {
   background-color: #051922;
   color: #fff;
-  padding: 150px 0;
+  padding: 20px 0;
+  margin-top: 50px;
 }
 
 h2.widget-title {
   font-size: 24px;
   font-weight: 500;
   position: relative;
-  padding-bottom: 20px;
   color: #fff;
+  margin-bottom: 5px !important;
 }
 
 h2.widget-title:after {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 20px;
+  width: 40px;
   height: 2px;
   background-color: #F28123;
   content: "";
@@ -2184,9 +2187,9 @@ a.video-play-btn {
   background-image: url(../img/team/team-3.jpg);
 }
 
-.team-bg-4 {
-  background-image: url(../img/team/team-4.jpg);
-}
+/*.team-bg-4 {*/
+/*  background-image: url(../img/team/team-4.jpg);*/
+/*}*/
 
 .team-bg {
   height: 400px;

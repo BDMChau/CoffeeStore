@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%--<div class="container-wrapper">--%>
-<%--    <div class="container">--%>
-<%--        <div class="form-layout">--%>
+<div class="login-page pt-150 pb-150">
+    <div class="container">
+        <div class="form-layout" style="width: 80%">
             <div class="page-header title">
                 <h3>Login</h3>
             </div>
@@ -31,12 +31,12 @@
                 </div>
 
 
-                <div class="form-group has-success">
-                    <label class="col-xs-3 control-label"></label>
-                    <div class="col-xs-9">
-                        Remember Me: <input type="checkbox" name="remember-me"/>
-                    </div>
-                </div>
+                <%--                <div class="form-group has-success">--%>
+                <%--                    <label class="col-xs-3 control-label"></label>--%>
+                <%--                    <div class="col-xs-9">--%>
+                <%--                        Remember Me: <input type="checkbox" name="remember-me"/>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
 
                 <div class="form-group has-success">
                     <label class="col-xs-3 control-label"></label>
@@ -49,24 +49,22 @@
                     </div>
                 </div>
 
-                <div class="form-group has-success">
-                    <label class="col-xs-3 control-label"></label>
-                    <div class="col-xs-9">
-                        <button class="btn btn-md btn-primary btn-block" type="submit" style="margin-bottom: 10px">
-                            Login
-                        </button>
+                <div>
+                    <button class="btn btn-md btn-primary" type="submit"
+                            style="margin-bottom: 10px; width: 10rem; height: 2.5rem">
+                        Login
+                    </button>
 
+                    <div>
                         <a href="/auth/register">Register new account?</a>
                     </div>
                 </div>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
-<%--        </div>--%>
+        </div>
 
-<%--    </div>--%>
-
-<%--</div>--%>
-
+    </div>
+</div>
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>
