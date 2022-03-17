@@ -32,18 +32,14 @@ public class ProductController {
     }
 
     @GetMapping("/top_products/{req}") // products of id
-    public String GetProductsOfBrand(@PathVariable String brand_id, @PathVariable int req, @RequestParam int page, Model model) {
+    public String GetProductsOfBrand(@PathVariable int req, @RequestParam int page, Model model) {
 
-        Long brandId = 0L;
-        if (!brand_id.equals("")) {
-            brandId = Long.parseLong(brand_id);
-        }
         if (page <= 0) {
             model.addAttribute("err", "something wrong!");
 
         } else page -= 1;
         int from = page * 10;
-        int amount = from + 10;
+        int amount = 10;
 
         List<ProductDto> productDtoList = productService.getTopProducts(req, from, amount);
         productDtoList.forEach(System.err::println);
