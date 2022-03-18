@@ -2,7 +2,6 @@ package com.coffeestore.model.user;
 
 import com.coffeestore.model.feedback.Feedback;
 
-import com.coffeestore.model.rating_product.RatingProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -44,10 +43,6 @@ public class User {
     @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Collection<RatingProduct> ratingProducts;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)

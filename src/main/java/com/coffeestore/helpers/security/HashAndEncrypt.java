@@ -12,10 +12,10 @@ import java.security.MessageDigest;
 public class HashAndEncrypt {
     public String HMAC_SHA256(String key, String data) throws Exception {
         Mac HMAC_SHA256 = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        SecretKeySpec secret_key = new SecretKeySpec(key.getBytes("UTF-8"), "HmacSHA256");
         HMAC_SHA256.init(secret_key);
 
-        return Hex.encodeHexString(HMAC_SHA256.doFinal(data.getBytes(StandardCharsets.UTF_8)));
+        return Hex.encodeHexString(HMAC_SHA256.doFinal(data.getBytes("UTF-8")));
     }
 
     public String HMAC_SHA512(String key, String data) throws Exception {
@@ -46,7 +46,7 @@ public class HashAndEncrypt {
         String digest = null;
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hash = md.digest(message.getBytes(StandardCharsets.UTF_8));
+        byte[] hash = md.digest(message.getBytes("UTF-8"));
 
         // converting byte array to Hexadecimal String
         StringBuilder sb = new StringBuilder(2 * hash.length);

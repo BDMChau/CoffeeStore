@@ -37,13 +37,17 @@ public class Config {
         String digest = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] hash = md.digest(message.getBytes(StandardCharsets.UTF_8));
+            byte[] hash = md.digest(message.getBytes("UTF-8"));
             // converting byte array to Hexadecimal String
             StringBuilder sb = new StringBuilder(2 * hash.length);
             for (byte b : hash) {
                 sb.append(String.format("%02x", b & 0xff));
             }
             digest = sb.toString();
+        } catch (UnsupportedEncodingException ex) {
+            digest = "";
+            // Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE,
+            // null, ex);
         } catch (NoSuchAlgorithmException ex) {
             // Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE,
             // null, ex);
