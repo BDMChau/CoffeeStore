@@ -1,5 +1,6 @@
 package com.coffeestore.controller;
 
+import com.coffeestore.model.product.Product;
 import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.service.product.ProductService;
 import org.springframework.stereotype.Controller;
@@ -46,6 +47,34 @@ public class ProductController {
         model.addAttribute("list_top_products", productDtoList);
         return "brandproducts";
     }
+
+    @PostMapping("/update_view")
+    public String updateViewProduct(@RequestParam String product_id) {
+
+        Long productId = Long.parseLong(product_id);
+        Product product = productService.updateViewProduct(productId);
+        return "Update view successfully!";
+    }
+
+//    @PostMapping("/update_ra")
+//    public String Product(@RequestParam String product_id) {
+//
+//        Long productId = Long.parseLong(product_id);
+//        Product product = productService.updateViewProduct(productId);
+//        return "Update view successfully!";
+//    }
+//
+//    @PostMapping("/update_count_purchased")
+//    public String addViewProduct(@RequestParam String product_id) {
+//
+//        Long productId = Long.parseLong(product_id);
+//        Product product = productService.updateViewProduct(productId);
+//        return "Update view successfully!";
+//    }
+
+
+
+
 
 
 }

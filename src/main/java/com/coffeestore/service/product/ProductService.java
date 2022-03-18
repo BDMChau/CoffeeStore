@@ -1,6 +1,7 @@
 package com.coffeestore.service.product;
 
 import com.coffeestore.helpers.OffsetBasedPageRequest;
+import com.coffeestore.model.product.Product;
 import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.query.repository.ProductRepository;
 import org.springframework.data.domain.Pageable;
@@ -58,6 +59,12 @@ public class ProductService {
                 new ArrayList<>();
         }
         return new ArrayList<>();
+    }
+
+    public Product updateViewProduct(Long productId) {
+        Product product = productRepository.getOne(productId);
+        product.setCount_views(product.getCount_views() + 1);
+        return product;
     }
 
 
