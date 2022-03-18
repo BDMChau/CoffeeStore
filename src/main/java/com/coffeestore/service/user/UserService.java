@@ -14,7 +14,7 @@ import java.util.TimeZone;
 
 @Service
 public class UserService {
-    private String avatarDefault = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
+    private final String avatarDefault = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
 
     @Autowired
     private UserRepository userRepository;
