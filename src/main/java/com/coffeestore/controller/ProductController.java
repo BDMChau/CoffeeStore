@@ -32,8 +32,8 @@ public class ProductController {
         return "product";
     }
 
-    @GetMapping("/get_top_products/{req}") // products of id
-    public String getTopProducts(@PathVariable int req, @RequestParam int page, Model model) {
+    @GetMapping("/top_products/{req}") // products of id
+    public String GetProductsOfBrand(@PathVariable int req, @RequestParam int page, Model model) {
 
         if (page <= 0) {
             model.addAttribute("err", "something wrong!");
@@ -47,23 +47,6 @@ public class ProductController {
         model.addAttribute("list_top_products", productDtoList);
         return "brandproducts";
     }
-
-//    @GetMapping("/get_new_products") // products of id
-//    public String getNewProducts(@RequestParam int page, Model model) {
-//
-//        if (page <= 0) {
-//            model.addAttribute("err", "something wrong!");
-//
-//        } else page -= 1;
-//        int from = page * 10;
-//        int amount = 10;
-//
-//        List<ProductDto> productDtoList = productService.getTopProducts(req, from, amount);
-//        productDtoList.forEach(System.err::println);
-//        model.addAttribute("list_top_products", productDtoList);
-//        return "brandproducts";
-//    }
-
 
     @PostMapping("/update_view")
     public String updateViewProduct(@RequestParam String product_id) {

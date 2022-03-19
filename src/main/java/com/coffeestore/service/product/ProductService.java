@@ -92,7 +92,7 @@ public class ProductService {
                 int count_rating = product.getCount_rating() + 1;
                 float rate = (product.getRating_star() + value) / count_rating;
                 product.setCount_rating(count_rating);
-                product.setRating_star((long) rate);
+                product.setRating_star(rate);
                 productRepository.save(product);
 
                 return product;
