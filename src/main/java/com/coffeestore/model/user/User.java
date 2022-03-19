@@ -2,7 +2,7 @@ package com.coffeestore.model.user;
 
 import com.coffeestore.model.feedback.Feedback;
 
-import com.coffeestore.model.rating_product.RatingProduct;
+import com.coffeestore.model.product.RatingProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

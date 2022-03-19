@@ -2,7 +2,7 @@ package com.coffeestore.service.product;
 
 import com.coffeestore.helpers.OffsetBasedPageRequest;
 import com.coffeestore.model.product.Product;
-import com.coffeestore.model.rating_product.RatingProduct;
+import com.coffeestore.model.product.RatingProduct;
 import com.coffeestore.model.user.User;
 import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.query.repository.ProductRepository;

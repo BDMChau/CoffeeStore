@@ -53,7 +53,7 @@ public class ProductController {
 
         Long productId = Long.parseLong(product_id);
         Product product = productService.updateViewProduct(productId);
-        return "Update view successfully!";
+        return "home";
     }
 
 //    @PostMapping("/update_ra")

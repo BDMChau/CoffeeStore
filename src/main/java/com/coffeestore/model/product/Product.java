@@ -2,7 +2,6 @@ package com.coffeestore.model.product;
 
 import com.coffeestore.model.feedback.Feedback;
 import com.coffeestore.model.order.OrderDetail;
-import com.coffeestore.model.rating_product.RatingProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -67,15 +66,15 @@ public class Product {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;
 
-    @Column(columnDefinition = "INT", nullable = true)
+    @Column(columnDefinition = "bigint default 0", nullable = false)
     private int count_views;
 
-    @Column(columnDefinition = "INT", nullable = true)
+    @Column(columnDefinition = "INT default 0", nullable = false)
     private int count_purchased;
 
-    @Column(columnDefinition = "INT", nullable = true)
+    @Column(columnDefinition = "INT default 0", nullable = false)
     private int count_rating;
 
-    @Column(columnDefinition = "float", nullable = true)
+    @Column(columnDefinition = "float default 0", nullable = false)
     private float rating_star;
 }

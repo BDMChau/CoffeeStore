@@ -1,4 +1,4 @@
-package com.coffeestore.model.rating_product;
+package com.coffeestore.model.product;
 
 import com.coffeestore.model.feedback.Feedback;
 import com.coffeestore.model.product.Product;
