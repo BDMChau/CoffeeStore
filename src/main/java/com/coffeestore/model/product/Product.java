@@ -67,13 +67,13 @@ public class Product {
     private String description;
 
     @Column(columnDefinition = "bigint default 0", nullable = false)
-    private int count_views;
+    private Long count_views;
 
-    @Column(columnDefinition = "INT default 0", nullable = false)
-    private int count_purchased;
+    @Column(columnDefinition = "bigint default 0", nullable = false)
+    private Long count_purchased;
 
-    @Column(columnDefinition = "INT default 0", nullable = false)
-    private int count_rating;
+    @Column(columnDefinition = "bigint default 0", nullable = false)
+    private Long count_rating;
 
     @Column(columnDefinition = "float default 0", nullable = false)
     private float rating_star;

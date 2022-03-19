@@ -48,12 +48,35 @@ public class ProductController {
         return "brandproducts";
     }
 
-    @PostMapping("/update_view")
-    public String updateViewProduct(@RequestParam String product_id) {
+    @GetMapping("/update_view/{id}")
+    public String updateViewProduct(@PathVariable String id, Model model) {
 
-        Long productId = Long.parseLong(product_id);
+        Long productId = 0L;
+        if (!id.equals("")) {
+            productId = Long.parseLong(id);
+        }
         Product product = productService.updateViewProduct(productId);
-        return "home";
+        model.addAttribute("product", product);
+        return "product";
+    }
+
+    @GetMapping("get_related_products/{page}")
+    public String getRelatedProducts(@PathVariable int page, @RequestParam String category_id, Model model) {
+
+        if (page <= 0) {
+            model.addAttribute("err", "something wrong!");
+
+        } else page -= 1;
+        int from = page * 10;
+        int amount = 10;
+
+        Long categoryId = 0L;
+        if (!category_id.equals("")) {
+            categoryId = Long.parseLong(category_id);
+        }
+        List<ProductDto> product = productService.getRelatedProducts(categoryId, from, amount);
+        model.addAttribute("product", product);
+        return "product";
     }
 
 //    @PostMapping("/update_ra")
@@ -71,10 +94,6 @@ public class ProductController {
 //        Product product = productService.updateViewProduct(productId);
 //        return "Update view successfully!";
 //    }
-
-
-
-
 
 
 }

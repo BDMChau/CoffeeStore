@@ -14,10 +14,14 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
-                       "  br.id, br.description, br.logo, br.name "+
-                       ", pr.id, pr.description, pr.name, pr.price "+
+                       "  br.id, br.description, br.logo, br.name " +
+                       ", ca.id, ca.name "+
+                       ", pr.id, pr.description, pr.name, pr.price " +
+                       ", pr.count_purchased, pr.count_views, pr.count_rating, pr.rating_star "+
                        ", prI.id, prI.image_url) "+
             "FROM Product pr " +
+            "JOIN CategoryProduct cp ON cp.product.id = pr.id " +
+            "LEFT JOIN Category ca ON ca.id = cp.category.id " +
             "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
             "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
             "WHERE pr.id =?1 ")
@@ -35,45 +39,59 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
     @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
-           "  br.id ,br.description, br.logo, br.name "+
-           ", pr.id, pr.description, pr.name, pr.price "+
+           "  br.id, br.description, br.logo, br.name " +
+           ", ca.id, ca.name "+
+           ", pr.id, pr.description, pr.name, pr.price " +
+           ", pr.count_purchased, pr.count_views, pr.count_rating, pr.rating_star "+
            ", prI.id, prI.image_url) "+
            "FROM Product pr " +
+           "JOIN CategoryProduct cp ON cp.product.id = pr.id " +
+           "LEFT JOIN Category ca ON ca.id = cp.category.id " +
            "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
            "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
            "ORDER BY pr.rating_star DESC ")
     List<ProductDto> getTopProductsByRating_star(Pageable pageable);
 
     @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
-           "  br.id ,br.description, br.logo, br.name "+
-           ", pr.id, pr.description, pr.name, pr.price "+
+           "  br.id, br.description, br.logo, br.name " +
+           ", ca.id, ca.name "+
+           ", pr.id, pr.description, pr.name, pr.price " +
+           ", pr.count_purchased, pr.count_views, pr.count_rating, pr.rating_star "+
            ", prI.id, prI.image_url) "+
            "FROM Product pr " +
+           "JOIN CategoryProduct cp ON cp.product.id = pr.id " +
+           "LEFT JOIN Category ca ON ca.id = cp.category.id " +
            "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
            "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
            "ORDER BY pr.count_views DESC ")
     List<ProductDto> getTopProductsByCount_views(Pageable pageable);
 
     @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
-           "  br.id ,br.description, br.logo, br.name "+
-           ", pr.id, pr.description, pr.name, pr.price "+
+           "  br.id, br.description, br.logo, br.name " +
+           ", ca.id, ca.name "+
+           ", pr.id, pr.description, pr.name, pr.price " +
+           ", pr.count_purchased, pr.count_views, pr.count_rating, pr.rating_star "+
            ", prI.id, prI.image_url) "+
            "FROM Product pr " +
+           "JOIN CategoryProduct cp ON cp.product.id = pr.id " +
+           "LEFT JOIN Category ca ON ca.id = cp.category.id " +
            "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
            "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
            "ORDER BY pr.count_purchased DESC ")
     List<ProductDto> getTopProductsByCount_purchased(Pageable pageable);
 
-//    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
-//           "  br.id, br.description, br.logo, br.name "+
-//           ", "+
-//           ", pr.id, pr.description, pr.name, pr.price "+
-//           ", prI.id, prI.image_url) "+
-//           "FROM Product pr " +
-//           "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
-//           "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
-//           "LEFT JOIN Category ct"
-//           "WHERE pr.id =?1 ")
-//    Optional<ProductDto> getProductByCategoryId(Long product_id);
+    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
+           "  br.id, br.description, br.logo, br.name " +
+           ", ca.id, ca.name "+
+           ", pr.id, pr.description, pr.name, pr.price " +
+           ", pr.count_purchased, pr.count_views, pr.count_rating, pr.rating_star "+
+           ", prI.id, prI.image_url) "+
+           "FROM Product pr " +
+           "JOIN CategoryProduct cp ON cp.product.id = pr.id " +
+           "LEFT JOIN Category ca ON ca.id = cp.category.id " +
+           "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
+           "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
+           "WHERE ca.id =?1 ")
+    List<ProductDto> getProductsByCategoryId(Pageable pageable, Long category_id);
 
 }

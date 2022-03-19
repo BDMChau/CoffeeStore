@@ -27,5 +27,12 @@
 
 </div>
 
+<div>
+    <p>${product.id}</p>
+    <p>${product.count_views}</p>
+</div>
+
+<%@include file="/WEB-INF/pages/template/footer.jsp" %>
+
 
 
