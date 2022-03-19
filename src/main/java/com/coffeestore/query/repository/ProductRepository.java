@@ -34,6 +34,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<ProductDto> getProductsByBrandId(Long brand_id, Pageable pageable);
 
 
+//    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
+//           "  br.id ,br.description, br.logo, br.name "+
+//           ", pr.id, pr.description, pr.name, pr.price " +
+//           ", pr.count_purchased, pr.count_rating, pr.count_views, pr.rating_star "+
+//           ", prI.id, prI.image_url) "+
+//           "FROM Product pr " +
+//           "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
+//           "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
+//           "ORDER BY pr.rating_star DESC ")
+//    List<ProductDto> getTopProductsByRating_star(Pageable pageable);
+
     @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
            "  br.id ,br.description, br.logo, br.name "+
            ", pr.id, pr.description, pr.name, pr.price "+
@@ -63,6 +74,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
            "ORDER BY pr.count_purchased DESC ")
     List<ProductDto> getTopProductsByCount_purchased(Pageable pageable);
+
+//    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
+//           "  br.id ,br.description, br.logo, br.name "+
+//           ", pr.id, pr.description, pr.name, pr.price "+
+//           ", prI.id, prI.image_url) "+
+//           "FROM Product pr " +
+//           "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
+//           "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
+//           "ORDER BY pr.count_purchased DESC ")
+//    List<ProductDto> getTopProductsByCount_purchased(Pageable pageable);
+
+
 
 //    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
 //           "  br.id, br.description, br.logo, br.name "+

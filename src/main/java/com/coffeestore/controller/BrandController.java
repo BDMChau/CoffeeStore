@@ -22,7 +22,7 @@ public class BrandController {
         this.brandService = brandService;
     }
     @GetMapping("/{brand_id}") // products of id
-    public String GetBrandInfo(@PathVariable String brand_id, Model model) {
+    public String getBrandInfo(@PathVariable String brand_id, Model model) {
 
         Long brandId = 0L;
         if (!brand_id.equals("")) {
@@ -35,7 +35,7 @@ public class BrandController {
     }
 
     @GetMapping("/{brand_id}/page") // products of id
-    public String GetProductsOfBrand(@PathVariable String brand_id, @RequestParam int page, Model model) {
+    public String getProductsOfBrand(@PathVariable String brand_id, @RequestParam int page, Model model) {
 
         Long brandId = 0L;
         if (!brand_id.equals("")) {
