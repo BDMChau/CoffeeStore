@@ -73,6 +73,11 @@ public class UserService {
 //        return true;
 //    }
 
+    public User getUserInfo(String userEmail){
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        return userOptional.orElseGet(User::new);
+    }
+
 
     public User getUserByEmail(String email) {
         Optional<User> userOptional = userRepository.findByEmail(email);

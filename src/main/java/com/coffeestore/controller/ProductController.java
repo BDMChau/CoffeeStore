@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -75,6 +76,19 @@ public class ProductController {
             categoryId = Long.parseLong(category_id);
         }
         List<ProductDto> product = productService.getRelatedProducts(categoryId, from, amount);
+        model.addAttribute("product", product);
+        return "product";
+    }
+
+    @PostMapping("/rating_product")
+    public String addRatingProduct(HttpSession httpSession, Model model, @RequestParam String product_id, @RequestParam float value) {
+        String userEmail = (String) httpSession.getAttribute("user_email");
+        Long productId = 0L;
+        if (!product_id.equals("")) {
+            productId = Long.parseLong(product_id);
+        }
+
+        Product product = productService.addRatingProduct(userEmail, productId, value);
         model.addAttribute("product", product);
         return "product";
     }
