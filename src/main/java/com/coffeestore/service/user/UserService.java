@@ -2,8 +2,8 @@ package com.coffeestore.service.user;
 
 import com.coffeestore.model.user.Role;
 import com.coffeestore.model.user.User;
-import com.coffeestore.query.repository.user.RoleRepository;
-import com.coffeestore.query.repository.user.UserRepository;
+import com.coffeestore.query.repository.RoleRepository;
+import com.coffeestore.query.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -72,6 +72,11 @@ public class UserService {
 //        userRepository.saveAndFlush(user);
 //        return true;
 //    }
+
+    public User getUserInfo(String userEmail){
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        return userOptional.orElseGet(User::new);
+    }
 
 
     public User getUserByEmail(String email) {

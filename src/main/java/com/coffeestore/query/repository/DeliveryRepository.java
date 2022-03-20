@@ -1,4 +1,4 @@
-package com.coffeestore.query.repository.delivery;
+package com.coffeestore.query.repository;
 
 import com.coffeestore.model.delivery.Delivery;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -11,7 +11,7 @@
 --%>
 
 <div>
-    <p><=request.getAttribute("product_info")%></p>
+
     <p>${product_info.bra_id}</p>
     <p>${product_info.bra_description}</p>
     <p>${product_info.bra_logo}</p>
@@ -26,6 +26,14 @@
     <p>${product_info.prImg_url}</p>
 
 </div>
+
+<div>
+    <p>${product.id}</p>
+    <p>${product.count_views}</p>
+</div>
+
+<%@include file="/WEB-INF/pages/template/footer.jsp" %>
+
 
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>

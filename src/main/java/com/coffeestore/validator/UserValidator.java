@@ -1,7 +1,7 @@
 package com.coffeestore.validator;
 
 import com.coffeestore.model.user.User;
-import com.coffeestore.query.repository.user.UserRepository;
+import com.coffeestore.query.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

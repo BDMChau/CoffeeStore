@@ -48,6 +48,10 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Collection<Feedback> feedbacks;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Collection<RatingProduct> ratingProducts;
+
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
@@ -62,4 +66,15 @@ public class Product {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String description;
 
+    @Column(columnDefinition = "bigint default 0", nullable = false)
+    private Long count_views;
+
+    @Column(columnDefinition = "bigint default 0", nullable = false)
+    private Long count_purchased;
+
+    @Column(columnDefinition = "bigint default 0", nullable = false)
+    private Long count_rating;
+
+    @Column(columnDefinition = "float default 0", nullable = false)
+    private float rating_star;
 }

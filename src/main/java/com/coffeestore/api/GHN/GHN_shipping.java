@@ -11,8 +11,8 @@ import java.util.Map;
 
 @Service
 public class GHN_shipping {
-    private static String token = "28014046-9c3d-11ec-913f-a2241d5a8154";
-    private static String baseUrl = "https://online-gateway.ghn.vn/shiip/public-api";
+    private static final String token = "28014046-9c3d-11ec-913f-a2241d5a8154";
+    private static final String baseUrl = "https://online-gateway.ghn.vn/shiip/public-api";
 
     @Autowired
     RestTemplate restTemplate;
