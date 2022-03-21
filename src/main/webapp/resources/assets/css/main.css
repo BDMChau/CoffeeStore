@@ -2718,11 +2718,30 @@ table.order-details tbody td {
   border: 1px solid #eeeeee;
 }
 
+.products-home{
+  overflow-x: auto;
+  flex-wrap: unset;
+
+}
+
 .single-product-item {
   -webkit-box-shadow: 0 0 20px #e4e4e4;
   box-shadow: 0 0 20px #e4e4e4;
-  padding-bottom: 50px;
+  /*padding-bottom: 50px;*/
   border-radius: 5px;
+  height: 450px;
+}
+
+.single-product-item .product-price {
+  position: relative;
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+
+.single-product-item .product-image img{
+  width: 100px;
+  height: 110px;
 }
 
 /* -----------------------------------------------------------------------------
