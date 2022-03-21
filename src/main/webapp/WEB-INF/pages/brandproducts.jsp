@@ -12,20 +12,20 @@
 
 
 <div>
-<c:forEach var="item" items="${list_top_products}">
-    <p>${item.bra_id}</p>
-    <p>${item.bra_description}</p>
-    <p>${item.bra_logo}</p>
-    <p>${item.bra_name}</p>
+    <c:forEach var="item" items="${list_product}">
+        <p>${item.bra_id}</p>
+        <p>${item.bra_description}</p>
+        <p>${item.bra_logo}</p>
+        <p>${item.bra_name}</p>
 
-    <p>${item.pr_id}</p>
-    <p>${item.pr_description}</p>
-    <p>${item.pr_name}</p>
-    <p>${item.pr_price}</p>
+        <p>${item.pr_id}</p>
+        <p>${item.pr_description}</p>
+        <p>${item.pr_name}</p>
+        <p>${item.pr_price}</p>
 
-    <p>${item.prImg_id}</p>
-    <p>${item.prImg_url}</p>
-</c:forEach>
-    </div>
+        <p>${item.prImg_id}</p>
+        <p>${item.prImg_url}</p>
+    </c:forEach>
+</div>
 
-    <%@include file="/WEB-INF/pages/template/footer.jsp" %>
+<%@include file="/WEB-INF/pages/template/footer.jsp" %>

@@ -39,16 +39,16 @@ public class HomeController {
         int amount = 10;
 
         /*--- User  ---*/
-        User user = null;
-        if (request.getUserPrincipal() != null) {
-            String email = request.getUserPrincipal().getName();
-            user = userService.getUserByEmail(email);
-        }
-        if (user == null) return "home";
-
-        HttpSession session = request.getSession();
-        session.setAttribute("userId", user.getId());
-        session.setAttribute("email", user.getEmail());
+//        User user = null;
+//        if (request.getUserPrincipal() != null) {
+//            String email = request.getUserPrincipal().getName();
+//            user = userService.getUserByEmail(email);
+//        }
+//        if (user == null) return "home";
+//
+//        HttpSession session = request.getSession();
+//        session.setAttribute("userId", user.getId());
+//        session.setAttribute("email", user.getEmail());
 
         /*--- top products ---*/
 
