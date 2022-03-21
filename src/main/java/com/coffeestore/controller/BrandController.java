@@ -34,23 +34,23 @@ public class BrandController {
         return "brand";
     }
 
-    @GetMapping("/{brand_id}/page") // products of id
-    public String GetProductsOfBrand(@PathVariable String brand_id, @RequestParam int page, Model model) {
-
-        Long brandId = 0L;
-        if (!brand_id.equals("")) {
-            brandId = Long.parseLong(brand_id);
-        }
-            if(page <= 0){
-                model.addAttribute("err","something wrong!");
-
-            } else page -= 1;
-            int from = page * 10;
-            int amount = from +10;
-
-            List<ProductDto> productDtoList = brandService.getProductsByBrand(brandId, from ,amount);
-            productDtoList.forEach(System.err::println);
-            model.addAttribute("list_product", productDtoList);
-            return "brandproducts";
-    }
+//    @GetMapping("/{brand_id}/page") // products of id
+//    public String GetProductsOfBrand(@PathVariable String brand_id, @RequestParam int page, Model model) {
+//
+//        Long brandId = 0L;
+//        if (!brand_id.equals("")) {
+//            brandId = Long.parseLong(brand_id);
+//        }
+//            if(page <= 0){
+//                model.addAttribute("err","something wrong!");
+//
+//            } else page -= 1;
+//            int from = page * 10;
+//            int amount = from +10;
+//
+//            List<ProductDto> productDtoList = brandService.getProductsByBrand(brandId, from ,amount);
+//            productDtoList.forEach(System.err::println);
+//            model.addAttribute("list_product", productDtoList);
+//            return "brandproducts";
+//    }
 }

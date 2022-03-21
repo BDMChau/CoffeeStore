@@ -22,8 +22,8 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
            "JOIN User u ON u.id = orders.user.id " +
            "LEFT JOIN OrderDetail ord ON ord.Orders.id = orders.id " +
            "LEFT JOIN Product pr ON pr.id = ord.product.id " +
-           "WHERE u.email = (:user_email) " +
+           "WHERE u.email =?1 " +
            "ORDER BY orders.created_at")
-    List<OrderDto> getUserOrders(Pageable pageable, @Param("user_email") String user_email);
+    List<OrderDto> getUserOrders(Pageable pageable, String user_email);
 
 }
