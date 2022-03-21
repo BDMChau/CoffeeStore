@@ -74,9 +74,9 @@
                         <ul>
                             <%-- class="current-list-item"--%>
                             <li ><a href="/">Home</a></li>
-                            <li><a href="about.html">About</a></li>
+                            <li><a href="/about">About</a></li>
 
-                            <li><a href="news.html">News</a></li>
+                            <li><a href="/about">News</a></li>
                             <li>
                                 <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search" style="font-size: 15px"></i></a>
                             </li>
