@@ -84,7 +84,7 @@
                             <li>
                                 <div class="header-icons">
                                     <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart" style="font-size: 15px"></i></a>
-                                    <a class="user-page" href="/user-page"><i class="fas fa-user" style="font-size: 15px"></i></a>
+                                    <a class="user-page" href="/userrr"><i class="fas fa-user" style="font-size: 15px"></i></a>
                                 </div>
                             </li>
                         </ul>

@@ -19,6 +19,8 @@
     <div class="container" >
         <div class="row">
             <div class="col-lg-12">
+                <h4>Thông tin cá nhân</h4>
+
                 <form class="row contact_us_form" action="" method="post" id="contactForm" novalidate="novalidate">
                     <div class="form-group col-md-6">
                         <h7>Tên Khách Hàng</h7>
@@ -45,9 +47,126 @@
                         <input type="date" class="form-control" id="numberCustomer" name="birthday" value="" placeholder="Số điện thoại">
                     </div>
                     <div class="form-group col-md-12">
-                        <button type="submit" value="submit" class="btn order_s_btn form-control" style="border-color: #0b0b0b;border-radius: 2cm">Update</button>
+                        <button type="submit" value="submit" class="btn btn-primary" style="border-radius: 5px; width: 180px">Cập nhập</button>
                     </div>
                 </form>
+
+                <div style="width: 60%;height: 2px;text-align: center;margin: 20px auto; background: gray"></div>
+
+                <div class="history-order">
+                    <h4 class="title">
+                        Các đơn hàng đã đặt
+                    </h4>
+
+                    <div class="orders">
+                        <div class="order" style="border-radius: 5px; background: #F5F5F5">
+                            <div style="padding: 20px">
+
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
+
+                                <div class="order-info">
+                                    <p style="margin: 0; font-size: 16px;">
+                                        Tổng số tiền:
+                                        <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">45000000đ</span>
+                                    </p>
+                                    <p style="color:grey; margin: 0;" >19/02/2022</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order" style="border-radius: 5px; background: #F5F5F5">
+                            <div style="padding: 20px">
+
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
+
+                                <div class="order-info">
+                                    <p style="margin: 0; font-size: 16px;">
+                                        Tổng số tiền:
+                                        <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">45000000đ</span>
+                                    </p>
+                                    <p style="color:grey; margin: 0;" >19/02/2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
             </div>
         </div>
     </div>
