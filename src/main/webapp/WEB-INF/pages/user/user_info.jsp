@@ -1,49 +1,207 @@
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<link href="/resources/style/main.css">
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<link href="<c:url value="/resources/style/user_info.css"/>" rel="stylesheet">
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU"><span class="font-weight-bold">Amelly</span><span class="text-black-50">amelly12@bbb.com</span><span> </span></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>User-Info</h1>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input id="ip_name" type="text" class="form-control" placeholder="first name" value=""></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input id="ip_phoneNumber" type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address</label><input id="ip_address" type="text" class="form-control" placeholder="enter address" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email</label><input id="ip_email" type="text" class="form-control" placeholder="enter email id" value=""></div>
-                    <div class="col-md-12"><label class="labels">Gender</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="ir_male" value="option1">
-                        <label class="form-check-label" for="ir_male">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="ir_female" value="option2">
-                        <label class="form-check-label" for="ir_female">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="ir_other" value="option2">
-                        <label class="form-check-label" for="ir_other">Other</label>
-                    </div>
-                    </div>
-                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" id="ip_password" value=""></div>
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
             </div>
         </div>
-
     </div>
 </div>
+<div class="cart-section mt-150 mb-150">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Thông tin cá nhân</h4>
+
+                <form:form
+                        class="row contact_us_form"
+                        method="POST"
+                        action="/user/user-info"
+                        modelAttribute="userForm"
+                >
+                    <spring:bind path="name">
+                        <div class="form-group col-md-6">
+                            <h7>Tên Khách Hàng</h7>
+                            <form:input type="text" class="form-control" id="nameCustomer" name="name" value='${user.name}' placeholder="Tên"  path="name"/>
+                        </div>
+                    </spring:bind>
+
+                    <spring:bind path="email">
+                        <div class="form-group col-md-6">
+                            <h7>Email</h7>
+                            <form:input type="email" class="form-control" id="emailCustomer" name="email" path="email" value='${user.email}' placeholder="Email" readonly="readonly" />
+                        </div>
+                    </spring:bind>
+
+                    <div class="form-group col-md-6">
+                        <h7>Tài khoản</h7>
+                        <input type="text" class="form-control" id="userName" value="${user.email}" placeholder="Tài khoản" name="account" readonly="readonly"  />
+                    </div>
+<%--                    <div class="form-group col-md-6">--%>
+<%--                        <h7>Mật khẩu</h7>--%>
+<%--                        <input type="password" class="form-control" id="passWord" value="" placeholder="Mật khẩu" disabled>--%>
+<%--                    </div>--%>
+                    <spring:bind path="phone">
+                        <div class="form-group col-md-6">
+                            <h7>Số điện thoại</h7>
+                            <form:input type="tel" class="form-control" id="" name="phone" value='${user.phone}' placeholder="Số điện thoại" path="phone" />
+                        </div>
+                    </spring:bind>
+
+                    <spring:bind path="birthday">
+                        <div class="form-group col-md-6">
+                            <h7>Ngày sinh</h7>
+                            <form:input type="date" class="form-control" id="numberCustomer" name="birthday" value='${user.birthday}' path="birthday" placeholder="Ngày sinh" />
+                        </div>
+                    </spring:bind>
+
+
+
+                    <div class="form-group col-md-12">
+                        <button type="submit" value="submit" class="btn btn-primary" style="border-radius: 5px; width: 180px">Cập nhập</button>
+                    </div>
+                </form:form>
+
+                <div style="width: 60%;height: 2px;text-align: center;margin: 20px auto; background: gray"></div>
+
+                <div class="history-order">
+                    <h4 class="title">
+                        Các đơn hàng đã đặt
+                    </h4>
+
+                    <div class="orders">
+                        <div class="order" style="border-radius: 5px; background: #F5F5F5">
+                            <div style="padding: 20px">
+
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
+
+                                <div class="order-info">
+                                    <p style="margin: 0; font-size: 16px;">
+                                        Tổng số tiền:
+                                        <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">45000000đ</span>
+                                    </p>
+                                    <p style="color:grey; margin: 0;" >19/02/2022</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order" style="border-radius: 5px; background: #F5F5F5">
+                            <div style="padding: 20px">
+
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product">
+                                    <div style="display: flex">
+                                        <img
+                                                src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
+                                                alt=""
+                                                width="100"
+                                                height="100"
+                                        />
+                                        <div class="product-info">
+                                            <p style="margin: 0">
+                                                title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
+                                            </p>
+                                            <p style="color:grey; margin: 0;">45000đ/1</p>
+                                            <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
+
+                                <div class="order-info">
+                                    <p style="margin: 0; font-size: 16px;">
+                                        Tổng số tiền:
+                                        <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">45000000đ</span>
+                                    </p>
+                                    <p style="color:grey; margin: 0;" >19/02/2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 

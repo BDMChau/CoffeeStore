@@ -161,10 +161,10 @@ public class HomeController {
         return "payment/vnpay/index";
     }
 
-    @RequestMapping("/userrr")
-    public String user() {
-        return "userrr";
-    }
+//    @RequestMapping("/userrr")
+//    public String user() {
+//        return "userrr";
+//    }
 
 
 }

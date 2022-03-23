@@ -48,30 +48,27 @@ public class UserService {
 
 
 
-//    public boolean updateProfile(User user){
-//        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
-//        if(userOptional.isEmpty()) {
-//            return false;
-//        }
-//
+    public boolean updateProfile(User userInfo){
+        User user = getUserByEmail(userInfo.getEmail());
+        if(user == null) return false;
+
 //        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        user.setName(user.getName());
-//        user.setEmail(user.getEmail());
-////        user.setPhone();
-////        user.setAddresses();
+        user.setName(userInfo.getName());
+//        user.setEmail(userInfo.getEmail());
+        user.setPhone(userInfo.getPhone());
+        user.setAddresses(userInfo.getAddresses());
 //        user.setAvatar(avatarDefault);
-////        user.setBirthday();
-////        user.setGender();
+        user.setBirthday(userInfo.getBirthday());
+//        user.setGender();
 //        user.setCreated_at(Calendar.getInstance(TimeZone.getTimeZone("UTC")));
-//
+
 //        Role role = roleRepository.getOne(1L); // role: USER
 //        user.setRole(role);
-//
-//        userRepository.saveAndFlush(user);
-//
-//        userRepository.saveAndFlush(user);
-//        return true;
-//    }
+
+        userRepository.saveAndFlush(user);
+
+        return true;
+    }
 
     public User getUserInfo(String userEmail){
         Optional<User> userOptional = userRepository.findByEmail(userEmail);
