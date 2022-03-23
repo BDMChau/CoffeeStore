@@ -181,13 +181,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
 
 
@@ -195,14 +188,43 @@
 
 
 
-                
+                <div class="user-addresses">
+                    <select id="cities-options" onchange="getCityId()"
+                        <c:forEach var="item" items="${cities}">
+                            <option value=${item.provinceID}>${item.provinceName}</option>
+                        </c:forEach>
+                    </select>
+
+                    <select id="districts-options" onchange="getDistictId()">
+
+                    </select>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
+<script>
+    function getCityId(){
+        const city = document.getElementById('cities-options');
+        const cityId = city.value;
 
+        // get api quận từ cái id của city
+        let districtsOptions = document.getElementById('districts-options');
+
+        // viet vô for
+        let option = document.createElement("option");
+        option.text = "ACACASCACASC";
+        option.id = "12345"
+        districtsOptions.options.add(option, 1);
+    }
+
+    function getDistictId(){
+
+    }
+
+</script>
 
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>
