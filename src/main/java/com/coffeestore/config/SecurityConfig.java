@@ -17,11 +17,8 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
-
-import static javax.ws.rs.HttpMethod.GET;
 
 @Configuration
 @EnableWebSecurity
@@ -62,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('admin')")
                 .antMatchers("/user/**").authenticated()
+                .and().logout().logoutSuccessUrl("/").permitAll()
                 .and().formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/auth/login")
                 .successHandler(savedRequestAwareAuthenticationSuccessHandler())
@@ -69,7 +67,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/").and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).permitAll().and()
                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
                 .rememberMe().key("remember-me").rememberMeParameter("remember-me").rememberMeCookieName("remember-me").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
 
