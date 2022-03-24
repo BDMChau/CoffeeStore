@@ -195,7 +195,7 @@
                         </c:forEach>
                     </select>
 
-                    <select id="districts-options" onchange="getDistictId()">
+                    <select id="districts-options" onchange="getDistrictId()">
 
                     </select>
                 </div>
@@ -211,16 +211,27 @@
         const cityId = city.value;
 
         // get api quận từ cái id của city
+        $('cities-options').onchange(function() {
+            $.ajax({
+                type : 'GET',
+                url : '/user/get-district/' +cityId,
+                success : function(result) {
+                    $('#districts-options').text(result);
+                }
+            });
+        });
         let districtsOptions = document.getElementById('districts-options');
 
         // viet vô for
-        let option = document.createElement("option");
-        option.text = "ACACASCACASC";
-        option.id = "12345"
-        districtsOptions.options.add(option, 1);
+        districtsOptions.forEach(item =>{
+            let option = document.createElement("option");
+            option.text = item.get("DistrictName");
+            option.id = item.get("DistrictID");
+            districtsOptions.options.add(option, 1);
+        })
     }
 
-    function getDistictId(){
+    function getDistrictId(){
 
     }
 

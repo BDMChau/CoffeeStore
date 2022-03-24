@@ -4,6 +4,7 @@
 
 <web-app>
     <display-name>CoffeeStore WebSite</display-name>
+    <absolute-ordering />
 
     <!-- Spring Security -->
     <filter>
