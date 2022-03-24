@@ -6,7 +6,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>User-Info</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="cart-section mt-150 mb-150">
     <div class="container" >
         <div class="row">
@@ -184,7 +195,7 @@
                         </c:forEach>
                     </select>
 
-                    <select id="districts-options" onchange="getDistrictId()">
+                    <select id="districts-options">
 
                     </select>
                 </div>
@@ -198,29 +209,29 @@
     function getCityId(){
         const city = document.getElementById('cities-options');
         const cityId = city.value;
+        console.log(cityId)
 
         // get api quận từ cái id của city
-        $('cities-options').onchange(function() {
+        $('cities-options').change(function() {
             $.ajax({
                 type : 'GET',
                 url : '/user/get-district/' +cityId,
                 success : function(result) {
-                    $('#districts-options').text(result);
+                    let s;
+                    for(let i = 0; i<result.length; i++){
+                        let option = document.createElement("option");
+                        option.text = result[i].get("DistrictName");
+                        option.id = result[i].get("DistrictID");
+                        s.options.add(option, i);
+                        console.log(s);
+                        $('#district-options').html(s);
+                    }
                 }
             });
         });
         let districtsOptions = document.getElementById('districts-options');
+        console.log(districtsOptions.length)
 
-        // viet vô for
-        districtsOptions.forEach(item =>{
-            let option = document.createElement("option");
-            option.text = item.get("DistrictName");
-            option.id = item.get("DistrictID");
-            districtsOptions.options.add(option, 1);
-        })
-    }
-
-    function getDistrictId(){
 
     }
 

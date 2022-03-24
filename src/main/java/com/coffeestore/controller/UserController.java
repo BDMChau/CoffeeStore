@@ -69,8 +69,8 @@ public class UserController {
         int provinceId = Integer.parseInt(city_id);
 
         Map districtsData = ghn_shipping.getDistricts(provinceId);
-        List<DistrictDto> districtList = new ArrayList<>();
 
+        List<DistrictDto> districtList = new ArrayList<>();
         if (!districtsData.isEmpty()) {
             List districts = (List) districtsData.get("data");
             districts.forEach(item -> {
