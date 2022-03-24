@@ -95,9 +95,6 @@ public class AuthController {
         model.addAttribute("msg", "Register successfully!");
         return "auth/register";
     }
-    @GetMapping("/home")
-    public String Home() {
-        return "user/home";
-    }
+
 
 }
