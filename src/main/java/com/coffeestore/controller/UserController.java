@@ -98,11 +98,26 @@ public class UserController {
         try {
 
             int provinceId = Integer.parseInt(city_id);
-            System.err.println("province_id"+provinceId);
 
             Map districtsData = ghn_shipping.getDistricts(provinceId);
 
             return new ResponseEntity<>(districtsData, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @GetMapping("get-ward/{district_id}")
+    public ResponseEntity<Object> getWardByDistrictID(@PathVariable String district_id) {
+        try {
+
+            int districtId = Integer.parseInt(district_id);
+
+            Map wardsData = ghn_shipping.getwards(districtId);
+
+            return new ResponseEntity<>(wardsData, HttpStatus.OK);
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
