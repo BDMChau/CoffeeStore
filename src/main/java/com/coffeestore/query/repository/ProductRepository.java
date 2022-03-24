@@ -1,12 +1,10 @@
 package com.coffeestore.query.repository;
 
-import com.coffeestore.model.product.Brand;
 import com.coffeestore.model.product.Product;
 import com.coffeestore.query.dto.ProductDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -96,8 +94,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "WHERE ca.id =?1 ")
     List<ProductDto> getProductsByCategoryId(Pageable pageable, Long category_id);
 
-//    productname, categoryname, brandname
-//
-//    @Query(value = "SELECT br FROM Brand br WHERE UPPER(br.name)like UPPER('%'(?1)'%') ")
-//    List<Brand> findByName(@Param("brand_name") String brand_name);
 }

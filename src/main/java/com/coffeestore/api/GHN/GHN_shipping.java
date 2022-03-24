@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,12 +39,10 @@ public class GHN_shipping {
 
         Map<String, Object> params = new HashMap<>();
         params.put("province_id", provinceId);
-
-        String queryParam = "province_id={province_id}";
-        UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).query(queryParam).buildAndExpand(params);
+        System.err.println("line42");
 
         HttpEntity request = new HttpEntity(headers);
-        ResponseEntity res = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, Map.class, params);
+        ResponseEntity res = restTemplate.exchange(url, HttpMethod.GET, request, Map.class, params);
         if (res.getStatusCode() == HttpStatus.OK) {
             return (Map) res.getBody();
         }
@@ -63,11 +59,8 @@ public class GHN_shipping {
         Map<String, Object> params = new HashMap<>();
         params.put("district_id", districtId);
 
-        String queryParam = "district_id={district_id}";
-        UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).query(queryParam).buildAndExpand(params);
-
         HttpEntity request = new HttpEntity(headers);
-        ResponseEntity res = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, Map.class, params);
+        ResponseEntity res = restTemplate.exchange(url, HttpMethod.GET, request, Map.class, params);
         if (res.getStatusCode() == HttpStatus.OK) {
             return (Map) res.getBody();
         }
@@ -85,10 +78,6 @@ public class GHN_shipping {
         params.put("shop_id", 2556292); // ID at https://khachhang.ghn.vn/store
         params.put("from_district", 1461); // Gò Vấp tphcm
         params.put("to_district", toDistrictId);
-
-        String queryParam = "shop_id={shop_id}&from_district={from_district}&to_district={to_district}";
-
-        UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).query(queryParam).buildAndExpand(params);
 
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity res = restTemplate.exchange(url, HttpMethod.GET, request, Map.class, params);
