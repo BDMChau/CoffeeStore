@@ -20,14 +20,14 @@
     <%--   custom style     --%>
     <link href="<c:url value="/resources/style/main.css"/>" rel="stylesheet">
 
-
-    <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- fontawesome -->
     <link rel="stylesheet" href="../../../resources/assets/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
     <!-- bootstrap -->
     <link rel="stylesheet" href="../../../resources/assets/bootstrap/css/bootstrap.min.css">
     <!-- owl carousel -->
@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="../../../resources/assets/css/main.css">
     <!-- responsive -->
     <link rel="stylesheet" href="../../../resources/assets/css/responsive.css">
-
+<%--    <script src="https://kit.fontawesome.com/bf4313cc6f.js" crossorigin="anonymous"></script>--%>
 
 </head>
 <body>
@@ -73,18 +73,28 @@
                     <nav class="main-menu">
                         <ul>
                             <%-- class="current-list-item"--%>
-                            <li ><a href="/">Home</a></li>
-                            <li><a href="/about">About</a></li>
+                            <li ><a href="/">Trang Chủ</a></li>
+                            <li><a href="/about">Về Chúng Tôi</a></li>
 
-                            <li><a href="/about">News</a></li>
                             <li>
-                                <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search" style="font-size: 15px"></i></a>
+                                <a class="mobile-hide search-bar-icon" href="#"><i class="fa fa-search" style="font-size: 15px"></i></a>
                             </li>
 
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart" style="font-size: 15px"></i></a>
-                                    <a class="user-page" href="/user/user-info"><i class="fas fa-user" style="font-size: 15px"></i></a>
+                                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart" style="font-size: 15px"></i></a>
+                                        <a class="user-page" href="/user/user-info"><i class="fas fa-user" style="font-size: 15px"></i></a>
+                                        <a onclick="document.forms['logoutForm'].submit()" title="Đăng xuất"><i class="fas fa-sign-out-alt" style="font-size: 15px"></i></a>
+
+                                        <form id="logoutForm" method="GET" action="/logout">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        </form>
+                                    </c:if>
+
+                                    <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                        <a class="shopping-cart" href="/auth/login">Đăng nhập</a>
+                                    </c:if>
                                 </div>
                             </li>
                         </ul>
