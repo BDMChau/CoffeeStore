@@ -49,7 +49,6 @@ public class BrandController {
             int amount = from +10;
 
             List<ProductDto> productDtoList = brandService.getProductsByBrand(brandId, from ,amount);
-            productDtoList.forEach(System.err::println);
             model.addAttribute("list_product", productDtoList);
             return "brandproducts";
     }

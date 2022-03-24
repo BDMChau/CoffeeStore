@@ -39,6 +39,7 @@ public class GHN_shipping {
 
         Map<String, Object> params = new HashMap<>();
         params.put("province_id", provinceId);
+        System.err.println("line42");
 
         HttpEntity request = new HttpEntity(headers);
         ResponseEntity res = restTemplate.exchange(url, HttpMethod.GET, request, Map.class, params);

@@ -6,10 +6,12 @@ import com.coffeestore.query.dto.GHN.DistrictDto;
 import com.coffeestore.query.dto.GHN.cityDTO;
 import com.coffeestore.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,33 +66,54 @@ public class UserController {
         return "user/user_info";
     }
 
+//    @GetMapping("get-district/{city_id}")
+//    public List<DistrictDto> getDistrictsByCityId(@PathVariable String city_id, Model model) {
+//        int provinceId = Integer.parseInt(city_id);
+//
+//        Map districtsData = ghn_shipping.getDistricts(provinceId);
+//
+//        List<DistrictDto> districtList = new ArrayList<>();
+//        if (!districtsData.isEmpty()) {
+//            List districts = (List) districtsData.get("data");
+//            districts.forEach(item -> {
+//                Map map = (Map) item;
+//                DistrictDto districtDto = new DistrictDto();
+//                districtDto.setDistrictID((String) map.get("DistrictID"));
+//                districtDto.setProvinceID((String) map.get("ProvinceID"));
+//                districtDto.setDistrictName((String) map.get("DistrictName"));
+//
+//                districtList.add(districtDto);
+//            });
+//            System.err.println("aaaaaaaaa");
+//        }
+//
+//        model.addAttribute("districts", districtList);
+//
+//        return districtList;
+//    }
+
+
     @GetMapping("get-district/{city_id}")
-    public List<DistrictDto> getDistrictsByCityId(@PathVariable String city_id, Model model) {
-        int provinceId = Integer.parseInt(city_id);
+    public ResponseEntity<Object> getDistrictsByCityId(@PathVariable("city_id") String city_id) {
+        try {
 
-        Map districtsData = ghn_shipping.getDistricts(provinceId);
+            int provinceId = Integer.parseInt(city_id);
+            System.err.println("province_id"+provinceId);
 
-        List<DistrictDto> districtList = new ArrayList<>();
-        if (!districtsData.isEmpty()) {
-            List districts = (List) districtsData.get("data");
-            districts.forEach(item -> {
-                Map map = (Map) item;
-                DistrictDto districtDto = new DistrictDto();
-                districtDto.setDistrictID((String) map.get("DistrictID"));
-                districtDto.setProvinceID((String) map.get("ProvinceID"));
-                districtDto.setDistrictName((String) map.get("DistrictName"));
+            Map districtsData = ghn_shipping.getDistricts(provinceId);
 
-                districtList.add(districtDto);
-            });
+            return new ResponseEntity<>(districtsData, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        model.addAttribute("districts", districtList);
-
-        return districtList;
     }
 
+
     @PostMapping("/user-info")
-    public String updateUserInfo(Model model, @ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String updateUserInfo(Model model, @ModelAttribute("userForm") User userForm, BindingResult
+            bindingResult) {
         userService.updateProfile(userForm);
 
         return "user/user_info";
