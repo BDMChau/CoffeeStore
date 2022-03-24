@@ -196,8 +196,11 @@
                         <option value=${item.provinceID}>${item.provinceName}</option>
                     </c:forEach>
                     </select>
-                    <select id="districts-options">
-                    <%-- Data from js below --%>
+                    <select id="districts-options" onchange="getDistrictId()">
+                        <%-- Data from js below --%>
+                    </select>
+                    <select id="wards-options">
+                        <%-- Data from js below --%>
                     </select>
                 </div>
             </div>
@@ -212,28 +215,49 @@
     function getCityId() {
         const city = document.getElementById('cities-options');
         const city_id = city.value;
-        console.log(city_id)
 
         // get api quận từ cái id của city
-            $.ajax({
-                type: 'GET',
-                url: '/user/get-district/' + city_id,
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function (result) {
-                    let districtsOptions = document.getElementById('districts-options');
-                    result.data.forEach(item =>{
-                        let option = document.createElement("option");
-                        option.innerHTML = item.DistrictName;
-                        option.value = item.DistrictID;
-                        districtsOptions.appendChild(option, 1);
-                    })
-                }
-            });
+        $.ajax({
+            type: 'GET',
+            url: '/user/get-district/' + city_id,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (result) {
+                let districtsOptions = document.getElementById('districts-options');
+                districtsOptions.innerHTML = "";
+                districtsOptions.value = "";
+                result.data.forEach(item => {
+                    let option = document.createElement("option");
+                    option.innerHTML = item.DistrictName;
+                    option.value = item.DistrictID;
+                    districtsOptions.appendChild(option, 1);
+                })
+            }
+        });
 
     }
 
+    function getDistrictId(node) {
+        const district = document.getElementById('districts-options');
+        const district_id = district.value;
+        $.ajax({
+            type: 'GET',
+            url: '/user/get-ward/' + district_id,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (result) {
+                let wardsOptions = document.getElementById('wards-options');
+                wardsOptions.innerHTML = "";
+                wardsOptions.value = "";
+                result.data.forEach(item => {
+                    let option = document.createElement("option");
+                    option.innerHTML = item.WardName;
+                    option.value = item.WardCode;
+                    wardsOptions.appendChild(option, 1);
+                })
+            }
+        });
+    }
+
 </script>
-
-
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>

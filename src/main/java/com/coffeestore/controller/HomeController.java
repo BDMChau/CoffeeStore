@@ -1,5 +1,6 @@
 package com.coffeestore.controller;
 
+import com.coffeestore.model.product.Brand;
 import com.coffeestore.model.user.User;
 import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.service.brand.BrandService;
@@ -68,22 +69,24 @@ public class HomeController {
         Long nestcafeId = 3L;
         Long vinastarId = 2L;
 
+        /*--- NestCafe ---*/
+        Brand nestCafe = brandService.GetBrandInfo(nestcafeId);
+        model.addAttribute("nestcafe",nestCafe);
         List<ProductDto> nestcafeProductsList = brandService.getProductsByBrand(nestcafeId, from ,amount);
-        List<ProductDto> vinastarProductsList = brandService.getProductsByBrand(vinastarId, from ,amount);
-        if (listRatedProducts.isEmpty()) {
+        if (nestcafeProductsList.isEmpty()) {
             model.addAttribute("error", "list nest cafe's products is empty!");
         } else model.addAttribute("list_nestcafe_products", nestcafeProductsList);
 
-
+        /*--- VinaStar ---*/
+        Brand vinastar = brandService.GetBrandInfo(vinastarId);
+        model.addAttribute("vinastar",vinastar);
+        List<ProductDto> vinastarProductsList = brandService.getProductsByBrand(vinastarId, from ,amount);
         if (listPurchasedProducts.isEmpty()) {
             model.addAttribute("error", "list purchased products is empty!");
         } else model.addAttribute("list_vinastar_product", vinastarProductsList);
 
         /*-- Article about cafe --*/
         // đợi nhân hứa làm
-        nestcafeProductsList.forEach(System.err::println);
-        System.err.println(" nestcafeProductsList: "+  nestcafeProductsList.size());
-
         return "home";
     }
 
