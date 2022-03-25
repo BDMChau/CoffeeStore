@@ -34,4 +34,11 @@ public class BrandService {
         }
         return productDtoList;
     }
+
+    public List<ProductDto> getProductsByBrand(Long brandId) {
+        List<ProductDto> productDtoList = brandRepository.getProductsByBrandId(brandId);
+        if (productDtoList.isEmpty()) return new ArrayList<>();
+
+        return productDtoList;
+    }
 }

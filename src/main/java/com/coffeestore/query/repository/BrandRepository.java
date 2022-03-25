@@ -26,4 +26,17 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 
     @Query("select b from Brand b where upper(b.name) like concat('%',upper(trim(?1) ), '%')")
     List<Brand> findByNameContaining(String name);
+    
+    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
+           "  br.id, br.name "+
+           ", pr.id, pr.description, pr.name, pr.price "+
+           ", prI.id, prI.image_url) "+
+           "FROM Product pr " +
+           "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
+           "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
+           "WHERE br.id =?1 ")
+    List<ProductDto> getProductsByBrandId(Long product_id);
+
+
+
 }

@@ -1,4 +1,5 @@
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
 <%--<div class="loader">--%>
@@ -102,7 +103,7 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
                     <p>Fresh and Organic</p>
-                    <h1>Brand</h1>
+                    <h1>Thương Hiệu Nổi Bật</h1>
                 </div>
             </div>
         </div>
@@ -118,90 +119,65 @@
                 <div class="product-filters">
                     <ul>
                         <li class="active" data-filter="*">All</li>
-                        <li data-filter=".strawberry">Trung Nguyên</li>
-                        <li data-filter=".berry">VinaCf</li>
-                        <li data-filter=".lemon">NESCAFE</li>
+                        <li data-filter=".trungnguyen">Trung Nguyên</li>
+                        <li data-filter=".vina">Vina Cafe</li>
+                        <li data-filter=".nest">Nestle Cafe</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+            <c:forEach var="product" items="${TN_products}">
+                <div class="col-lg-4 col-md-6 text-center trungnguyen">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="#"><img src="${product.prImg_url}" alt=""></a>
+                        </div>
+                        <h4>${product.pr_name}</h4>
+                        <p class="product-price">${product.pr_price}</p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
                     </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center berry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+            </c:forEach>
+            <c:forEach var="product" items="${VINA_products}">
+                <div class="col-lg-4 col-md-6 text-center vina">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="#"><img src="${product.prImg_url}" alt=""></a>
+                        </div>
+                        <h4>${product.pr_name}</h4>
+                        <p class="product-price">${product.pr_price}</p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
                     </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center lemon">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+            </c:forEach>
+            <c:forEach var="product" items="${NEST_products}">
+                <div class="col-lg-4 col-md-6 text-center nest">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="#"><img src="${product.prImg_url}" alt=""></a>
+                        </div>
+                        <h4>${product.pr_name}</h4>
+                        <p class="product-price">${product.pr_price}</p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
                     </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
+            </c:forEach>
+            <c:forEach var="product" items="${random_products}">
+                <div class="col-lg-4 col-md-6 text-center strawberry">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="#"><img src="${product.prImg_url}" alt=""></a>
+                        </div>
+                        <h4>${product.pr_name}</h4>
+                        <p class="product-price">${product.pr_price}</p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
                     </div>
-                    <h3>Avocado</h3>
-                    <p class="product-price"><span>Per Kg</span> 50$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-                    </div>
-                    <h3>Green Apple</h3>
-                    <p class="product-price"><span>Per Kg</span> 45$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 80$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
+            </c:forEach>
         </div>
 
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="pagination-wrap">
-                    <ul>
-                        <li><a href="#">Prev</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a class="active" href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <!-- end products -->
@@ -210,23 +186,16 @@
 <div class="logo-carousel-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div class="logo-carousel-inner">
+                    <c:forEach var="brand" items="${brands_info}">
                     <div class="single-logo-item">
-                        <img src="assets/img/company-logos/1.png" alt="">
+                        <img src="${brand.logo}" alt="" style="width: 180px; height: 120px" >
+                        <div style="height: 10px"></div>
+                        <h5>${brand.name}</h5>
+                        <p style="max-height: 250px" >${brand.description}</p>
                     </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/2.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/3.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/4.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/5.png" alt="">
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -241,7 +210,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box about-widget">
                     <h2 class="widget-title">About us</h2>
-                    <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+                    <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                        doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -286,7 +256,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
+                <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights Reserved.
+                </p>
             </div>
             <div class="col-lg-6 text-right col-md-12">
                 <div class="social-icons">
@@ -302,8 +273,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>

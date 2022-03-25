@@ -10,27 +10,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/brand")
+@RequestMapping("/brands")
 public class BrandController {
 
     private final BrandService brandService;
-
     public BrandController(BrandService brandService) {
         this.brandService = brandService;
     }
-    @GetMapping("/{brand_id}") // products of id
-    public String GetBrandInfo(@PathVariable String brand_id, Model model) {
 
-        Long brandId = 0L;
-        if (!brand_id.equals("")) {
-            brandId = Long.parseLong(brand_id);
-        }
+    @GetMapping("/all")
+    public String GetBrandInfo(Model model) {
+        Brand TN_info = brandService.GetBrandInfo(1L);
+        Brand VINA_info = brandService.GetBrandInfo(2L);
+        Brand NEST_info = brandService.GetBrandInfo(3L);
+        Brand random = brandService.GetBrandInfo(5L);
 
-        Brand brand = brandService.GetBrandInfo(brandId);
-        model.addAttribute("brand_info", brand);
+
+        List<ProductDto> TN_products = brandService.getProductsByBrand(TN_info.getId());
+        List<ProductDto> VINA_products = brandService.getProductsByBrand(VINA_info.getId());
+        List<ProductDto> NEST_products = brandService.getProductsByBrand(NEST_info.getId());
+        List<ProductDto> random_products = brandService.getProductsByBrand(random.getId());
+
+        model.addAttribute("TN_products", TN_products);
+        model.addAttribute("VINA_products", VINA_products);
+        model.addAttribute("NEST_products", NEST_products);
+        model.addAttribute("random_products", random_products);
+
+
+        List<Brand> brands_info = new ArrayList();
+        brands_info.add(TN_info);
+        brands_info.add(VINA_info);
+        brands_info.add(NEST_info);
+        brands_info.add(random);
+
+        model.addAttribute("brands_info", brands_info);
+
         return "brand";
     }
 
