@@ -1,7 +1,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ page isELIgnored="false" %>
 
@@ -10,7 +11,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+    <meta name="description"
+          content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
     <!-- title -->
     <title>Coffee Store</title>
@@ -42,7 +44,7 @@
     <link rel="stylesheet" href="../../../resources/assets/css/main.css">
     <!-- responsive -->
     <link rel="stylesheet" href="../../../resources/assets/css/responsive.css">
-<%--    <script src="https://kit.fontawesome.com/bf4313cc6f.js" crossorigin="anonymous"></script>--%>
+    <%--    <script src="https://kit.fontawesome.com/bf4313cc6f.js" crossorigin="anonymous"></script>--%>
 
 </head>
 <body>
@@ -73,19 +75,23 @@
                     <nav class="main-menu">
                         <ul>
                             <%-- class="current-list-item"--%>
-                            <li ><a href="/">Trang Chủ</a></li>
+                            <li><a href="/">Trang Chủ</a></li>
                             <li><a href="/about">Về Chúng Tôi</a></li>
 
                             <li>
-                                <a class="mobile-hide search-bar-icon" href="#"><i class="fa fa-search" style="font-size: 15px"></i></a>
+                                <a class="mobile-hide search-bar-icon" href="#"><i class="fa fa-search"
+                                                                                   style="font-size: 15px"></i></a>
                             </li>
 
                             <li>
                                 <div class="header-icons">
                                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart" style="font-size: 15px"></i></a>
-                                        <a class="user-page" href="/user/user-info"><i class="fas fa-user" style="font-size: 15px"></i></a>
-                                        <a onclick="document.forms['logoutForm'].submit()" title="Đăng xuất"><i class="fas fa-sign-out-alt" style="font-size: 15px"></i></a>
+                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"
+                                                                                     style="font-size: 15px"></i></a>
+                                        <a class="user-page" href="/user/user-info"><i class="fas fa-user"
+                                                                                       style="font-size: 15px"></i></a>
+                                        <a onclick="document.forms['logoutForm'].submit()" title="Đăng xuất"><i
+                                                class="fas fa-sign-out-alt" style="font-size: 15px"></i></a>
 
                                         <form id="logoutForm" method="GET" action="/logout">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -116,10 +122,13 @@
             <div class="col-lg-12">
                 <span class="close-btn"><i class="fas fa-window-close"></i></span>
                 <div class="search-bar">
+                    <%--@elvariable id="searchForm" type=""--%>
                     <div class="search-bar-tablecell">
-                        <h3>Search For:</h3>
-                        <input type="text" placeholder="Keywords">
-                        <button type="submit">Search <i class="fas fa-search"></i></button>
+                        <form:form method="GET" action="/search" name="search">
+                            <h3>Search For:</h3>
+                            <input type="text" name="keywords" placeholder="Keywords"/>
+                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                        </form:form>
                     </div>
                 </div>
             </div>

@@ -66,31 +66,6 @@ public class UserController {
         return "user/user_info";
     }
 
-//    @GetMapping("get-district/{city_id}")
-//    public List<DistrictDto> getDistrictsByCityId(@PathVariable String city_id, Model model) {
-//        int provinceId = Integer.parseInt(city_id);
-//
-//        Map districtsData = ghn_shipping.getDistricts(provinceId);
-//
-//        List<DistrictDto> districtList = new ArrayList<>();
-//        if (!districtsData.isEmpty()) {
-//            List districts = (List) districtsData.get("data");
-//            districts.forEach(item -> {
-//                Map map = (Map) item;
-//                DistrictDto districtDto = new DistrictDto();
-//                districtDto.setDistrictID((String) map.get("DistrictID"));
-//                districtDto.setProvinceID((String) map.get("ProvinceID"));
-//                districtDto.setDistrictName((String) map.get("DistrictName"));
-//
-//                districtList.add(districtDto);
-//            });
-//            System.err.println("aaaaaaaaa");
-//        }
-//
-//        model.addAttribute("districts", districtList);
-//
-//        return districtList;
-//    }
 
 
     @GetMapping("get-district/{city_id}")

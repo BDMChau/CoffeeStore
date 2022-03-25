@@ -9,10 +9,10 @@
                     <div class="hero-text-tablecell">
                         <p class="subtitle">The Stylist Coffee & Best Quality</p>
                         <h1>Coffee Shop</h1>
-                        <%--                        <div class="hero-btns">--%>
-                        <%--                            <a href="shop.html" class="boxed-btn">Fruit Collection</a>--%>
-                        <%--                            <a href="contact.html" class="bordered-btn">Contact Us</a>--%>
-                        <%--                        </div>--%>
+<%--                        <div class="hero-btns">--%>
+<%--                            <a href="shop.html" class="boxed-btn">Fruit Collection</a>--%>
+<%--                            <a href="contact.html" class="bordered-btn">Contact Us</a>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -83,12 +83,12 @@
                 <c:forEach var="item" items="${list_nestcafe_products}">
                     <div class="col-lg-4 col-md-6 text-center">
                         <div class="single-product-item">
-                                <a href="/product/${item.pr_id}">
-                                    <div class="product-image">
-                                        <img class="" src="${item.prImg_url}" alt="">
-                                    </div>
-                                </a>
-                            <h3 style="font-size: 18px" >${item.pr_name}</h3>
+                            <a href="/product/${item.pr_id}">
+                                <div class="product-image">
+                                    <img class="" src="${item.prImg_url}" alt="">
+                                </div>
+                            </a>
+                            <h3 style="font-size: 18px">${item.pr_name}</h3>
                             <p class="product-price"><span>${item.pr_description}</span> 85$ </p>
                             <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>

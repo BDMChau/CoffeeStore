@@ -7,9 +7,7 @@ import com.coffeestore.service.SearchService;
 import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +20,8 @@ public class SearchController {
         this.searchService = searchService;
     }
 
-    @GetMapping("/{name}")
-    public String findByName(@PathVariable("name") String name, Model model){
+    @GetMapping("")
+    public String findByName(@RequestParam("keywords") String name, Model model){
         List<Brand> brandList = searchService.searchBrand(name);
         if(!brandList.isEmpty()){
             model.addAttribute("brand_list",brandList);
