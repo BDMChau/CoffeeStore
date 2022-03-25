@@ -10,10 +10,10 @@
                     <div class="hero-text-tablecell">
                         <p class="subtitle">The Stylist Coffee & Best Quality</p>
                         <h1>Coffee Shop</h1>
-<%--                        <div class="hero-btns">--%>
-<%--                            <a href="shop.html" class="boxed-btn">Fruit Collection</a>--%>
-<%--                            <a href="contact.html" class="bordered-btn">Contact Us</a>--%>
-<%--                        </div>--%>
+                        <%--                        <div class="hero-btns">--%>
+                        <%--                            <a href="shop.html" class="boxed-btn">Fruit Collection</a>--%>
+                        <%--                            <a href="contact.html" class="bordered-btn">Contact Us</a>--%>
+                        <%--                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -90,9 +90,11 @@
                             <h3 style="font-size: 18px">${item.pr_name}</h3>
                             <h4 style="font-size: 18px">${item.pr_price} đ</h4>
                             <p class="product-price"><span>${item.pr_description}</span></p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart">
 
-                            </i>Thêm vào giỏ</a>
+                            <a href="cart.html" class="cart-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                Thêm vào giỏ
+                            </a>
                         </div>
                     </div>
                 </c:forEach>

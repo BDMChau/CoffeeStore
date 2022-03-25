@@ -81,6 +81,17 @@ contact_form_area p_100{
     flex-wrap: wrap;
 }
 
+.product-page{
+    margin: 20px;
+}
+
+.product-page .rating p{
+    font-size: 18px;
+}
+
+.product-page .title{
+    margin: 5px 15px;
+}
 
 @media only screen and (max-width: 768px) {
     .pull-right{
