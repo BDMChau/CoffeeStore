@@ -96,8 +96,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "WHERE ca.id =?1 ")
     List<ProductDto> getProductsByCategoryId(Pageable pageable, Long category_id);
 
-//    productname, categoryname, brandname
-//
-//    @Query(value = "SELECT br FROM Brand br WHERE UPPER(br.name)like UPPER('%'(?1)'%') ")
-//    List<Brand> findByName(@Param("brand_name") String brand_name);
+    @Query("select p from Product p where upper(p.name)  like concat('%',upper(trim(?1)) , '%')")
+    List<Product> findByNameContaining(String name);
 }

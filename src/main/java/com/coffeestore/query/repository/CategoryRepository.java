@@ -14,4 +14,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
            "FROM Category ca " +
            "ORDER BY ca.name")
     List<Category> getCategories();
+
+    @Query("select c from Category c where upper(c.name) like concat('%',upper(trim(?1) ), '%')")
+    List<Category> findByNameContaining(String name);
 }
