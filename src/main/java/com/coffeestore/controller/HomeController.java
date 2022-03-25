@@ -85,8 +85,7 @@ public class HomeController {
             model.addAttribute("error", "list purchased products is empty!");
         } else model.addAttribute("list_vinastar_product", vinastarProductsList);
 
-        /*-- Article about cafe --*/
-        // đợi nhân hứa làm
+
         return "home";
     }
 
