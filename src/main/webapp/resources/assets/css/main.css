@@ -172,7 +172,7 @@ p:last-child {
   top: 0;
   width: 100%;
   z-index: 1111;
-  background: #ff f;
+  background: #fff;
   overflow-x: hidden;
 }
 
@@ -418,7 +418,6 @@ a.boxed-btn {
 }
 
 a.bordered-btn {
-  font-family: 'Poppins', sans-serif;
   display: inline-block;
   color: #fff;
   border: 2px solid #F28123;

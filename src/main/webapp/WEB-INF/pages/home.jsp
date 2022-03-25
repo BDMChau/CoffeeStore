@@ -84,7 +84,7 @@
                         <div class="single-product-item">
                             <a href="/product/${item.pr_id}">
                                 <div class="product-image">
-                                    <img class="" src="${item.prImg_url}" alt="">
+                                    <img src="${item.prImg_url}" alt="">
                                 </div>
                             </a>
                             <h3 style="font-size: 18px">${item.pr_name}</h3>

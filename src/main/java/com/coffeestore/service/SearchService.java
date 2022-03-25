@@ -3,6 +3,7 @@ package com.coffeestore.service;
 import com.coffeestore.model.product.Brand;
 import com.coffeestore.model.product.Category;
 import com.coffeestore.model.product.Product;
+import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.query.repository.BrandRepository;
 import com.coffeestore.query.repository.CategoryRepository;
 import com.coffeestore.query.repository.ProductRepository;
@@ -37,8 +38,8 @@ public class SearchService {
         }
         return categories;
     }
-    public List<Product> searchProduct(String name){
-        List<Product> products = productRepository.findByNameContaining(name);
+    public List<ProductDto> searchProduct(String name){
+        List<ProductDto> products = productRepository.findByNameContaining(name);
         if(products.isEmpty()){
             return new ArrayList<>();
         }

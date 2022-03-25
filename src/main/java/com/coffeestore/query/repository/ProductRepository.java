@@ -96,6 +96,19 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "WHERE ca.id =?1 ")
     List<ProductDto> getProductsByCategoryId(Pageable pageable, Long category_id);
 
-    @Query("select p from Product p where upper(p.name)  like concat('%',upper(trim(?1)) , '%')")
-    List<Product> findByNameContaining(String name);
+    @Query("SELECT new com.coffeestore.query.dto.ProductDto("+
+           "  br.id, br.description, br.logo, br.name " +
+           ", ca.id, ca.name "+
+           ", pr.id, pr.description, pr.name, pr.price " +
+           ", pr.count_purchased, pr.count_views, pr.count_rating, pr.rating_star "+
+           ", prI.id, prI.image_url) "+
+           "FROM Product pr " +
+           "JOIN CategoryProduct cp ON cp.product.id = pr.id " +
+           "LEFT JOIN Category ca ON ca.id = cp.category.id " +
+           "LEFT JOIN pr.brand br ON pr.brand.id = br.id "+
+           "LEFT JOIN ProductImage prI ON prI.product.id = pr.id "+
+           "WHERE upper(pr.name)  like concat('%',upper(trim(?1)) , '%')")
+    List<ProductDto> findByNameContaining(String name);
 }
+
+
