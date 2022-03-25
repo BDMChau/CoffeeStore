@@ -32,9 +32,6 @@
     <p>${product.count_views}</p>
 </div>
 
-<%@include file="/WEB-INF/pages/template/footer.jsp" %>
-
-
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>
 
