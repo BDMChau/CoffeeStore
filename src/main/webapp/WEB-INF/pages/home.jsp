@@ -91,10 +91,10 @@
                             <h4 style="font-size: 18px">${item.pr_price} đ</h4>
                             <p class="product-price"><span>${item.pr_description}</span></p>
 
-                            <a href="cart.html" class="cart-btn">
+                            <button href="#" class="cart-btn">
                                 <i class="fas fa-shopping-cart"></i>
                                 Thêm vào giỏ
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </c:forEach>
@@ -127,9 +127,9 @@
                             <h3 style="font-size: 18px">${item.pr_name}</h3>
                             <h4 style="font-size: 18px">${item.pr_price} đ</h4>
                             <p class="product-price"><span>${item.pr_description}</span></p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart">
-
-                            </i>Thêm vào giỏ</a>
+                            <button href="#" class="cart-btn" onclick="addToCart(${item.pr_id})">
+                                <i class="fas fa-shopping-cart"></i>Thêm vào giỏ
+                            </button>
                         </div>
                     </div>
                 </c:forEach>
@@ -143,6 +143,10 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="/./../resources/assets/js/MyJS/setCartCount.js"></script>
 
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>

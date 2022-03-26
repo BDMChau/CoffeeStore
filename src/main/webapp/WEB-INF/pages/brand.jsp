@@ -136,7 +136,7 @@
                         </div>
                         <h4>${product.pr_name}</h4>
                         <p class="product-price">${product.pr_price}</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                        <button href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</button>
                     </div>
                 </div>
             </c:forEach>
@@ -148,7 +148,7 @@
                         </div>
                         <h4>${product.pr_name}</h4>
                         <p class="product-price">${product.pr_price}</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                        <button href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</button>
                     </div>
                 </div>
             </c:forEach>
@@ -160,7 +160,7 @@
                         </div>
                         <h4>${product.pr_name}</h4>
                         <p class="product-price">${product.pr_price}</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                        <button href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</button>
                     </div>
                 </div>
             </c:forEach>
@@ -172,7 +172,7 @@
                         </div>
                         <h4>${product.pr_name}</h4>
                         <p class="product-price">${product.pr_price}</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                        <button href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm Vào Giỏ</button>
                     </div>
                 </div>
             </c:forEach>

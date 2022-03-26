@@ -11,8 +11,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>Fresh and Organic</p>
-                    <h1>User-Info</h1>
+                    <h1>Thông Tin</h1>
                 </div>
             </div>
         </div>
@@ -23,6 +22,107 @@
         <div class="row">
             <div class="col-lg-12">
                 <h4>Thông tin cá nhân</h4>
+
+                <div class="user-addresses">
+                    <div>
+                        <div class="fields">
+                            <div class="field">
+                                <label>Tỉnh/tp:</label>
+                                <select class="form-select" id="cities-options" onchange="getCityId()"
+                                <c:forEach var="item" items="${cities}">
+                                    <option value=${item.provinceID}>${item.provinceName}</option>
+                                </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>Quận/huyện:</label>
+                                <select class="form-select" id="districts-options" onchange="getDistrictId()">
+                                    <%-- Data from js below --%>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>Phường/xã:</label>
+                                <select class="form-select" id="wards-options">
+                                    <%-- Data from js below --%>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>Địa chỉ:</label>
+                                <input id="address-detail" class="form-control" type="text"
+                                       placeholder="Địa chỉ cụ thể"/>
+
+                            </div>
+                        </div>
+
+                        <button onclick="updateAddress()" class="btn btn-primary">Thêm địa chỉ</button>
+                    </div>
+
+                    <div style="height: 50px"></div>
+
+                    <div class="addresses">
+                        <c:forEach var="item" items="${addresses}">
+                            <div class="address">
+                                <div style="display: flex; justify-content: space-between">
+                                    <div class="field">
+                                        <div>
+                                            <label>Địa chỉ:</label>
+                                            <p>${item.address}</p>
+                                        </div>
+
+                                        <div>
+                                            <label>Tỉnh/tp:</label>
+                                            <p>${item.city_province}</p>
+                                        </div>
+
+                                        <div>
+                                            <label>Quận/huyện:</label>
+                                            <p>${item.district}</p>
+                                        </div>
+
+                                        <div>
+                                            <label>Phường/xã:</label>
+                                            <p>${item.ward}</p>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex; flex-direction: column; justify-content: space-between">
+                                        <div class="form-check" style="text-align: center">
+                                            <c:if test="${item.is_main == true}">
+                                                <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        id="addressdefault${item.id}"
+                                                        onclick="setDefaultAddress(${item.id})"
+                                                        checked
+                                                >
+                                            </c:if>
+                                            <c:if test="${item.is_main == false}">
+                                                <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        id="addressdefault${item.id}"
+                                                        onclick="setDefaultAddress(${item.id})"
+                                                >
+                                            </c:if>
+                                        </div>
+
+                                        <div>
+                                            <button class="btn btn-light" style="width: 60px; height: 35px" >
+                                                Xóa
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+
+
+                <div style="height: 2px;width: 40%;background: gray;margin: 50px 0 30px 0"></div>
 
                 <form:form
                         class="row contact_us_form"
@@ -189,20 +289,6 @@
                     </div>
                 </div>
 
-
-                <div class="user-addresses">
-                    <select id="cities-options" onchange="getCityId()"
-                    <c:forEach var="item" items="${cities}">
-                        <option value=${item.provinceID}>${item.provinceName}</option>
-                    </c:forEach>
-                    </select>
-                    <select id="districts-options" onchange="getDistrictId()">
-                        <%-- Data from js below --%>
-                    </select>
-                    <select id="wards-options">
-                        <%-- Data from js below --%>
-                    </select>
-                </div>
             </div>
         </div>
     </div>
@@ -237,7 +323,7 @@
 
     }
 
-    function getDistrictId(node) {
+    function getDistrictId() {
         const district = document.getElementById('districts-options');
         const district_id = district.value;
         $.ajax({
@@ -259,5 +345,60 @@
         });
     }
 
+    async function updateAddress() {
+        const city = document.getElementById("cities-options");
+        const district = document.getElementById("districts-options");
+        const ward = document.getElementById("wards-options");
+        const detail = document.getElementById("address-detail");
+
+        //city.selectedOptions[0].text
+        if (!city.value || !district.value || !ward.value || !detail.value) {
+            alert("Hãy nhập đủ thông tin")
+            return;
+        }
+
+
+        const data = {
+            city: city.selectedOptions[0].text,
+            district: district.selectedOptions[0].text,
+            ward: ward.selectedOptions[0].text,
+            detail: detail.value,
+        }
+
+        try {
+            const res = await fetch('/user/update-address', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            const dataRes = await res.json();
+
+            if (dataRes.msg) location.reload();
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    async function setDefaultAddress(addressId) {
+        const isDefault = document.getElementById("addressdefault"+addressId)
+        if(isDefault.checked == true) return;
+
+        try {
+            const res = await fetch('/user/update-default-address', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({address_id: addressId}),
+            })
+            const dataRes = await res.json();
+
+            if (dataRes.msg) location.reload();
+        } catch (err) {
+            console.log(err)
+        }
+    }
 </script>
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>

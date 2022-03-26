@@ -1,15 +1,16 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
-*{
+* {
     font-family: "Open Sans", sans-serif;
 }
+
 /*Navbar*/
-nav.navbar.navbar-inverse.navbar-fixed-top{
+nav.navbar.navbar-inverse.navbar-fixed-top {
     position: relative;
     width: 100vw;
 }
 
-.navbar-nav{
+.navbar-nav {
     font-weight: 600;
     text-align: center;
 }
@@ -24,20 +25,21 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
     width: 100%;
     margin: auto;
 }
-.logo{
+
+.logo {
     width: 45px;
     height: auto;
     margin-top: -5px;
 }
 
-.control-label{
+.control-label {
     text-align: left;
     width: 8rem !important;
     padding: 0;
     color: black !important;
 }
 
-.navbar-nav>li {
+.navbar-nav > li {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,13 +48,13 @@ nav.navbar.navbar-inverse.navbar-fixed-top{
 
 
 /*//////*/
-.line{
+.line {
     height: 1px;
     margin: 10px 50px;
     background: grey;
 }
 
-contact_form_area p_100{
+contact_form_area p_100 {
     background-color: #FF4D4F !important;
     position: absolute;
 }
@@ -67,44 +69,89 @@ contact_form_area p_100{
     padding: 15px 0;
 }
 
-.order .product .product-info{
+.order .product .product-info {
     margin: 0 10px;
 }
 
-.container.search-page{
+.container.search-page {
     min-height: 100%;
     position: relative;
 }
 
-.container.search-page .result{
+.container.search-page .result {
     display: flex;
     flex-wrap: wrap;
 }
 
-.product-page{
+.product-page {
     margin: 20px;
 }
 
-.product-page .rating p{
+.product-page .rating p {
     font-size: 18px;
 }
 
-.product-page .title{
+.product-page .title {
     margin: 5px 15px;
 }
 
+.addresses {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.user-addresses .fields {
+    margin-bottom: 20px;
+}
+
+.user-addresses .fields .field {
+    margin: 10px 0;
+}
+
+.user-addresses .fields .field label {
+    width: 100%;
+    font-weight: 600;
+}
+
+.user-addresses .fields .field input {
+    width: 500px;
+    padding: 5px;
+}
+
+.user-addresses .fields .field select {
+    padding: 5px 5px;
+    min-width: 150px;
+}
+
+.user-addresses .addresses .address {
+    padding: 10px 5px;
+    margin: 5px 5px;
+    border-top: 1px solid grey;
+}
+
+.user-addresses .addresses .address .field label {
+    width: 95px !important;
+    font-weight: 600;
+}
+
+.user-addresses .addresses .address .field p {
+    display: unset;
+
+}
+
+
 @media only screen and (max-width: 768px) {
-    .pull-right{
+    .pull-right {
         float: none !important;
     }
 
-    .navbar-nav>li {
+    .navbar-nav > li {
         height: unset;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .line{
+    .line {
         display: none !important;
     }
 }

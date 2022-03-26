@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
           content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+<%--    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>--%>
 
     <!-- title -->
     <title>Coffee Store</title>
@@ -86,10 +87,29 @@
                             <li>
                                 <div class="header-icons">
                                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"
-                                                                                     style="font-size: 15px"></i></a>
-                                        <a class="user-page" href="/user/user-info"><i class="fas fa-user"
-                                                                                       style="font-size: 15px"></i></a>
+                                        <a class="shopping-cart" href="cart.html">
+                                            <div id="countCart" style="
+                                                    background: indianred;
+                                                    color: white;
+                                                    padding: 4.5px;
+                                                    border-radius: 50%;
+                                                    font-size: 10px;
+                                                    position: absolute;
+                                                    top: -5px;
+                                                    left: 20px;
+                                                    width: 26px;
+                                                    height: 26px;
+                                                    "
+                                            >
+                                                0
+                                            </div>
+                                            <i class="fas fa-shopping-cart" style="font-size: 15px"></i>
+                                        </a>
+
+                                        <a class="user-page" href="/user/user-info">
+                                            <i class="fas fa-user" style="font-size: 15px"></i>
+                                        </a>
+
                                         <a onclick="document.forms['logoutForm'].submit()" title="Đăng xuất"><i
                                                 class="fas fa-sign-out-alt" style="font-size: 15px"></i></a>
 
@@ -135,4 +155,14 @@
         </div>
     </div>
 </div>
+
+<%--<script>--%>
+<%--    const countCart = document.getElementById("countCart")--%>
+<%--    const count = localStorage.getItem("aa");--%>
+
+<%--    countCart.innerText = count ? count : 0;--%>
+<%--</script>--%>
+
+<script src="../../../resources/assets/js/MyJS/setCartCount.js"></script>
+
 <!-- end search area -->

@@ -1,15 +1,19 @@
 package com.coffeestore.controller;
 
 import com.coffeestore.api.GHN.GHN_shipping;
+import com.coffeestore.model.user.Address;
 import com.coffeestore.model.user.User;
 import com.coffeestore.query.dto.GHN.DistrictDto;
 import com.coffeestore.query.dto.GHN.cityDTO;
+import com.coffeestore.query.repository.AddressRepo;
 import com.coffeestore.service.user.UserService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.validation.BindingResult;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +32,9 @@ public class UserController {
 
     @Autowired
     GHN_shipping ghn_shipping;
+
+    @Autowired
+    AddressRepo addressRepo;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -42,12 +50,19 @@ public class UserController {
         return "admin";
     }
 
+    @Transactional
     @GetMapping("/user-info")
     public String getUserInfo(Model model, HttpServletRequest request) {
         String userEmail = request.getUserPrincipal().getName();
         User user = userService.getUserInfo(userEmail);
 
+        List<Address> addresses = addressRepo.getAddressByUserId(user.getId());
+//        for (int i = 0; i < user.getAddresses().size(); i++) {
+//            addresses.add(user.getAddresses().get(i));
+//        }
+
         model.addAttribute("user", user);
+        model.addAttribute("addresses", addresses);
         model.addAttribute("userForm", new User());
 
         Map citiesData = ghn_shipping.getCities();
@@ -65,7 +80,6 @@ public class UserController {
 
         return "user/user_info";
     }
-
 
 
     @GetMapping("get-district/{city_id}")
@@ -109,5 +123,29 @@ public class UserController {
         return "user/user_info";
     }
 
+    @PostMapping("/update-address")
+    public ResponseEntity updateUserAddresses(@RequestBody Map data, HttpServletRequest request) {
+        String userEmail = request.getUserPrincipal().getName();
 
+        Map newAddress = userService.updateAddress(data, userEmail);
+
+        Map<String, Object> msg = Map.of(
+                "msg", "add address OK!",
+                "address", newAddress
+        );
+        return new ResponseEntity<>(msg, HttpStatus.OK);
+    }
+
+    @PostMapping("/update-default-address")
+    public ResponseEntity updateUserDefaultAddresses(@RequestBody Map data, HttpServletRequest request) {
+        String userEmail = request.getUserPrincipal().getName();
+
+        Map newDefaultAddress = userService.updateDefaultAddress(data, userEmail);
+
+        Map<String, Object> msg = Map.of(
+                "msg", "set default address OK!",
+                "address_id", newDefaultAddress.get("address_id")
+        );
+        return new ResponseEntity<>(msg, HttpStatus.OK);
+    }
 }

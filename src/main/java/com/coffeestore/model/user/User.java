@@ -14,6 +14,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,7 +37,7 @@ public class User {
 
     @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Collection<Address> addresses;
+    private List<Address> addresses;
 
     @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
