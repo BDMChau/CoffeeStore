@@ -111,34 +111,12 @@
 
                               <div>
                                  <button type="button" class="btn btn-light" data-toggle="modal"
-                                         data-target="#exampleModal" style="width: 60px; height: 35px">
+                                         data-target="#exampleModal" style="width: 60px; height: 35px"
+                                         onclick="setDelAddressIdToDel(${item.id}, 'set')">
                                     Xoá
                                  </button>
                               </div>
-                              <!-- Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                   aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                 <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                       <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Xoá địa chỉ?</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                             <span aria-hidden="true">&times;</span>
-                                          </button>
-                                       </div>
-                                       <div class="modal-body" id="modal-body-message">
-                                          Bạn có chắc muốn xoá địa chỉ?
-                                       </div>
-                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng
-                                          </button>
-                                          <button type="button" class="btn btn-primary" id="btn-save"
-                                                  onclick="deleteAddress(${item.id})">Xoá địa chỉ
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+
                            </div>
                         </div>
                      </div>
@@ -320,6 +298,32 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xoá địa chỉ?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body" id="modal-body-message">
+            Bạn có chắc muốn xoá địa chỉ?
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="setDelAddressIdToDel(0, 'del')" >Đóng
+            </button>
+            <button type="button" class="btn btn-primary" id="btn-save"
+                    onclick="deleteAddress()">Xoá địa chỉ
+            </button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
 
@@ -407,8 +411,8 @@
     }
 
     async function setDefaultAddress(addressId) {
-        const isDefault = document.getElementById("addressdefault" + addressId)
-        if (isDefault.checked == true) return;
+        // const isDefault = document.getElementById("addressdefault" + addressId)
+        // if (isDefault.checked == true) return;
 
         try {
             const res = await fetch('/user/update-default-address', {
@@ -426,9 +430,15 @@
         }
     }
 
-    async function deleteAddress(addressId) {
+    function setDelAddressIdToDel(id, type){
+        if(type === "set") localStorage.setItem('address_id_del',JSON.stringify(id))
+        else localStorage.removeItem('address_id_del')
+    }
 
-        try {
+    async function deleteAddress() {
+      const addressId = localStorage.getItem("address_id_del") ? JSON.parse(localStorage.getItem("address_id_del")) : null;
+
+         try {
             const res = await fetch('/user/delete-address', {
                 method: 'POST', // or 'PUT'
                 headers: {
@@ -438,7 +448,11 @@
             })
             const dataRes = await res.json();
 
-            if (dataRes.msg) location.reload();
+            if (dataRes.msg) {
+                location.reload();
+                localStorage.removeItem('address_id_del');
+            }
+
             if (dataRes.err) {
                 const errMessage = document.getElementById("modal-body-message");
                 errMessage.innerHTML = "";
