@@ -149,15 +149,7 @@
                   </div>
                </spring:bind>
 
-               <div class="form-group col-md-6">
-                  <h7>Tài khoản</h7>
-                  <input type="text" class="form-control" id="userName" value="${user.email}"
-                         placeholder="Tài khoản" name="account" readonly="readonly"/>
-               </div>
-               <%--                    <div class="form-group col-md-6">--%>
-               <%--                        <h7>Mật khẩu</h7>--%>
-               <%--                        <input type="password" class="form-control" id="passWord" value="" placeholder="Mật khẩu" disabled>--%>
-               <%--                    </div>--%>
+
                <spring:bind path="phone">
                   <div class="form-group col-md-6">
                      <h7>Số điện thoại</h7>

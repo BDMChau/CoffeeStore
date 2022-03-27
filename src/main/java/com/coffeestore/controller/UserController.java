@@ -121,7 +121,7 @@ public class UserController {
             bindingResult) {
         userService.updateProfile(userForm);
 
-        return "user/user_info";
+        return "redirect:/user/user-info";
     }
 
     @PostMapping("/update-address")
