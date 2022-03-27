@@ -87,6 +87,19 @@
                             <li>
                                 <div class="header-icons">
                                     <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                        <a class="user-page" href="/user/user-info">
+                                            <i class="fas fa-user" style="font-size: 15px"></i>
+                                        </a>
+
+                                        <a onclick="document.forms['logoutForm'].submit()" title="Đăng xuất"><i
+                                                class="fas fa-sign-out-alt" style="font-size: 15px"></i></a>
+
+                                        <form id="logoutForm" method="GET" action="/logout">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        </form>
+                                    </c:if>
+
+                                    <c:if test="${pageContext.request.userPrincipal.name == null}">
                                         <a class="shopping-cart" href="cart.html">
                                             <div id="countCart" style="
                                                     background: indianred;
@@ -106,19 +119,6 @@
                                             <i class="fas fa-shopping-cart" style="font-size: 15px"></i>
                                         </a>
 
-                                        <a class="user-page" href="/user/user-info">
-                                            <i class="fas fa-user" style="font-size: 15px"></i>
-                                        </a>
-
-                                        <a onclick="document.forms['logoutForm'].submit()" title="Đăng xuất"><i
-                                                class="fas fa-sign-out-alt" style="font-size: 15px"></i></a>
-
-                                        <form id="logoutForm" method="GET" action="/logout">
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        </form>
-                                    </c:if>
-
-                                    <c:if test="${pageContext.request.userPrincipal.name == null}">
                                         <a class="shopping-cart" href="/auth/login">Đăng nhập</a>
                                     </c:if>
                                 </div>

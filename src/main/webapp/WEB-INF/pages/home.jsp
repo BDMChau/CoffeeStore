@@ -91,7 +91,7 @@
                             <h4 style="font-size: 18px">${item.pr_price} đ</h4>
                             <p class="product-price"><span>${item.pr_description}</span></p>
 
-                            <button href="#" class="cart-btn">
+                            <button href="#" class="cart-btn" onclick="addToCart(${item.pr_id}, 1)">
                                 <i class="fas fa-shopping-cart"></i>
                                 Thêm vào giỏ
                             </button>
@@ -127,7 +127,7 @@
                             <h3 style="font-size: 18px">${item.pr_name}</h3>
                             <h4 style="font-size: 18px">${item.pr_price} đ</h4>
                             <p class="product-price"><span>${item.pr_description}</span></p>
-                            <button href="#" class="cart-btn" onclick="addToCart(${item.pr_id})">
+                            <button href="#" class="cart-btn" onclick="addToCart(${item.pr_id}, 1)">
                                 <i class="fas fa-shopping-cart"></i>Thêm vào giỏ
                             </button>
                         </div>
