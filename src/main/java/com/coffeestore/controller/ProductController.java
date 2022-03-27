@@ -3,12 +3,16 @@ package com.coffeestore.controller;
 import com.coffeestore.model.product.Product;
 import com.coffeestore.query.dto.ProductDto;
 import com.coffeestore.service.product.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/product")
@@ -79,43 +83,29 @@ public class ProductController {
     }
 
 
-//    @GetMapping("/top_products/{req}") // products of id
-//    public String GetProductsOfBrand(@PathVariable int req, @RequestParam int page, Model model) {
-//
-//        if (page <= 0) {
-//            model.addAttribute("err", "something wrong!");
-//
-//        } else page -= 1;
-//        int from = page * 10;
-//        int amount = 10;
-//
-//        List<ProductDto> productDtoList = productService.getTopProducts(req, from, amount);
-//        productDtoList.forEach(System.err::println);
-//        model.addAttribute("list_top_products", productDtoList);
-//        return "brandproducts";
-//    }
+
+    @PostMapping("/get-products") // detail a product
+    public ResponseEntity getProducts(@RequestBody Map data, HttpServletRequest request) {
+        String userEmail = request.getUserPrincipal().getName();
+        if(userEmail.isEmpty()) {
+            Map<String, Object> err = Map.of("err", "pls login");
+            return new ResponseEntity<>(err, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        }
+
+        List productIds = (List) data.get("product_ids");
+
+        List<ProductDto> products = productService.getProductsByIds(productIds);
+
+        Map<String, Object> msg = Map.of(
+          "msg", "set default address OK!",
+          "products", products
+        );
+        return new ResponseEntity<>(msg, HttpStatus.OK);
+    }
 
 
 
 
-
-
-
-//    @PostMapping("/update_ra")
-//    public String Product(@RequestParam String product_id) {
-//
-//        Long productId = Long.parseLong(product_id);
-//        Product product = productService.updateViewProduct(productId);
-//        return "Update view successfully!";
-//    }
-//
-//    @PostMapping("/update_count_purchased")
-//    public String addViewProduct(@RequestParam String product_id) {
-//
-//        Long productId = Long.parseLong(product_id);
-//        Product product = productService.updateViewProduct(productId);
-//        return "Update view successfully!";
-//    }
 
 
 }

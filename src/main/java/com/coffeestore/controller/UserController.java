@@ -40,14 +40,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/cart")
-    public String cart() {
-        return "home";
-    }
 
     @RequestMapping("/admin")
     public String adminPage() {
         return "admin";
+    }
+
+    @GetMapping("/cart")
+    public String cart() {
+        return "cart";
     }
 
     @Transactional
@@ -147,5 +148,11 @@ public class UserController {
                 "address_id", newDefaultAddress.get("address_id")
         );
         return new ResponseEntity<>(msg, HttpStatus.OK);
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(@RequestBody Map data, HttpServletRequest request) {
+
+        return "checkout";
     }
 }

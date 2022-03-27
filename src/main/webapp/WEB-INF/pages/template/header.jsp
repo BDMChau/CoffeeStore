@@ -86,6 +86,25 @@
 
                             <li>
                                 <div class="header-icons">
+                                    <a class="shopping-cart" href="/user/cart">
+                                        <div id="countCart" style="
+                                                    background: indianred;
+                                                    color: white;
+                                                    padding: 4.5px;
+                                                    border-radius: 50%;
+                                                    font-size: 10px;
+                                                    position: absolute;
+                                                    top: -5px;
+                                                    left: 20px;
+                                                    width: 26px;
+                                                    height: 26px;
+                                                    "
+                                        >
+                                            0
+                                        </div>
+                                        <i class="fas fa-shopping-cart" style="font-size: 15px"></i>
+                                    </a>
+
                                     <c:if test="${pageContext.request.userPrincipal.name != null}">
                                         <a class="user-page" href="/user/user-info">
                                             <i class="fas fa-user" style="font-size: 15px"></i>
@@ -100,25 +119,6 @@
                                     </c:if>
 
                                     <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                        <a class="shopping-cart" href="cart.html">
-                                            <div id="countCart" style="
-                                                    background: indianred;
-                                                    color: white;
-                                                    padding: 4.5px;
-                                                    border-radius: 50%;
-                                                    font-size: 10px;
-                                                    position: absolute;
-                                                    top: -5px;
-                                                    left: 20px;
-                                                    width: 26px;
-                                                    height: 26px;
-                                                    "
-                                            >
-                                                0
-                                            </div>
-                                            <i class="fas fa-shopping-cart" style="font-size: 15px"></i>
-                                        </a>
-
                                         <a class="shopping-cart" href="/auth/login">Đăng nhập</a>
                                     </c:if>
                                 </div>

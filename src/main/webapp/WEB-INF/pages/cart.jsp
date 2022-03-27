@@ -1,300 +1,168 @@
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%--<div class="loader">--%>
-<%--  <div class="loader-inner">--%>
-<%--    <div class="circle"></div>--%>
-<%--  </div>--%>
-<%--</div>--%>
-<%--<!--PreLoader Ends-->--%>
-<%--<!-- header -->--%>
-<%--<div class="top-header-area" id="sticker">--%>
-<%--  <div class="container">--%>
-<%--    <div class="row">--%>
-<%--      <div class="col-lg-12 col-sm-12 text-center">--%>
-<%--        <div class="main-menu-wrap">--%>
-<%--          <!-- logo -->--%>
-<%--          <div class="site-logo">--%>
-<%--            <a href="index.html">--%>
-<%--              <img src="assets/img/logo.png" alt="">--%>
-<%--            </a>--%>
-<%--          </div>--%>
-<%--          <!-- logo -->--%>
-
-<%--          <!-- menu start -->--%>
-<%--          <nav class="main-menu">--%>
-<%--            <ul>--%>
-<%--              <li class="current-list-item"><a href="#">Home</a>--%>
-<%--                <ul class="sub-menu">--%>
-<%--                  <li><a href="index.html">Static Home</a></li>--%>
-<%--                  <li><a href="index_2.html">Slider Home</a></li>--%>
-<%--                </ul>--%>
-<%--              </li>--%>
-<%--              <li><a href="about.html">About</a></li>--%>
-<%--              <li><a href="#">Pages</a>--%>
-<%--                <ul class="sub-menu">--%>
-<%--                  <li><a href="404.html">404 page</a></li>--%>
-<%--                  <li><a href="about.html">About</a></li>--%>
-<%--                  <li><a href="cart.html">Cart</a></li>--%>
-<%--                  <li><a href="checkout.html">Check Out</a></li>--%>
-<%--                  <li><a href="contact.html">Contact</a></li>--%>
-<%--                  <li><a href="news.html">News</a></li>--%>
-<%--                  <li><a href="shop.html">Shop</a></li>--%>
-<%--                </ul>--%>
-<%--              </li>--%>
-<%--              <li><a href="news.html">News</a>--%>
-<%--                <ul class="sub-menu">--%>
-<%--                  <li><a href="news.html">News</a></li>--%>
-<%--                  <li><a href="single-news.html">Single News</a></li>--%>
-<%--                </ul>--%>
-<%--              </li>--%>
-<%--              <li><a href="contact.html">Contact</a></li>--%>
-<%--              <li><a href="shop.html">Shop</a>--%>
-<%--                <ul class="sub-menu">--%>
-<%--                  <li><a href="shop.html">Shop</a></li>--%>
-<%--                  <li><a href="checkout.html">Check Out</a></li>--%>
-<%--                  <li><a href="single-product.html">Single Product</a></li>--%>
-<%--                  <li><a href="cart.html">Cart</a></li>--%>
-<%--                </ul>--%>
-<%--              </li>--%>
-<%--              <li>--%>
-<%--                <div class="header-icons">--%>
-<%--                  <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>--%>
-<%--                  <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>--%>
-<%--                </div>--%>
-<%--              </li>--%>
-<%--            </ul>--%>
-<%--          </nav>--%>
-<%--          <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>--%>
-<%--          <div class="mobile-menu"></div>--%>
-<%--          <!-- menu end -->--%>
-<%--        </div>--%>
-<%--      </div>--%>
-<%--    </div>--%>
-<%--  </div>--%>
-<%--</div>--%>
-<%--<!-- end header -->--%>
-
-<%--<!-- search area -->--%>
-<%--<div class="search-area">--%>
-<%--  <div class="container">--%>
-<%--    <div class="row">--%>
-<%--      <div class="col-lg-12">--%>
-<%--        <span class="close-btn"><i class="fas fa-window-close"></i></span>--%>
-<%--        <div class="search-bar">--%>
-<%--          <div class="search-bar-tablecell">--%>
-<%--            <h3>Search For:</h3>--%>
-<%--            <input type="text" placeholder="Keywords">--%>
-<%--            <button type="submit">Search <i class="fas fa-search"></i></button>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--      </div>--%>
-<%--    </div>--%>
-<%--  </div>--%>
-<%--</div>--%>
-<!-- end search arewa -->
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <div class="breadcrumb-text">
-          <p>Fresh and Organic</p>
-          <h1>Cart</h1>
-        </div>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="breadcrumb-text">
+               <h1>Giỏ Hàng</h1>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
 <!-- end breadcrumb section -->
 
 <!-- cart -->
 <div class="cart-section mt-150 mb-150">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-12">
-        <div class="cart-table-wrap">
-          <table class="cart-table">
-            <thead class="cart-table-head">
-            <tr class="table-head-row">
-              <th class="product-remove"></th>
-              <th class="product-image">Product Image</th>
-              <th class="product-name">Name</th>
-              <th class="product-price">Price</th>
-              <th class="product-quantity">Quantity</th>
-              <th class="product-total">Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="table-body-row">
-              <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-              <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-              <td class="product-name">Strawberry</td>
-              <td class="product-price">$85</td>
-              <td class="product-quantity"><input type="number" placeholder="0"></td>
-              <td class="product-total">1</td>
-            </tr>
-            <tr class="table-body-row">
-              <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-              <td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-              <td class="product-name">Berry</td>
-              <td class="product-price">$70</td>
-              <td class="product-quantity"><input type="number" placeholder="0"></td>
-              <td class="product-total">1</td>
-            </tr>
-            <tr class="table-body-row">
-              <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-              <td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-              <td class="product-name">Lemon</td>
-              <td class="product-price">$35</td>
-              <td class="product-quantity"><input type="number" placeholder="0"></td>
-              <td class="product-total">1</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-24 col-md-12">
+            <div class="cart-table-wrap">
+               <table id="cart-table" class="cart-table">
+                  <thead class="cart-table-head">
+                  <tr class="table-head-row">
+                     <th class="remove"></th>
+                     <th class="id">ID</th>
+                     <th class="image">Hình Ảnh</th>
+                     <th class="name">Tên SP</th>
+                     <th class="price">Giá (vnd)</th>
+                     <th class="quantity">Số Lượng</th>
+                     <th class="total">Tổng</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+<%--                  <tr class="table-body-row">--%>
+<%--                     <td class="remove"><a href="#"><i class="far fa-window-close"></i></a></td>--%>
+<%--                     <td class="image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>--%>
+<%--                     <td class="name">Strawberry</td>--%>
+<%--                     <td class="price">$85</td>--%>
+<%--                     <td class="quantity"><input type="number" placeholder="0"></td>--%>
+<%--                     <td class="total">1</td>--%>
+<%--                  </tr>--%>
+                  </tbody>
+               </table>
+            </div>
+         </div>
 
-      <div class="col-lg-4">
-        <div class="total-section">
-          <table class="total-table">
-            <thead class="total-table-head">
-            <tr class="table-total-row">
-              <th>Total</th>
-              <th>Price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="total-data">
-              <td><strong>Subtotal: </strong></td>
-              <td>$500</td>
-            </tr>
-            <tr class="total-data">
-              <td><strong>Shipping: </strong></td>
-              <td>$45</td>
-            </tr>
-            <tr class="total-data">
-              <td><strong>Total: </strong></td>
-              <td>$545</td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="cart-buttons">
-            <a href="cart.html" class="boxed-btn">Update Cart</a>
-            <a href="checkout.html" class="boxed-btn black">Check Out</a>
-          </div>
-        </div>
+         <div style="width: 100%" >
+               <div class="cart-buttons">
+                  <a href="/user/checkout" class="cart-btn">Thanh toán</a>
+               </div>
+            </div>
 
-        <div class="coupon-section">
-          <h3>Apply Coupon</h3>
-          <div class="coupon-form-wrap">
-            <form action="index.html">
-              <p><input type="text" placeholder="Coupon"></p>
-              <p><input type="submit" value="Apply"></p>
-            </form>
-          </div>
-        </div>
+            <%--        <div class="coupon-section">--%>
+            <%--          <h3>Apply Coupon</h3>--%>
+            <%--          <div class="coupon-form-wrap">--%>
+            <%--            <form action="index.html">--%>
+            <%--              <p><input type="text" placeholder="Coupon"></p>--%>
+            <%--              <p><input type="submit" value="Apply"></p>--%>
+            <%--            </form>--%>
+            <%--          </div>--%>
+            <%--        </div>--%>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
 <!-- end cart -->
 
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="logo-carousel-inner">
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/1.png" alt="">
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/2.png" alt="">
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/3.png" alt="">
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/4.png" alt="">
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/5.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end logo carousel -->
+<script>
+    async function getProducts() {
+        const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+        if (!cart.length) return;
 
-<!-- footer -->
-<div class="footer-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box about-widget">
-          <h2 class="widget-title">About us</h2>
-          <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box get-in-touch">
-          <h2 class="widget-title">Get in Touch</h2>
-          <ul>
-            <li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-            <li>support@fruitkha.com</li>
-            <li>+00 111 222 3333</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box pages">
-          <h2 class="widget-title">Pages</h2>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Shop</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box subscribe">
-          <h2 class="widget-title">Subscribe</h2>
-          <p>Subscribe to our mailing list to get the latest updates.</p>
-          <form action="index.html">
-            <input type="email" placeholder="Email">
-            <button type="submit"><i class="fas fa-paper-plane"></i></button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end footer -->
+        const ids = cart.map(item => item.product_id)
+        try {
+            const res = await fetch('/product/get-products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({product_ids: ids}),
+            })
+            const dataRes = await res.json();
 
-<!-- copyright -->
-<div class="copyright">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-md-12">
-        <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
-      </div>
-      <div class="col-lg-6 text-right col-md-12">
-        <div class="social-icons">
-          <ul>
-            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            if (dataRes.err) {
+                console.log("login required!");
+                return;
+            }
+
+            const products = dataRes.products;
+            products.forEach(product => {
+                for (let i = 0; i < cart.length; i++) {
+                    if (product.pr_id === cart[i].product_id) {
+                        product.quantity = cart[i].quantity;
+                        product.total = product.quantity * product.pr_price;
+                        break;
+                    }
+                }
+            })
+
+
+            localStorage.setItem("products", JSON.stringify(products));
+            renderTable(products);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    getProducts();
+
+
+    function updateCart(id){
+      const products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")): [];
+
+      const quantity = document.getElementById("inputquantity" + id).value;
+      const total = document.getElementById("totalvalue" + id);
+
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].pr_id === id) {
+                products[i].quantity = quantity;
+                products[i].total = products[i].pr_price * products[i].quantity;
+                total.innerText = products[i].pr_price * products[i].quantity;
+                break;
+            }
+        }
+
+        const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+        if(cart.length){
+            cart.forEach(item => {
+                for (let i = 0; i < products.length; i++) {
+                    if (products[i].pr_id === item.product_id) {
+                        item.quantity = products[i].quantity;
+                        break;
+                    }
+                }
+            })
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("products", JSON.stringify(products));
+    }
+
+
+    function renderTable(products) {
+        products.forEach(product => {
+            let rows = "";
+            rows += "<tr>" +
+                `<td class="remove"><a href="#"><i style='font-size: 18px; color: black' class="far fa-window-close"></i></a></td>` +
+
+                "<td class='id'>" + product.pr_id + "</td>" +
+                "<td class='image'>" + "<img class='img-cart-product' src=" + product.prImg_url + " alt=''/>" + "</td>" +
+                "<td style='max-width: 200px' class='name'>" + product.pr_name + "</td>" +
+                "<td class='price'>" + product.pr_price + "</td>" +
+                "<td class='quantity'>" + `<input id="inputquantity` + product.pr_id + `" onchange='updateCart(` + product.pr_id + `)' type="number" min="1" value=` + product.quantity + `>` + "</td>" +
+                "<td class='total' id='totalvalue" + product.pr_id + "' >" + product.total + "</td>" +
+                "</tr>";
+
+            $(rows).appendTo("#cart-table tbody");
+        })
+
+
+    }
+</script>
 
 <%@include file="/WEB-INF/pages/template/footer.jsp" %>
