@@ -53,7 +53,7 @@ public class Address {
     @Column(columnDefinition = "varchar", nullable = true)
     private String address;
 
-    @Column(columnDefinition = "boolean default false", nullable = true)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private Boolean is_main;
 
 }

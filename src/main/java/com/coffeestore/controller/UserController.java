@@ -150,6 +150,24 @@ public class UserController {
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
+    @PostMapping("/delete-address")
+    public ResponseEntity deleteAddress(@RequestBody Map data, HttpServletRequest request) {
+        String userEmail = request.getUserPrincipal().getName();
+        Boolean isDeleted = userService.deleteAddress(data, userEmail);
+        if(isDeleted.equals(false)){
+            Map<String, Object> err = Map.of(
+              "err", "delete address failed!"
+            );
+            return new ResponseEntity<>(err, HttpStatus.OK);
+        }
+
+        Map<String, Object> msg = Map.of(
+          "msg", "delete address OK!"
+        );
+        return new ResponseEntity<>(msg, HttpStatus.OK);
+    }
+
+    
     @GetMapping("/checkout")
     public String checkout() {
 
