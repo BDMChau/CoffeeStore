@@ -151,7 +151,7 @@ public class UserController {
     }
 
     @GetMapping("/checkout")
-    public String checkout(@RequestBody Map data, HttpServletRequest request) {
+    public String checkout() {
 
         return "checkout";
     }

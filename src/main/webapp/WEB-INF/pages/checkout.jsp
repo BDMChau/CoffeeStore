@@ -1,7 +1,5 @@
-
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
 <h2>about page</h2>
