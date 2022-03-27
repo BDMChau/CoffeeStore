@@ -153,7 +153,7 @@
                <spring:bind path="phone">
                   <div class="form-group col-md-6">
                      <h7>Số điện thoại</h7>
-                     <form:input type="tel" class="form-control" id="" name="phone" value='${user.phone}'
+                     <form:input maxlength="10" type="tel" class="form-control" id="" name="phone" value='${user.phone}'
                                  placeholder="Số điện thoại" path="phone"/>
                   </div>
                </spring:bind>
