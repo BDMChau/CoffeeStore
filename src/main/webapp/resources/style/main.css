@@ -144,6 +144,13 @@ contact_form_area p_100 {
     height: 60px;
 }
 
+.payment-methods .method{
+    margin-top: 20px;
+    max-width: 300px ;
+    border-radius: 3px;
+}
+
+
 @media only screen and (max-width: 768px) {
     .pull-right {
         float: none !important;

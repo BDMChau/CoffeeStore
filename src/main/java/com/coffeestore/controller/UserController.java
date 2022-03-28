@@ -169,7 +169,12 @@ public class UserController {
 
     
     @GetMapping("/checkout")
-    public String checkout() {
+    public String checkout(HttpServletRequest request, Model model) {
+        String userEmail = request.getUserPrincipal().getName();
+        Address address = userService.getMainAddress(userEmail);
+
+        if(address == null)  model.addAttribute("address", null);
+        else model.addAttribute("address", address);
 
         return "checkout";
     }

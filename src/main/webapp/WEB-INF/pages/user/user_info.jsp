@@ -94,6 +94,7 @@
                                     <input
                                        class="form-check-input"
                                        type="radio"
+                                       title="Đặt làm mặc định"
                                        id="addressdefault${item.id}"
                                        onclick="setDefaultAddress(${item.id})"
                                        checked
@@ -103,6 +104,7 @@
                                     <input
                                        class="form-check-input"
                                        type="radio"
+                                       title="Đặt làm mặc định"
                                        id="addressdefault${item.id}"
                                        onclick="setDefaultAddress(${item.id})"
                                     >

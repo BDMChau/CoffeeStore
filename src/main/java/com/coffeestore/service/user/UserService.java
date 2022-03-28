@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service
@@ -144,6 +145,15 @@ public class UserService {
     return map;
   }
 
+  public Address getMainAddress(String userEmail) {
+    User user = getUserInfo(userEmail);
+
+    Optional<Address> addressOptional = addressRepo.getMainAddressByUserId(user.getId());
+    if(addressOptional.isEmpty()) return null;
+
+    return addressOptional.get();
+  }
+
 
   public User getUserInfo(String userEmail) {
     Optional<User> userOptional = userRepository.findByEmail(userEmail);
@@ -157,5 +167,6 @@ public class UserService {
 
     return userOptional.get();
   }
+
 
 }

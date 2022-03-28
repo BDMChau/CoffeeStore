@@ -15,4 +15,7 @@ public interface AddressRepo extends JpaRepository<Address, Long> {
 
     @Query("select a from Address a where a.user.id = ?1 order by a.is_main DESC")
     List<Address> getAddressByUserId(Long userId);
+
+    @Query("select a from Address a where a.user.id = ?1 AND a.is_main = true")
+    Optional<Address> getMainAddressByUserId(Long userId);
 }
