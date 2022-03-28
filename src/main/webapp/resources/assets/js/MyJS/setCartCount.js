@@ -5,7 +5,7 @@ function calcCountCart() {
     const countCart = document.getElementById("countCart");
 
     let total = 0;
-    if (cart.length) for (let i = 0; i < cart.length; i++) total += cart[i].quantity;
+    for (let i = 0; i < cart.length; i++) total += parseInt(cart[i].quantity);
 
     countCart.innerText = total;
 }
@@ -19,12 +19,13 @@ function addToCart(productId, quantity) {
     const countCart = document.getElementById("countCart");
 
     let total = parseInt(countCart.innerText);
+    console.log(total)
     let isExisted = false;
     if (cart.length) {
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].product_id === productId) {
-                cart[i].quantity += quantity;
-                total += quantity;
+                cart[i].quantity += parseInt(quantity);
+                total += cart[i].quantity;
 
                 isExisted = true;
             }
@@ -34,11 +35,11 @@ function addToCart(productId, quantity) {
     if (!isExisted) {
         cart.push({
             product_id: productId,
-            quantity: quantity
+            quantity: parseInt(quantity)
         });
         total += quantity;
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    countCart.innerText = total;
+    countCart.innerText = total ? total : 0;
 }

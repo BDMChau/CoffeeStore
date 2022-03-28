@@ -120,7 +120,7 @@
 
         for (let i = 0; i < products.length; i++) {
             if (products[i].pr_id === id) {
-                products[i].quantity = quantity;
+                products[i].quantity = parseInt(quantity);
                 products[i].total = products[i].pr_price * products[i].quantity;
                 total.innerText = products[i].pr_price * products[i].quantity;
                 break;
@@ -143,12 +143,26 @@
         localStorage.setItem("products", JSON.stringify(products));
     }
 
+    function deleteProduct(id){
+        let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+        let products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")): [];
+
+        cart = cart.filter(item => item.product_id !== id);
+        products = products.filter(item => item.pr_id !== id);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("products", JSON.stringify(products));
+
+        renderTable(products);
+    }
 
     function renderTable(products) {
+        $("#cart-table tr").remove();
+
         products.forEach(product => {
             let rows = "";
             rows += "<tr>" +
-                `<td class="remove"><a href="#"><i style='font-size: 18px; color: black' class="far fa-window-close"></i></a></td>` +
+                `<td class="remove"><a onclick='deleteProduct(` + product.pr_id + `)' ><i style='font-size: 18px; color: black' class="far fa-window-close"></i></a></td>` +
 
                 "<td class='id'>" + product.pr_id + "</td>" +
                 "<td class='image'>" + "<img class='img-cart-product' src=" + product.prImg_url + " alt=''/>" + "</td>" +

@@ -100,7 +100,7 @@
                                                     height: 26px;
                                                     "
                                         >
-                                            0
+
                                         </div>
                                         <i class="fas fa-shopping-cart" style="font-size: 15px"></i>
                                     </a>
