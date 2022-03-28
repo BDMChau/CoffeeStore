@@ -37,6 +37,12 @@
             </div>
          </div>
 
+         <div class="col-lg-24 col-md-12">
+            <div>
+
+            </div>
+         </div>
+
          <div style="width: 100%" >
             <div class="cart-buttons">
                <a href="#" class="cart-btn">Xác nhận thanh toán</a>
