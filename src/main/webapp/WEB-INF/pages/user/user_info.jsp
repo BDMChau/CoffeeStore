@@ -307,7 +307,8 @@
             Bạn có chắc muốn xoá địa chỉ?
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="setDelAddressIdToDel(0, 'del')" >Đóng
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    onclick="setDelAddressIdToDel(0, 'del')">Đóng
             </button>
             <button type="button" class="btn btn-primary" id="btn-save"
                     onclick="deleteAddress()">Xoá địa chỉ
@@ -341,20 +342,25 @@
                     option.value = item.DistrictID;
                     districtsOptions.appendChild(option, 1);
                 })
+
+                getDistrictId();
             }
         });
-
     }
+    getCityId();
 
     function getDistrictId() {
         const district = document.getElementById('districts-options');
         const district_id = district.value;
+        console.log(district_id)
+
         $.ajax({
             type: 'GET',
             url: '/user/get-ward/' + district_id,
             dataType: 'json',
             contentType: 'application/json',
             success: function (result) {
+
                 let wardsOptions = document.getElementById('wards-options');
                 wardsOptions.innerHTML = "";
                 wardsOptions.value = "";
@@ -367,6 +373,7 @@
             }
         });
     }
+
 
     async function updateAddress() {
         const city = document.getElementById("cities-options");
@@ -424,15 +431,15 @@
         }
     }
 
-    function setDelAddressIdToDel(id, type){
-        if(type === "set") localStorage.setItem('address_id_del',JSON.stringify(id))
+    function setDelAddressIdToDel(id, type) {
+        if (type === "set") localStorage.setItem('address_id_del', JSON.stringify(id))
         else localStorage.removeItem('address_id_del')
     }
 
     async function deleteAddress() {
-      const addressId = localStorage.getItem("address_id_del") ? JSON.parse(localStorage.getItem("address_id_del")) : null;
+        const addressId = localStorage.getItem("address_id_del") ? JSON.parse(localStorage.getItem("address_id_del")) : null;
 
-         try {
+        try {
             const res = await fetch('/user/delete-address', {
                 method: 'POST', // or 'PUT'
                 headers: {
