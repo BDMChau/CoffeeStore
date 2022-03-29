@@ -68,7 +68,7 @@
                         </c:if>
 
                         <a href="/user/user-info" style="margin-left: 30px;">
-                           <button class="btn btn-warning">Sửa</button>
+                           <button class="btn btn-warning">Sửa Địa chỉ</button>
                         </a>
                      </div>
                   </div>
@@ -79,7 +79,16 @@
                <h5>Phí vận chuyển</h5>
 
                <div class="shipping-fee" style="background: white">
-                  50k
+                  <c:if test="${not empty shipping_fee_err}">
+                     <p style="color: red">Lỗi tính phí ship, kiểm tra lại địa chỉ của bạn!</p>
+                  </c:if>
+
+                  <c:if test="${empty shipping_fee_err}">
+                     <h5 style="color: #0075FF">${shipping_fee.total}đ</h5>
+
+                     <h6>Phương thức: <p>${shipping_fee.serviceName}</p></h6>
+                     <p>${shipping_fee.message}</p>
+                  </c:if>
                </div>
             </div>
 
@@ -88,24 +97,30 @@
                <h5>Phương thức thanh toán</h5>
 
                <div class="form-check method" style="background: white">
-                  <input name="payment-method" style="cursor: pointer" class="form-check-input" type="radio" value="vnpay" id="method-vnpay">
+                  <input name="payment-method" style="cursor: pointer" class="form-check-input" type="radio"
+                         value="vnpay" id="method-vnpay">
 
-                  <label style="background: white; border-radius: 3px; border: 1px solid #80808080; padding: 10px; margin-top: -12px" class="form-check-label" for="method-vnpay">
-                     <img src="https://pay.vnpay.vn/images/logo.png" alt="" width="100px" title="Thanh toán với vnpay" />
+                  <label
+                     style="background: white; border-radius: 3px; border: 1px solid #80808080; padding: 10px; margin-top: -12px"
+                     class="form-check-label" for="method-vnpay">
+                     <img src="https://pay.vnpay.vn/images/logo.png" alt="" width="100px" title="Thanh toán với vnpay"/>
                   </label>
 
                </div>
-               <div class="form-check method" >
-                  <input name="payment-method" style="cursor: pointer" class="form-check-input" type="radio" value="cod" id="method-cod" checked>
+               <div class="form-check method">
+                  <input name="payment-method" style="cursor: pointer" class="form-check-input" type="radio" value="cod"
+                         id="method-cod" checked>
 
-                  <label style="background: white; border-radius: 3px; border: 1px solid #80808080; padding: 5px; margin-top: -7px" class="form-check-label" for="method-cod">Thanh toán khi nhận hàng (COD)</label>
+                  <label
+                     style="background: white; border-radius: 3px; border: 1px solid #80808080; padding: 5px; margin-top: -7px"
+                     class="form-check-label" for="method-cod">Thanh toán khi nhận hàng (COD)</label>
                </div>
             </div>
          </div>
 
          <div style="width: 100%">
             <div class="cart-buttons">
-               <a class="cart-btn" onclick="makeOrder()" >Đặt Hàng</a>
+               <a class="cart-btn" onclick="makeOrder()">Đặt Hàng</a>
             </div>
          </div>
       </div>
@@ -114,7 +129,7 @@
 </div>
 
 <script>
-async function getProducts() {
+    async function getProducts() {
         const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
         if (!cart.length) return;
 
@@ -154,11 +169,11 @@ async function getProducts() {
 
     getProducts();
 
-    function makeOrder(){
-      const paymentMethods = document.getElementsByName("payment-method");
-      let method = null;
+    function makeOrder() {
+        const paymentMethods = document.getElementsByName("payment-method");
+        let method = null;
         for (let i = 0; i < paymentMethods.length; i++) {
-            if(paymentMethods[i].checked === true){
+            if (paymentMethods[i].checked === true) {
                 method = paymentMethods[i].value;
                 break;
             }
@@ -172,7 +187,7 @@ async function getProducts() {
 
                 break;
             default:
-               return;
+                return;
         }
 
     }
