@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Config {
 
-    // account bank NCB
+    // account bank NCB for testing
     public static String bank_holder = "NGUYEN VAN A";
     public static String bank_number = "9704198526191432198";
     public static String release_date = "07/15";

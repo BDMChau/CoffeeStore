@@ -38,12 +38,4 @@ public class PaymentController {
     }
 
 
-    /// shipping fee
-    @GetMapping("/shipping_fee")
-    public String getCities(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Map resCities = ghn_shipping.getCities();
-        List cities = (List) resCities.get("data");
-
-        return "home";
-    }
 }

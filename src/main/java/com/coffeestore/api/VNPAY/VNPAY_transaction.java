@@ -38,12 +38,21 @@ public class VNPAY_transaction {
         vnp_Params.put("vnp_CurrCode", "VND");
         vnp_Params.put("vnp_BankCode", "");
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", "CoffeeStore - thanh toan: " + vnp_OrderInfo);
+        vnp_Params.put("vnp_OrderInfo", "CoffeeStore - thanh toan voi VNPAY: " + vnp_OrderInfo);
         vnp_Params.put("vnp_OrderType", orderType);
         vnp_Params.put("vnp_Locale", "vn");
-        vnp_Params.put("vnp_ReturnUrl", Config.vnp_Returnurl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
         vnp_Params.put("vnp_CreateDate", new SimpleDateFormat("yyyyMMddHHmmss").format(calendar.getTime()));
+        vnp_Params.put("vnp_ReturnUrl", Config.vnp_Returnurl);
+
+        // user's info
+        vnp_Params.put("vnp_Bill_Mobile", req.getParameter("txt_billing_mobile"));
+        vnp_Params.put("vnp_Bill_Email", req.getParameter("txt_billing_email"));
+        vnp_Params.put("vnp_Bill_FirstName", req.getParameter("txt_billing_fullname"));
+        vnp_Params.put("vnp_Bill_Address", req.getParameter("txt_inv_addr1"));
+        vnp_Params.put("vnp_Bill_City", req.getParameter("txt_bill_city"));
+        vnp_Params.put("vnp_Bill_Country", "VIET NAM");
+
 
 
         List fieldNames = new ArrayList(vnp_Params.keySet()); // set request data

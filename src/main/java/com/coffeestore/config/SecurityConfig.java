@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").access("hasRole('admin')")
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/product/**").authenticated()
+                .antMatchers("/payment/**").authenticated()
                 .and().formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/auth/login")
                 .successHandler(savedRequestAwareAuthenticationSuccessHandler())

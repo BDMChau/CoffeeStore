@@ -193,6 +193,7 @@ public class UserController {
    }
 
 
+   ////////////////// PRIVATE //////////////////
    private Map calcShippingFee(String city, String district, String ward) {
       Map mapToReturn = new HashMap();
 
