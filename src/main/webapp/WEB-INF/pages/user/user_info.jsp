@@ -286,6 +286,10 @@
                </div>
             </div>
 
+<div id="sessiondathanhtoan" style="visibility: hidden;opacity: 0"><%=session.getAttribute("ShoppingCart.prop")%></div>
+
+
+
          </div>
       </div>
    </div>
@@ -321,6 +325,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
+    function check(){
+        const sessId =
+    }
+    check()
+
 
     function getCityId() {
         const city = document.getElementById('cities-options');

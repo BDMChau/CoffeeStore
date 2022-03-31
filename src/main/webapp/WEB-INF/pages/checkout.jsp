@@ -216,8 +216,7 @@
                     const dataRes = await res.json();
 
                     if (dataRes) {
-                        localStorage.removeItem("products");
-                        localStorage.removeItem("cart");
+
                         window.location.href = dataRes.paymentUrl;
                     }
                     break;

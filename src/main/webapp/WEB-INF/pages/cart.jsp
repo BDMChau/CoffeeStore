@@ -48,8 +48,8 @@
             </div>
          </div>
 
-         <div style="width: 100%" >
-               <div class="cart-buttons">
+         <div id="btn-tt" style="width: 100%" >
+               <div class="cart-buttons" id="cart-buttons">
                   <a href="/user/checkout" class="cart-btn">Thanh toán</a>
                </div>
             </div>
@@ -70,6 +70,16 @@
 <!-- end cart -->
 
 <script>
+    function checkCart(){
+        const btn = document.getElementById("btn-tt");
+
+        const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+        if (!cart.length) {
+            btn.parentNode.removeChild(btn);
+        }
+    }
+    checkCart();
+
     async function getProducts() {
         const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
         if (!cart.length) return;
