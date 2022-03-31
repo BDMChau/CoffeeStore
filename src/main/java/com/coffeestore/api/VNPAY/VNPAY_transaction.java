@@ -2,6 +2,7 @@ package com.coffeestore.api.VNPAY;
 
 
 import com.coffeestore.helpers.security.HashAndEncrypt;
+import com.coffeestore.model.user.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,15 @@ import java.util.*;
 
 @Service
 public class VNPAY_transaction {
-    public String postToVNPAY(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public String postToVNPAY(Map data, User user, Long orderId, HttpServletRequest req) throws Exception {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
-        String vnp_OrderInfo = req.getParameter("vnp_OrderInfo");
-        String orderType = req.getParameter("ordertype");
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(req);
         String vnp_TmnCode = Config.vnp_TmnCode;
 
-        String amount = String.valueOf(Integer.parseInt(req.getParameter("amount")) * 100);
+        String amount = String.valueOf(Integer.parseInt(String.valueOf(data.get("total"))) * 100);
 
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
@@ -38,19 +37,21 @@ public class VNPAY_transaction {
         vnp_Params.put("vnp_CurrCode", "VND");
         vnp_Params.put("vnp_BankCode", "");
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", "CoffeeStore - thanh toan voi VNPAY: " + vnp_OrderInfo);
-        vnp_Params.put("vnp_OrderType", orderType);
+        vnp_Params.put("vnp_OrderInfo", String.valueOf(orderId));
+        vnp_Params.put("vnp_OrderType", "billpayment");
         vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
         vnp_Params.put("vnp_CreateDate", new SimpleDateFormat("yyyyMMddHHmmss").format(calendar.getTime()));
         vnp_Params.put("vnp_ReturnUrl", Config.vnp_Returnurl);
 
         // user's info
-        vnp_Params.put("vnp_Bill_Mobile", req.getParameter("txt_billing_mobile"));
-        vnp_Params.put("vnp_Bill_Email", req.getParameter("txt_billing_email"));
-        vnp_Params.put("vnp_Bill_FirstName", req.getParameter("txt_billing_fullname"));
-        vnp_Params.put("vnp_Bill_Address", req.getParameter("txt_inv_addr1"));
-        vnp_Params.put("vnp_Bill_City", req.getParameter("txt_bill_city"));
+        Map address = (Map) data.get("address");
+
+        vnp_Params.put("vnp_Bill_Mobile", user.getPhone());
+        vnp_Params.put("vnp_Bill_Email", user.getEmail());
+        vnp_Params.put("vnp_Bill_FirstName", user.getName());
+        vnp_Params.put("vnp_Bill_Address", String.valueOf(address.get("address")));
+        vnp_Params.put("vnp_Bill_City", String.valueOf(address.get("city")));
         vnp_Params.put("vnp_Bill_Country", "VIET NAM");
 
 
@@ -85,11 +86,11 @@ public class VNPAY_transaction {
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
         com.google.gson.JsonObject job = new JsonObject();
-        job.addProperty("code", "00");
-        job.addProperty("message", "success");
-        job.addProperty("data", paymentUrl);
-        Gson gson = new Gson();
-        resp.getWriter().write(gson.toJson(job));
+//        job.addProperty("code", "00");
+//        job.addProperty("message", "success");
+//        job.addProperty("data", paymentUrl);
+//        Gson gson = new Gson();
+//        resp.getWriter().write(gson.toJson(job));
 
         return paymentUrl;
     }

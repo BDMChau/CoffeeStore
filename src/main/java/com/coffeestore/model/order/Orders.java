@@ -74,6 +74,9 @@ public class Orders {
     @Column(columnDefinition = "TEXT")
     private String descriptions;
 
+    @Column(columnDefinition = "boolean")
+    private Boolean is_completed;
+
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private Calendar created_at;
 

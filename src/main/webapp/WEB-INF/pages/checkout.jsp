@@ -43,29 +43,29 @@
                <div class="addresses">
                   <div class="address" style="padding-top: 18px;">
                      <div style="display: flex;">
-                        <c:if test="${address != null}">
-                           <div class="field">
-                              <div>
-                                 <label>Địa chỉ:</label>
-                                 <p>${address.address}</p>
-                              </div>
 
-                              <div>
-                                 <label>Tỉnh/tp:</label>
-                                 <p>${address.city_province}</p>
-                              </div>
-
-                              <div>
-                                 <label>Quận/huyện:</label>
-                                 <p>${address.district}</p>
-                              </div>
-
-                              <div>
-                                 <label>Phường/xã:</label>
-                                 <p>${address.ward}</p>
-                              </div>
+                        <div class="field">
+                           <div>
+                              <label>Địa chỉ:</label>
+                              <p>${address.address}</p>
                            </div>
-                        </c:if>
+
+                           <div>
+                              <label>Tỉnh/tp:</label>
+                              <p id="city">${address.city_province}</p>
+                           </div>
+
+                           <div>
+                              <label>Quận/huyện:</label>
+                              <p>${address.district}</p>
+                           </div>
+
+                           <div>
+                              <label>Phường/xã:</label>
+                              <p>${address.ward}</p>
+                           </div>
+                        </div>
+
 
                         <a href="/user/user-info" style="margin-left: 30px;">
                            <button class="btn btn-warning">Sửa Địa chỉ</button>
@@ -77,6 +77,11 @@
 
             <div class="payment-methods" style="margin-top: 30px">
                <h5>Phí vận chuyển</h5>
+               <div>
+                  Đơn vị vận chuyển: Giao Hàng Nhanh
+                  <img width="50" src="https://web5s.com.vn/van-don-giao-hang-nhanh/imager_105801.jpg" alt=""/>
+               </div>
+
 
                <div class="shipping-fee" style="background: white">
                   <c:if test="${not empty shipping_fee_err}">
@@ -87,7 +92,7 @@
                      <h5 style="color: #0075FF">${shipping_fee.total}đ</h5>
 
                      <h6>Phương thức: <p>${shipping_fee.serviceName}</p></h6>
-                     <p>${shipping_fee.message}</p>
+                     <p style="color:cornflowerblue">${shipping_fee.message}</p>
                   </c:if>
                </div>
             </div>
@@ -120,7 +125,7 @@
 
          <div style="width: 100%">
             <div class="cart-buttons">
-               <a class="cart-btn" onclick="makeOrder()">Đặt Hàng</a>
+               <a class="cart-btn" onclick="makeOrder(${shipping_fee.total}, ${address.address})">Đặt Hàng</a>
             </div>
          </div>
       </div>
@@ -169,7 +174,17 @@
 
     getProducts();
 
-    function makeOrder() {
+    async function makeOrder(shippingFee, address) {
+        const city = document.getElementById("city").innerHTML;
+
+        const products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [];
+        if (!products.length) {
+            alert("Đơn hàng trống!");
+            return;
+        }
+        let total = shippingFee;
+        for (let i = 0; i < products.length; i++) total += products[i].total;
+
         const paymentMethods = document.getElementsByName("payment-method");
         let method = null;
         for (let i = 0; i < paymentMethods.length; i++) {
@@ -179,17 +194,42 @@
             }
         }
 
-        switch (method) {
-            case vnpay:
-                // code block
-                break;
-            case cod:
+        try {
+            switch (method) {
+                case "vnpay":
+                    const data = {
+                        shipping_fee: parseInt(shippingFee),
+                        total: total,
+                        address: {
+                            address: address,
+                            city: city
+                        },
+                    };
+                    console.log("dataRes")
+                    const res = await fetch('/payment/pay_with_vnpay', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    const dataRes = await res.json();
 
-                break;
-            default:
-                return;
+                    if (dataRes) {
+                        localStorage.removeItem("products");
+                        localStorage.removeItem("cart");
+                        window.location.href = dataRes.paymentUrl;
+                    }
+                    break;
+                case "cod":
+
+                    break;
+                default:
+                    return;
+            }
+        } catch (err) {
+            console.log(err)
         }
-
     }
 
     function renderTable(products) {

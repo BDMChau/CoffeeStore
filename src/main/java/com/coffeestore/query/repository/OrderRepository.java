@@ -9,7 +9,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.awt.print.Pageable;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Orders, Long> {
@@ -26,4 +28,7 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
            "ORDER BY orders.created_at")
     List<OrderDto> getUserOrders(Pageable pageable, String user_email);
 
+
+    @Query("select o from Orders o where o.created_at = ?1")
+    Optional<Orders> findByCreated_at(Calendar time);
 }
