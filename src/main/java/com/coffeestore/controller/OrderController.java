@@ -32,9 +32,10 @@ public class OrderController {
         int amount = 10;
 
         List<OrderDto> orderDtoList = orderService.getUserOrders(userEmail, from, amount);
-        if (!orderDtoList.isEmpty()) {
-            model.addAttribute("user_orders", orderDtoList);
+        if (orderDtoList.isEmpty()) {
+           model.addAttribute("err","user_orders is empty!");
         }
+        model.addAttribute("user_orders", orderDtoList);
         return "product";
 
     }

@@ -1,8 +1,10 @@
 package com.coffeestore.service.user;
 
 import com.coffeestore.model.delivery.Delivery;
+import com.coffeestore.model.order.OrderDetail;
 import com.coffeestore.model.order.Orders;
 import com.coffeestore.model.payment.Payment;
+import com.coffeestore.model.product.Product;
 import com.coffeestore.model.user.Address;
 import com.coffeestore.model.user.Role;
 import com.coffeestore.model.user.User;
@@ -36,6 +38,9 @@ public class UserService {
 
    @Autowired
    private RoleRepository roleRepository;
+
+   @Autowired
+   private OrderDetailRepository orderDetailRepository;
 
    @Autowired
    private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -191,6 +196,7 @@ public class UserService {
       order.setUser(user);
       order.setCreated_at(time);
       order.setIs_completed(false);
+      order.setTotal_bill(BigDecimal.valueOf(Long.parseLong(String.valueOf(data.get("total")))));
 
       // address
       Address address = addressRepo.getMainAddressByUserId(user.getId()).get();
@@ -207,6 +213,29 @@ public class UserService {
       orderRepository.saveAndFlush(order);
 
       Orders orderRes = orderRepository.findByCreated_at(time).get();
+
+      List<Map> products = (List) data.get("products");
+      products.forEach(item->{
+         Product product = new Product();
+
+         product.setCount_rating(Long.parseLong(String.valueOf(item.get("count_rating"))));
+         product.setCount_purchased(Long.parseLong(String.valueOf(item.get("count_purchased"))));
+         product.setCount_views(Long.parseLong(String.valueOf(item.get("count_views"))));
+         product.setId(Long.parseLong(String.valueOf(item.get("pr_id"))));
+         product.setDescription((String) item.get("pr_description"));
+         product.setName((String) item.get("pr_name"));
+         product.setPrice(BigDecimal.valueOf(Long.parseLong(String.valueOf(item.get("pr_price")))));
+         product.setRating_star(Float.parseFloat(String.valueOf(item.get("rating_star"))));
+
+         OrderDetail orderDetail = new OrderDetail();
+         orderDetail.setOrders(orderRes);
+         orderDetail.setProduct(product);
+         orderDetail.setProduct_price(product.getPrice());
+         orderDetail.setProduct_quantity(Integer.parseInt(String.valueOf(item.get("quantity"))));
+         orderDetailRepository.saveAndFlush(orderDetail);
+      });
+
+
 
       return orderRes.getId();
    }

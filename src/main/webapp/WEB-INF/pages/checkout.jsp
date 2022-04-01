@@ -47,7 +47,7 @@
                         <div class="field">
                            <div>
                               <label>Địa chỉ:</label>
-                              <p>${address.address}</p>
+                              <p id="address">${address.address}</p>
                            </div>
 
                            <div>
@@ -125,7 +125,7 @@
 
          <div style="width: 100%">
             <div class="cart-buttons">
-               <a class="cart-btn" onclick="makeOrder(${shipping_fee.total}, ${address.address})">Đặt Hàng</a>
+               <a class="cart-btn" onclick="makeOrder(${shipping_fee.total})">Đặt Hàng</a>
             </div>
          </div>
       </div>
@@ -173,9 +173,12 @@
     }
 
     getProducts();
+    console.log("line176")
 
-    async function makeOrder(shippingFee, address) {
+    async function makeOrder(shippingFee) {
+        console.log("line179")
         const city = document.getElementById("city").innerHTML;
+        const addres = document.getElementById("address").innerHTML;
 
         const products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [];
         if (!products.length) {
@@ -194,15 +197,19 @@
             }
         }
 
+        console.log(method)
+        console.log(city)
         try {
             switch (method) {
                 case "vnpay":
                     const data = {
                         shipping_fee: parseInt(shippingFee),
                         total: total,
+                        products:products,
                         address: {
-                            address: address,
+                            address: addres,
                             city: city
+
                         },
                     };
                     console.log("dataRes")

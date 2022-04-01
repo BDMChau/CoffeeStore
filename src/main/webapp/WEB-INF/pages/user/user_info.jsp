@@ -1,3 +1,5 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@include file="/WEB-INF/pages/template/header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <link href="/resources/style/main.css">
@@ -11,7 +13,7 @@
       <div class="row">
          <div class="col-lg-8 offset-lg-2 text-center">
             <div class="breadcrumb-text">
-               <h1>Thông Tin</h1>
+               <h1>Thông Tin Cá Nhân</h1>
             </div>
          </div>
       </div>
@@ -21,7 +23,7 @@
    <div class="container">
       <div class="row">
          <div class="col-lg-12">
-            <h4>Thông tin cá nhân</h4>
+            <h4>Thông tin địa chỉ</h4>
 
             <div class="user-addresses">
                <div>
@@ -127,7 +129,8 @@
             </div>
 
 
-            <div style="height: 2px;width: 40%;background: gray;margin: 50px 0 30px 0"></div>
+            <div style="height: 2px;width: 40%;background: gray;margin: 50px 0 15px 0"></div>
+            <h4 style="">Thông tin khách hàng</h4>
 
             <form:form
                class="row contact_us_form"
@@ -178,116 +181,59 @@
 
             <div style="width: 60%;height: 2px;text-align: center;margin: 20px auto; background: gray"></div>
 
-            <div class="history-order">
+            <div id="history-order" class="history-order">
                <h4 class="title">
                   Các đơn hàng đã đặt
                </h4>
-
-               <div class="orders">
-                  <div class="order" style="border-radius: 5px; background: #F5F5F5">
-                     <div style="padding: 20px">
-
-                        <div class="product">
-                           <div style="display: flex">
-                              <img
-                                 src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
-                                 alt=""
-                                 width="100"
-                                 height="100"
-                              />
-                              <div class="product-info">
-                                 <p style="margin: 0">
-                                    title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
-                                 </p>
-                                 <p style="color:grey; margin: 0;">45000đ/1</p>
-                                 <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="product">
-                           <div style="display: flex">
-                              <img
-                                 src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
-                                 alt=""
-                                 width="100"
-                                 height="100"
-                              />
-                              <div class="product-info">
-                                 <p style="margin: 0">
-                                    title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
-                                 </p>
-                                 <p style="color:grey; margin: 0;">45000đ/1</p>
-                                 <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
-                              </div>
-                           </div>
-                        </div>
-
-                        <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
-
-                        <div class="order-info">
-                           <p style="margin: 0; font-size: 16px;">
-                              Tổng số tiền:
-                              <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">45000000đ</span>
-                           </p>
-                           <p style="color:grey; margin: 0;">19/02/2022</p>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="order" style="border-radius: 5px; background: #F5F5F5">
-                     <div style="padding: 20px">
-
-                        <div class="product">
-                           <div style="display: flex">
-                              <img
-                                 src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
-                                 alt=""
-                                 width="100"
-                                 height="100"
-                              />
-                              <div class="product-info">
-                                 <p style="margin: 0">
-                                    title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
-                                 </p>
-                                 <p style="color:grey; margin: 0;">45000đ/1</p>
-                                 <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="product">
-                           <div style="display: flex">
-                              <img
-                                 src="https://olptienganh.vn/wp-content/uploads/2022/01/99-Hinh-anh-Doremon-cute-De-thuong-Dep-nhat.jpg"
-                                 alt=""
-                                 width="100"
-                                 height="100"
-                              />
-                              <div class="product-info">
-                                 <p style="margin: 0">
-                                    title-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-producttitle-product
-                                 </p>
-                                 <p style="color:grey; margin: 0;">45000đ/1</p>
-                                 <p style="color:grey; margin: 0;">Số lượng đặt: 100</p>
-                              </div>
-                           </div>
-                        </div>
-
-                        <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
-
-                        <div class="order-info">
-                           <p style="margin: 0; font-size: 16px;">
-                              Tổng số tiền:
-                              <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">45000000đ</span>
-                           </p>
-                           <p style="color:grey; margin: 0;">19/02/2022</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
             </div>
+            <c:if test="${user_orders.size() == 0}">
+               <div>
+                  <h4 id="order-empty-notifi" style="text-align: center ; margin: 50px 0 0 0;">Bạn chưa có đơn hàng nào</h4>
+               </div>
+            </c:if>
+            <c:if test="${user_orders.size() > 0}">
+               <c:forEach var="order" items="${user_orders}">
+                  <div class="orders">
+                     <div class="order" style="border-radius: 5px; background: #F5F5F5">
+                        <div style="padding: 20px">
 
-<div id="sessiondathanhtoan" style="visibility: hidden;opacity: 0"><%=session.getAttribute("ShoppingCart.prop")%></div>
+                           <c:forEach var="product" items="${order.orderDetailDTOS}">
+                              <div class="product">
+                                 <div style="display: flex">
+                                    <img
+                                       src="${product.prImg_url}"
+                                       alt=""
+                                       width="100"
+                                       height="100"
+                                    />
+                                    <div class="product-info">
+                                       <p style="margin: 0">
+                                             ${product.product_name}
+                                       </p>
+                                       <p style="color:grey; margin: 0;">đơn giá: ${product.price}đ</p>
+                                       <p style="color:grey; margin: 0;">Số lượng đặt: ${product.product_quantity}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </c:forEach>
+                           <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
+                           <div class="order-info">
+                              <p style="margin: 0; font-size: 16px;">
+                                 Tổng số tiền:
+                                 <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">${order.total_bill}đ</span>
+                              </p>
+                              <p style="color:grey; margin: 0;" id="created-at">${order.created_at.getTime()}</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </c:forEach>
+            </c:if>
 
+
+            <div id="sessiondathanhtoan"
+                 style="visibility: hidden;opacity: 0"><%=session.getAttribute("ShoppingCart.prop")%>
+            </div>
 
 
          </div>
@@ -325,11 +271,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
-    function check(){
-        const sessId =
-    }
-    check()
+    // function check(){
+    //     const sessId =
+    // }
+    // check()
 
+    function formatDateTime(){
+
+    }
 
     function getCityId() {
         const city = document.getElementById('cities-options');
@@ -356,6 +305,7 @@
             }
         });
     }
+
     getCityId();
 
     function getDistrictId() {

@@ -4,7 +4,9 @@ import com.coffeestore.api.GHN.GHN_shipping;
 import com.coffeestore.model.user.Address;
 import com.coffeestore.model.user.User;
 import com.coffeestore.query.dto.GHN.cityDTO;
+import com.coffeestore.query.dto.OrderDto;
 import com.coffeestore.query.repository.AddressRepo;
+import com.coffeestore.service.order.OrderService;
 import com.coffeestore.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,9 @@ public class UserController {
 
    @Autowired
    AddressRepo addressRepo;
+
+   @Autowired
+   OrderService orderService;
 
    public UserController(UserService userService) {
       this.userService = userService;
@@ -72,6 +77,13 @@ public class UserController {
       });
 
       model.addAttribute("cities", listCities);
+
+
+   /*----- Orders -----*/
+      List<OrderDto> orderDtoList = orderService.getUserOrders(userEmail, 0, 3);
+      if (!orderDtoList.isEmpty()) {
+         model.addAttribute("user_orders", orderDtoList);
+      }
 
       return "user/user_info";
    }
