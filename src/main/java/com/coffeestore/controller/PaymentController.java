@@ -2,22 +2,19 @@ package com.coffeestore.controller;
 
 import com.coffeestore.api.GHN.GHN_shipping;
 import com.coffeestore.api.VNPAY.VNPAY_transaction;
+import com.coffeestore.model.order.Orders;
 import com.coffeestore.model.user.User;
 import com.coffeestore.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Response;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -47,8 +44,6 @@ public class PaymentController {
 
         // lưu order
         Long orderId = userService.saveOrderVnPay(user, data);
-
-
         String paymentUrl = vnpay_transaction.postToVNPAY(data, user, orderId, request);
 
         Map<String, Object> msg = Map.of(
@@ -59,10 +54,18 @@ public class PaymentController {
     }
 
     @PostMapping("/pay_with_cod")
-    public String payWithCode(@RequestBody Map data, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ResponseEntity payWithCod(@RequestBody Map data, HttpServletRequest request) throws Exception {
+        String userEmail = request.getUserPrincipal().getName();
+        User user = userService.getUserInfo(userEmail);
 
+        // lưu order
 
-        return "redirect:";
+        Orders order = userService.saveOrderCod(user, data);
+        Map<String, Object> msg = Map.of(
+           "cod_message", "payment with code successfully!"
+        );
+        System.err.println("order"+order.getId());
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
     @GetMapping("/url_redirect_vnpay")

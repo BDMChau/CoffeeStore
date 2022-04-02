@@ -232,7 +232,7 @@
 
 
             <div id="sessiondathanhtoan"
-                 style="visibility: hidden;opacity: 0"><%=session.getAttribute("ShoppingCart.prop")%>
+                 style="visibility: hidden;opacity: 0"><%=session.getAttribute("isdoneorder")%>
             </div>
 
 
@@ -275,10 +275,14 @@
     //     const sessId =
     // }
     // check()
-
-    function formatDateTime(){
-
+    async function removeItemLocalStorage(){
+        const session = document.getElementById('sessiondathanhtoan');
+       if(session){
+           localStorage.removeItem("cart");
+           localStorage.removeItem("products");
+       }
     }
+    removeItemLocalStorage()
 
     function getCityId() {
         const city = document.getElementById('cities-options');

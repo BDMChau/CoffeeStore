@@ -66,7 +66,6 @@ public class UserService {
       return true;
    }
 
-
    public boolean updateProfile(User userInfo) {
       User user = getUserByEmail(userInfo.getEmail());
       if (user == null) return false;
@@ -140,11 +139,9 @@ public class UserService {
       return false;
    }
 
-
    public Map updateDefaultAddress(Map data, String userEmail) {
       User user = getUserInfo(userEmail);
       Long targetId = Long.parseLong(String.valueOf(data.get("address_id")));
-
       Map map = new HashMap();
 
       List<Address> addresses = addressRepo.getAddressByUserId(user.getId());
@@ -156,7 +153,6 @@ public class UserService {
 
          addressRepo.saveAndFlush(address);
       });
-
 
       return map;
    }
@@ -170,12 +166,10 @@ public class UserService {
       return addressOptional.get();
    }
 
-
    public User getUserInfo(String userEmail) {
       Optional<User> userOptional = userRepository.findByEmail(userEmail);
       return userOptional.orElseGet(User::new);
    }
-
 
    public User getUserByEmail(String email) {
       Optional<User> userOptional = userRepository.findByEmail(email);
@@ -184,7 +178,7 @@ public class UserService {
       return userOptional.get();
    }
 
-
+   /*----------Payment----------------*/
    public Long saveOrderVnPay(User user, Map data) {
      Calendar time = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 
@@ -240,9 +234,56 @@ public class UserService {
       return orderRes.getId();
    }
 
-   public void saveOrderCod(User user, Map data) {
+   public Orders saveOrderCod(User user, Map data) {
+      Calendar time = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 
+      Orders order = new Orders();
+      order.setEmail(user.getEmail());
+      order.setShipping_fee(BigDecimal.valueOf(Long.parseLong(String.valueOf(data.get("shipping_fee")))));
+      order.setPhone(user.getPhone());
+      order.setDescriptions("Thanh toán với COD");
+      order.setUser(user);
+      order.setCreated_at(time);
+      order.setIs_completed(false);
+      order.setTotal_bill(BigDecimal.valueOf(Long.parseLong(String.valueOf(data.get("total")))));
 
+      // address
+      Address address = addressRepo.getMainAddressByUserId(user.getId()).get();
+      order.setAddress(address);
+
+      // delivery
+      Delivery delivery = deliveryRepo.getOne(1L);
+      order.setDelivery(delivery);
+
+      // payment
+      Payment payment = paymentRepository.getOne(2L);
+      order.setPayment(payment);
+
+      orderRepository.saveAndFlush(order);
+
+      Orders orderRes = orderRepository.findByCreated_at(time).get();
+
+      List<Map> products = (List) data.get("products");
+      products.forEach(item->{
+         Product product = new Product();
+
+         product.setCount_rating(Long.parseLong(String.valueOf(item.get("count_rating"))));
+         product.setCount_purchased(Long.parseLong(String.valueOf(item.get("count_purchased"))));
+         product.setCount_views(Long.parseLong(String.valueOf(item.get("count_views"))));
+         product.setId(Long.parseLong(String.valueOf(item.get("pr_id"))));
+         product.setDescription((String) item.get("pr_description"));
+         product.setName((String) item.get("pr_name"));
+         product.setPrice(BigDecimal.valueOf(Long.parseLong(String.valueOf(item.get("pr_price")))));
+         product.setRating_star(Float.parseFloat(String.valueOf(item.get("rating_star"))));
+
+         OrderDetail orderDetail = new OrderDetail();
+         orderDetail.setOrders(orderRes);
+         orderDetail.setProduct(product);
+         orderDetail.setProduct_price(product.getPrice());
+         orderDetail.setProduct_quantity(Integer.parseInt(String.valueOf(item.get("quantity"))));
+         orderDetailRepository.saveAndFlush(orderDetail);
+      });
+      return orderRes;
    }
 
    @Transactional

@@ -21,7 +21,7 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
            "FROM Orders orders " +
            "JOIN User u ON u.id = orders.user.id " +
            "WHERE u.email =?1 " +
-           "ORDER BY orders.created_at")
+           "ORDER BY orders.created_at DESC ")
     List<OrderDto> getUserOrders(String userEmail, Pageable pageable);
 
 

@@ -125,15 +125,41 @@
 
          <div style="width: 100%">
             <div class="cart-buttons">
-               <a class="cart-btn" onclick="makeOrder(${shipping_fee.total})">Đặt Hàng</a>
+               <a class="cart-btn" id="cart-btn-order" onclick="makeOrder(${shipping_fee.total}) ">Đặt Hàng</a>
             </div>
          </div>
       </div>
    </div>
 </div>
-</div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body" id="modal-body-message">
+            Đơn hàng đã được thực hiện
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btn-save"
+                    onclick="directToUserInfo()">Xem đơn hàng
+            </button>
+         </div>
+      </div>
+   </div>
 <script>
+
+   function directToUserInfo(){
+        console.log("line 165")
+        window.location.href = "/user/user_info.jsp"
+    }
+
     async function getProducts() {
         const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
         if (!cart.length) return;
@@ -165,7 +191,6 @@
                 }
             })
 
-
             renderTable(products);
         } catch (err) {
             console.log(err)
@@ -173,10 +198,8 @@
     }
 
     getProducts();
-    console.log("line176")
 
     async function makeOrder(shippingFee) {
-        console.log("line179")
         const city = document.getElementById("city").innerHTML;
         const addres = document.getElementById("address").innerHTML;
 
@@ -196,22 +219,18 @@
                 break;
             }
         }
-
-        console.log(method)
-        console.log(city)
         try {
+            const data = {
+                shipping_fee: parseInt(shippingFee),
+                total: total,
+                products:products,
+                address: {
+                    address: addres,
+                    city: city
+                },
+            };
             switch (method) {
                 case "vnpay":
-                    const data = {
-                        shipping_fee: parseInt(shippingFee),
-                        total: total,
-                        products:products,
-                        address: {
-                            address: addres,
-                            city: city
-
-                        },
-                    };
                     console.log("dataRes")
                     const res = await fetch('/payment/pay_with_vnpay', {
                         method: 'POST',
@@ -223,12 +242,25 @@
                     const dataRes = await res.json();
 
                     if (dataRes) {
-
                         window.location.href = dataRes.paymentUrl;
                     }
                     break;
                 case "cod":
-
+                    console.log("dataRes")
+                    const response = await fetch('/payment/pay_with_cod', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    const dataResp = await response.json();
+                    console.log("asdas")
+                    if (dataResp) {
+                       window.location.href ="/user/user-info"
+                        localStorage.removeItem("cart");
+                        localStorage.removeItem("products");
+                    }
                     break;
                 default:
                     return;
@@ -242,7 +274,6 @@
         products.forEach(product => {
             let rows = "";
             rows += "<tr>" +
-
                 "<td class='id'>" + product.pr_id + "</td>" +
                 "<td class='image'>" + "<img class='img-cart-product' src=" + product.prImg_url + " alt=''/>" + "</td>" +
                 "<td style='max-width: 200px' class='name'>" + product.pr_name + "</td>" +
@@ -253,8 +284,6 @@
 
             $(rows).appendTo("#cart-table tbody");
         })
-
-
     }
 </script>
 
