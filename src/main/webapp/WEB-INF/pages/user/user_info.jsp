@@ -188,273 +188,319 @@
             </div>
             <c:if test="${user_orders.size() == 0}">
                <div>
-                  <h4 id="order-empty-notifi" style="text-align: center ; margin: 50px 0 0 0;">Bạn chưa có đơn hàng nào</h4>
+                  <h4 id="order-empty-notifi" style="text-align: center ; margin: 50px 0 0 0;">Bạn chưa có đơn hàng
+                     nào</h4>
                </div>
             </c:if>
-            <c:if test="${user_orders.size() > 0}">
-               <c:forEach var="order" items="${user_orders}">
-                  <div class="orders">
-                     <div class="order" style="border-radius: 5px; background: #F5F5F5">
-                        <div style="padding: 20px">
-                           <c:forEach var="product" items="${order.orderDetailDTOS}">
-                              <div class="product">
-                                 <div style="display: flex">
-                                    <img src="${product.prImg_url}" alt="" width="100" height="100"/>
-                                    <div class="product-info">
-                                       <p style="margin: 0">${product.product_name}</p>
-                                       <p style="color:grey; margin: 0;">đơn giá: ${product.price}đ</p>
-                                       <p style="color:grey; margin: 0;">Số lượng đặt: ${product.product_quantity}</p>
-                                    </div>
-                                 </div>
-                              </div>
-                           </c:forEach>
-                           <div style="width: 70%;height: 1px;margin: 25px auto 10px auto; background: gray"></div>
-                           <div class="order-info">
-                              <p style="margin: 0; font-size: 16px;">
-                                 Tổng số tiền:
-                                 <span style="font-weight: 500; font-size: 22px; color: #EE4D2D">${order.total_bill}đ</span>
-                              </p>
-                              <p style="color:grey; margin: 0;" id="created-at">${order.created_at.getTime()}</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </c:forEach>
-            </c:if>
-            <%--Pagination--%>
-            <nav aria-label="Page navigation example">
-               <ul class="pagination">
-                  <li class="page-item">
-                     <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                     </a>
-                  </li>
-                  <c:if test="${total_page_orders != 0}">
-                     <c:forEach var="i" begin="1" end="${total_page_orders}">
-                        <li class="page-item"><a id="page-${i}" class="page-link" onclick="getOrdersData(${i})">${i}</a></li>
-                     </c:forEach></c:if>
-                  <li class="page-item">
-                     <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                     </a>
-                  </li>
-               </ul>
-            </nav>
-            <%--Session--%>
-            <div id="sessiondathanhtoan"
-                 style="visibility: hidden;opacity: 0"><%=session.getAttribute("isdoneorder")%>
+            <div id="orders" class="orders"></div>
+               <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                     <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                           <span aria-hidden="true">&laquo;</span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                     <c:if test="${total_page_orders != 0}">
+                        <c:forEach var="i" begin="1" end="${total_page_orders}">
+                           <li class="page-item"><a id="page-${i}" class="page-link"
+                                                    onclick="getOrdersData(${i})">${i}</a>
+                           </li>
+                        </c:forEach></c:if>
+                     <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                           <span aria-hidden="true">&raquo;</span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  </ul>
+               </nav>
+               <%--Session--%>
+               <div id="sessiondathanhtoan"
+                    style="visibility: hidden;opacity: 0"><%=session.getAttribute("isdoneorder")%>
+               </div>
+         </div>
+      </div>
+   </div>
+
+
+   <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Xoá địa chỉ?</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body" id="modal-body-message">
+               Bạn có chắc muốn xoá địa chỉ?
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                       onclick="setDelAddressIdToDel(0, 'del')">Đóng
+               </button>
+               <button type="button" class="btn btn-primary" id="btn-save"
+                       onclick="deleteAddress()">Xoá địa chỉ
+               </button>
             </div>
          </div>
       </div>
    </div>
-</div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Xoá địa chỉ?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body" id="modal-body-message">
-            Bạn có chắc muốn xoá địa chỉ?
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    onclick="setDelAddressIdToDel(0, 'del')">Đóng
-            </button>
-            <button type="button" class="btn btn-primary" id="btn-save"
-                    onclick="deleteAddress()">Xoá địa chỉ
-            </button>
-         </div>
-      </div>
-   </div>
-</div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+   <script>
+       async function getOrdersData(i) {
+           const page = document.getElementById("page-" + i).textContent;
+           try {
+               const res = await fetch('/order/get_user_orders/' + page, {
+                   method: 'GET', // or 'PUT'
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+               })
+               const dataRes = await res.json();
+               if (dataRes.user_orders) {
+                   console.log(dataRes.user_orders)
+                   renderOrders(dataRes.user_orders)
+               }
+           } catch (err) {
+               console.log(err)
+           }
+       }
+
+       function renderOrders(orders) {
+           const orders_id = document.getElementById("orders"); //1st
+           orders.forEach(order_info => {
+               let orderDiv = document.createElement("div")
+               orderDiv.classList.add("order");
+               let orderProductDiv = document.createElement("div");
+               orderProductDiv.classList.add("order-product");
+               order_info.orderDetailDTOS.forEach(product => {
+                   let productImg = document.createElement('img');
+                   productImg.src = product.prImg_url;
+                   productImg.classList.add("product-image")
+
+                   //product-info//
+                   let productName = document.createElement('p');
+                   productName.innerHTML = product.product_name;
+                   productName.classList.add("product-name")
+
+                   let productPrice = document.createElement('p');
+                   productPrice.innerHTML = "đơn giá: " +product.price;
+                   productPrice.classList.add("product-price")
+
+                   let productQuantity = document.createElement('p');
+                   productQuantity.innerHTML = "Số lượng đặt: " +product.product_quantity;
+                   productQuantity.classList.add("product-quantity")
+
+                   let productInfoDiv = document.createElement("div")
+                   productInfoDiv.appendChild(productName)
+                   productInfoDiv.appendChild(productPrice)
+                   productInfoDiv.appendChild(productQuantity)
+                   //product-info//
+                   let productDiv = document.createElement("div");
+                   productDiv.classList.add("product");
+                   productDiv.appendChild(productImg)
+                   productDiv.appendChild(productInfoDiv)
+
+                   let outerProductDiv = document.createElement("div");
+                   outerProductDiv.appendChild(productDiv)
+                   //order-product/////
+                   orderProductDiv.appendChild(outerProductDiv)
+               })
+               //order-info////////
+               //total-bill//1
+               let totalBill = document.createElement('span');
+               totalBill.innerText ="Tổng tiền:" +order_info.total_bill;
+               totalBill.classList.add("total-bill")
+
+               let totalBillStyle = document.createElement("p");
+               totalBillStyle.appendChild(totalBill)
+               //total-bill//
+
+               //created-at//2
+               let createdAt = document.createElement('p');
+               createdAt.innerHTML ="Thời gian: " +order_info.created_at;
+               createdAt.classList.add(".created-at")
+               //created-at//
+
+               let orderInfoDiv = document.createElement("div")
+               orderInfoDiv.appendChild(totalBillStyle)
+               orderInfoDiv.appendChild(createdAt)
+               //order-info////////
+               let orderStyleDiv = document.createElement("div")
+               orderStyleDiv.classList.add("order-style")
+
+               orderProductDiv.appendChild(orderStyleDiv);
+               orderProductDiv.appendChild(orderInfoDiv);
+               //order-product//////
+               orderDiv.appendChild(orderProductDiv);
+               ///////
+               orders_id.appendChild(orderDiv)
+           })
+       }
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-    async function getOrdersData(i){
-        const page = document.getElementById("page-"+i).textContent;
-        try {
-            const res = await fetch('/order/get_user_orders/'+page, {
-                method: 'GET', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            const dataRes = await res.json();
-            if (dataRes.user_orders){
+       async function removeItemLocalStorage() {
+           const session = document.getElementById('sessiondathanhtoan');
+           if (session) {
+               localStorage.removeItem("cart");
+               localStorage.removeItem("products");
+           }
+       }
+
+       removeItemLocalStorage()
+
+       function getCityId() {
+           const city = document.getElementById('cities-options');
+           const city_id = city.value;
+
+           // get api quận từ cái id của city
+           $.ajax({
+               type: 'GET',
+               url: '/user/get-district/' + city_id,
+               dataType: 'json',
+               contentType: 'application/json',
+               success: function (result) {
+                   let districtsOptions = document.getElementById('districts-options');
+                   districtsOptions.innerHTML = "";
+                   districtsOptions.value = "";
+                   result.data.forEach(item => {
+                       let option = document.createElement("option");
+                       option.innerHTML = item.DistrictName;
+                       option.value = item.DistrictID;
+                       districtsOptions.appendChild(option, 1);
+                   })
+
+                   getDistrictId();
+               }
+           });
+       }
+
+       getCityId();
+
+       function getDistrictId() {
+           const district = document.getElementById('districts-options');
+           const district_id = district.value;
+
+           $.ajax({
+               type: 'GET',
+               url: '/user/get-ward/' + district_id,
+               dataType: 'json',
+               contentType: 'application/json',
+               success: function (result) {
+
+                   let wardsOptions = document.getElementById('wards-options');
+                   wardsOptions.innerHTML = "";
+                   wardsOptions.value = "";
+                   result.data.forEach(item => {
+                       let option = document.createElement("option");
+                       option.innerHTML = item.WardName;
+                       option.value = item.WardCode;
+                       wardsOptions.appendChild(option, 1);
+                   })
+               }
+           });
+       }
 
 
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
+       async function updateAddress() {
+           const city = document.getElementById("cities-options");
+           const district = document.getElementById("districts-options");
+           const ward = document.getElementById("wards-options");
+           const detail = document.getElementById("address-detail");
 
-    async function removeItemLocalStorage() {
-        const session = document.getElementById('sessiondathanhtoan');
-        if (session) {
-            localStorage.removeItem("cart");
-            localStorage.removeItem("products");
-        }
-    }
-
-    removeItemLocalStorage()
-
-    function getCityId() {
-        const city = document.getElementById('cities-options');
-        const city_id = city.value;
-
-        // get api quận từ cái id của city
-        $.ajax({
-            type: 'GET',
-            url: '/user/get-district/' + city_id,
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (result) {
-                let districtsOptions = document.getElementById('districts-options');
-                districtsOptions.innerHTML = "";
-                districtsOptions.value = "";
-                result.data.forEach(item => {
-                    let option = document.createElement("option");
-                    option.innerHTML = item.DistrictName;
-                    option.value = item.DistrictID;
-                    districtsOptions.appendChild(option, 1);
-                })
-
-                getDistrictId();
-            }
-        });
-    }
-
-    getCityId();
-
-    function getDistrictId() {
-        const district = document.getElementById('districts-options');
-        const district_id = district.value;
-
-        $.ajax({
-            type: 'GET',
-            url: '/user/get-ward/' + district_id,
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (result) {
-
-                let wardsOptions = document.getElementById('wards-options');
-                wardsOptions.innerHTML = "";
-                wardsOptions.value = "";
-                result.data.forEach(item => {
-                    let option = document.createElement("option");
-                    option.innerHTML = item.WardName;
-                    option.value = item.WardCode;
-                    wardsOptions.appendChild(option, 1);
-                })
-            }
-        });
-    }
+           //city.selectedOptions[0].text
+           if (!city.value || !district.value || !ward.value || !detail.value) {
+               alert("Hãy nhập đủ thông tin")
+               return;
+           }
 
 
-    async function updateAddress() {
-        const city = document.getElementById("cities-options");
-        const district = document.getElementById("districts-options");
-        const ward = document.getElementById("wards-options");
-        const detail = document.getElementById("address-detail");
+           const data = {
+               city: city.selectedOptions[0].text,
+               district: district.selectedOptions[0].text,
+               ward: ward.selectedOptions[0].text,
+               detail: detail.value,
+           }
 
-        //city.selectedOptions[0].text
-        if (!city.value || !district.value || !ward.value || !detail.value) {
-            alert("Hãy nhập đủ thông tin")
-            return;
-        }
+           try {
+               const res = await fetch('/user/update-address', {
+                   method: 'POST', // or 'PUT'
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   body: JSON.stringify(data),
+               })
+               const dataRes = await res.json();
+
+               if (dataRes.msg) location.reload();
+           } catch (err) {
+               console.log(err)
+           }
+       }
+
+       async function setDefaultAddress(addressId) {
+           // const isDefault = document.getElementById("addressdefault" + addressId)
+           // if (isDefault.checked == true) return;
+
+           try {
+               const res = await fetch('/user/update-default-address', {
+                   method: 'POST', // or 'PUT'
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   body: JSON.stringify({address_id: addressId}),
+               })
+               const dataRes = await res.json();
+
+               if (dataRes.msg) location.reload();
+           } catch (err) {
+               console.log(err)
+           }
+       }
+
+       function setDelAddressIdToDel(id, type) {
+           if (type === "set") localStorage.setItem('address_id_del', JSON.stringify(id))
+           else localStorage.removeItem('address_id_del')
+       }
+
+       async function deleteAddress() {
+           const addressId = localStorage.getItem("address_id_del") ? JSON.parse(localStorage.getItem("address_id_del")) : null;
+
+           try {
+               const res = await fetch('/user/delete-address', {
+                   method: 'POST', // or 'PUT'
+                   headers: {
+                       'Content-Type': 'application/json',
+                   },
+                   body: JSON.stringify({address_id: addressId}),
+               })
+               const dataRes = await res.json();
+
+               if (dataRes.msg) {
+                   location.reload();
+                   localStorage.removeItem('address_id_del');
+               }
+
+               if (dataRes.err) {
+                   const errMessage = document.getElementById("modal-body-message");
+                   errMessage.innerHTML = "";
+                   errMessage.append("Xoá thất bại");
+
+                   const hideButton = document.getElementById("btn-save");
+                   hideButton.style.display = "none";
+               }
+
+           } catch (err) {
+               alert(err)
+           }
+       }
 
 
-        const data = {
-            city: city.selectedOptions[0].text,
-            district: district.selectedOptions[0].text,
-            ward: ward.selectedOptions[0].text,
-            detail: detail.value,
-        }
-
-        try {
-            const res = await fetch('/user/update-address', {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            const dataRes = await res.json();
-
-            if (dataRes.msg) location.reload();
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    async function setDefaultAddress(addressId) {
-        // const isDefault = document.getElementById("addressdefault" + addressId)
-        // if (isDefault.checked == true) return;
-
-        try {
-            const res = await fetch('/user/update-default-address', {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({address_id: addressId}),
-            })
-            const dataRes = await res.json();
-
-            if (dataRes.msg) location.reload();
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    function setDelAddressIdToDel(id, type) {
-        if (type === "set") localStorage.setItem('address_id_del', JSON.stringify(id))
-        else localStorage.removeItem('address_id_del')
-    }
-
-    async function deleteAddress() {
-        const addressId = localStorage.getItem("address_id_del") ? JSON.parse(localStorage.getItem("address_id_del")) : null;
-
-        try {
-            const res = await fetch('/user/delete-address', {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({address_id: addressId}),
-            })
-            const dataRes = await res.json();
-
-            if (dataRes.msg) {
-                location.reload();
-                localStorage.removeItem('address_id_del');
-            }
-
-            if (dataRes.err) {
-                const errMessage = document.getElementById("modal-body-message");
-                errMessage.innerHTML = "";
-                errMessage.append("Xoá thất bại");
-
-                const hideButton = document.getElementById("btn-save");
-                hideButton.style.display = "none";
-            }
-
-        } catch (err) {
-            alert(err)
-        }
-    }
-
-</script>
-<%@include file="/WEB-INF/pages/template/footer.jsp" %>
+   </script>
+   <%@include file="/WEB-INF/pages/template/footer.jsp" %>

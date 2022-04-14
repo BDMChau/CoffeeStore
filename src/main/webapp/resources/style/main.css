@@ -139,17 +139,85 @@ contact_form_area p_100 {
 
 }
 
-.img-cart-product{
+.img-cart-product {
     width: 55px;
     height: 60px;
 }
 
-.payment-methods .method{
+.payment-methods .method {
     margin-top: 20px;
-    max-width: 300px ;
+    max-width: 300px;
     border-radius: 3px;
 }
 
+.orders{
+}
+
+.orders .order {
+    border-radius: 5px;
+    background: #F5F5F5;
+}
+
+.order .order-product {
+    padding: 20px;
+}
+
+.order-product .outer-product{
+}
+
+.outer-product .product {
+    display: flex;
+}
+
+.product .product-image {
+    width: 100%;
+    height: 100%;
+}
+
+.product .product-info{
+
+}
+
+.product-info .product-name {
+    margin: 0;
+}
+
+.product-info .product-price {
+    color: grey;
+    margin: 0;
+
+}
+
+.product-info .product-quantity {
+    color: grey;
+    margin: 0;
+}
+
+.order-product .order-style {
+    width: 70%;
+    height: 1px;
+    margin: 25px auto 10px auto;
+    background: gray;
+}
+
+.order-product .order-info {
+}
+
+.order-info .total-bill-style {
+    margin: 0;
+    font-size: 16px;
+}
+
+.total-bill-style .total-bill {
+    font-weight: 500;
+    font-size: 22px;
+    color: #EE4D2D
+}
+
+.order-info .created-at {
+    color: grey;
+    margin: 0;
+}
 
 @media only screen and (max-width: 768px) {
     .pull-right {
@@ -165,5 +233,6 @@ contact_form_area p_100 {
     .line {
         display: none !important;
     }
+
 }
 

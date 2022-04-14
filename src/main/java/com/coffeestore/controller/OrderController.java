@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -49,24 +50,5 @@ public class OrderController {
          "user_orders", orderDtoList
       );
       return new ResponseEntity<>(msg, HttpStatus.OK);
-   }
-
-      @GetMapping("/get_user_order/{page}")
-      public String getUserOrder(HttpServletRequest request, @PathVariable int page, Model model) {
-         String userEmail = request.getUserPrincipal().getName();
-
-         page = page - 1;
-         int from = page * 3;
-         int amount = 3;
-
-         System.err.println("email: "+userEmail);
-         System.err.println("from: "+from);
-         System.err.println("amount: "+amount);
-
-         List<OrderDto> orderDtoList = orderService.getUserOrders(userEmail, from, amount);
-
-         model.mergeAttributes("user_orders",orderDtoList);
-         return "redirect:/user/user_info";
-
    }
 }
