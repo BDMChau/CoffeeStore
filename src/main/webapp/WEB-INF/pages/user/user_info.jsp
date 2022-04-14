@@ -196,20 +196,12 @@
                   <div class="orders">
                      <div class="order" style="border-radius: 5px; background: #F5F5F5">
                         <div style="padding: 20px">
-
                            <c:forEach var="product" items="${order.orderDetailDTOS}">
                               <div class="product">
                                  <div style="display: flex">
-                                    <img
-                                       src="${product.prImg_url}"
-                                       alt=""
-                                       width="100"
-                                       height="100"
-                                    />
+                                    <img src="${product.prImg_url}" alt="" width="100" height="100"/>
                                     <div class="product-info">
-                                       <p style="margin: 0">
-                                             ${product.product_name}
-                                       </p>
+                                       <p style="margin: 0">${product.product_name}</p>
                                        <p style="color:grey; margin: 0;">đơn giá: ${product.price}đ</p>
                                        <p style="color:grey; margin: 0;">Số lượng đặt: ${product.product_quantity}</p>
                                     </div>
@@ -229,13 +221,31 @@
                   </div>
                </c:forEach>
             </c:if>
-
-
+            <%--Pagination--%>
+            <nav aria-label="Page navigation example">
+               <ul class="pagination">
+                  <li class="page-item">
+                     <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                     </a>
+                  </li>
+                  <c:if test="${total_page_orders != 0}">
+                     <c:forEach var="i" begin="1" end="${total_page_orders}">
+                        <li class="page-item"><a id="page-${i}" class="page-link" onclick="getOrdersData(${i})">${i}</a></li>
+                     </c:forEach></c:if>
+                  <li class="page-item">
+                     <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav>
+            <%--Session--%>
             <div id="sessiondathanhtoan"
                  style="visibility: hidden;opacity: 0"><%=session.getAttribute("isdoneorder")%>
             </div>
-
-
          </div>
       </div>
    </div>
@@ -271,17 +281,33 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
-    // function check(){
-    //     const sessId =
-    // }
-    // check()
-    async function removeItemLocalStorage(){
-        const session = document.getElementById('sessiondathanhtoan');
-       if(session){
-           localStorage.removeItem("cart");
-           localStorage.removeItem("products");
-       }
+    async function getOrdersData(i){
+        const page = document.getElementById("page-"+i).textContent;
+        try {
+            const res = await fetch('/order/get_user_orders/'+page, {
+                method: 'GET', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const dataRes = await res.json();
+            if (dataRes.user_orders){
+
+
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
+
+    async function removeItemLocalStorage() {
+        const session = document.getElementById('sessiondathanhtoan');
+        if (session) {
+            localStorage.removeItem("cart");
+            localStorage.removeItem("products");
+        }
+    }
+
     removeItemLocalStorage()
 
     function getCityId() {
@@ -315,7 +341,6 @@
     function getDistrictId() {
         const district = document.getElementById('districts-options');
         const district_id = district.value;
-        console.log(district_id)
 
         $.ajax({
             type: 'GET',

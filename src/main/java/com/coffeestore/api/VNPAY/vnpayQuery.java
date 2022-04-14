@@ -96,7 +96,7 @@ public class vnpayQuery extends HttpServlet {
         }
         in.close();
         String Rsp = response.toString();
-        String respDecode = URLDecoder.decode(Rsp, "UTF-8");
+        String respDecode = URLDecoder.decode(Rsp, StandardCharsets.UTF_8);
         String[] responseData = respDecode.split("&|\\=");
         com.google.gson.JsonObject job = new JsonObject();
         job.addProperty("data", Arrays.toString(responseData));

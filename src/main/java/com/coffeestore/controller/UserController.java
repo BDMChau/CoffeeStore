@@ -78,16 +78,20 @@ public class UserController {
 
       model.addAttribute("cities", listCities);
 
-
    /*----- Orders -----*/
       List<OrderDto> orderDtoList = orderService.getUserOrders(userEmail, 0, 3);
       if (!orderDtoList.isEmpty()) {
          model.addAttribute("user_orders", orderDtoList);
       }
 
+      Long totalOrders = orderService.getTotalOrders(userEmail);
+      if(totalOrders != null){
+         int totalPageOrders = orderService.getNumberOfPageOrders(totalOrders, 3);
+         model.addAttribute("total_page_orders",totalPageOrders);
+      }
+
       return "user/user_info";
    }
-
 
    @GetMapping("get-district/{city_id}")
    public ResponseEntity<Object> getDistrictsByCityId(@PathVariable("city_id") String city_id) {
@@ -108,17 +112,13 @@ public class UserController {
    @GetMapping("get-ward/{district_id}")
    public ResponseEntity<Object> getWardByDistrictID(@PathVariable String district_id) {
       try {
-
          int districtId = Integer.parseInt(district_id);
-
          Map wardsData = ghn_shipping.getwards(districtId);
 
          return new ResponseEntity<>(wardsData, HttpStatus.OK);
-
       } catch (Exception e) {
          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
       }
-
    }
 
 
@@ -127,7 +127,7 @@ public class UserController {
       bindingResult) {
       userService.updateProfile(userForm);
 
-      return "redirect:/user/user-info";
+      return "redirect:/user/user_info";
    }
 
    @PostMapping("/update-address")

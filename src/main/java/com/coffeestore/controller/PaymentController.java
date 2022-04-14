@@ -73,8 +73,8 @@ public class PaymentController {
         Long orderId = Long.parseLong(request.getParameter("vnp_OrderInfo"));
 
         userService.updateOrder(orderId);
-
         session.setAttribute("isdoneorder", true);
+
         return "redirect:/user/user-info";
     }
 

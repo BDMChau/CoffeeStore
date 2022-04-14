@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,8 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
            "ORDER BY orders.created_at DESC ")
     List<OrderDto> getUserOrders(String userEmail, Pageable pageable);
 
-
+    @Query("select count(o) from Orders o where o.email = ?1")
+    Optional<Long> countTotalOrdersByEmail(String userEmail);
 
     @Query("select o from Orders o where o.created_at = ?1")
     Optional<Orders> findByCreated_at(Calendar time);

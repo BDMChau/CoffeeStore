@@ -19,7 +19,7 @@ import java.util.*;
 
 @Service
 public class UserService {
-   private String avatarDefault = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
+   private final String avatarDefault = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
 
    @Autowired
    private UserRepository userRepository;
@@ -92,10 +92,7 @@ public class UserService {
       User user = getUserInfo(userEmail);
 
       List<Address> addresses = addressRepo.getAddressByUserId(user.getId());
-      boolean isMain = false;
-      if (addresses.isEmpty()) {
-         isMain = true;
-      }
+      boolean isMain = addresses.isEmpty();
       Address address = new Address();
       address.setUser(user);
       address.setCity_province(String.valueOf(data.get("city")));
@@ -266,7 +263,6 @@ public class UserService {
       List<Map> products = (List) data.get("products");
       products.forEach(item->{
          Product product = new Product();
-
          product.setCount_rating(Long.parseLong(String.valueOf(item.get("count_rating"))));
          product.setCount_purchased(Long.parseLong(String.valueOf(item.get("count_purchased"))));
          product.setCount_views(Long.parseLong(String.valueOf(item.get("count_views"))));

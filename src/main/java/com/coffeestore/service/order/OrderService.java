@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -26,6 +27,22 @@ public class OrderService {
         this.userRepository = userRepository;
        this.orderDetailRepository = orderDetailRepository;
     }
+
+   public Long getTotalOrders(String userEmail){
+      Optional<Long> totalOrder = orderRepository.countTotalOrdersByEmail(userEmail);
+      return totalOrder.get();
+   }
+
+   public int getNumberOfPageOrders(Long total, int amount){
+
+       float resultInDiv = total/amount;
+       float resultInMod = total % amount;
+       if(resultInMod > 0){
+          resultInDiv += 1;
+       }
+
+          return (int) resultInDiv;
+   }
 
     public List<OrderDto> getUserOrders(String userEmail, int from, int amount){
        Pageable pageable = new OffsetBasedPageRequest(from, amount);
