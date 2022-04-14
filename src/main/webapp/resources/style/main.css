@@ -162,59 +162,58 @@ contact_form_area p_100 {
     padding: 20px;
 }
 
-.order-product .outer-product{
-}
 
-.outer-product .product {
+.product {
     display: flex;
 }
 
 .product .product-image {
-    width: 100%;
-    height: 100%;
+    width: 120px;
+    height: 130px;
+    padding: 8px;
+    margin-right: 5px;
 }
 
 .product .product-info{
 
 }
 
-.product-info .product-name {
+.product .product-name {
     margin: 0;
+    font-size: 20px;
 }
 
-.product-info .product-price {
+.product .product-price {
     color: grey;
     margin: 0;
+    font-size: 18px;
+    font-weight: 500;
 
 }
 
-.product-info .product-quantity {
+.product .product-quantity {
     color: grey;
     margin: 0;
 }
 
-.order-product .order-style {
+.product .order-style {
     width: 70%;
     height: 1px;
     margin: 25px auto 10px auto;
     background: gray;
 }
 
-.order-product .order-info {
+.product .order-info {
 }
 
-.order-info .total-bill-style {
-    margin: 0;
-    font-size: 16px;
-}
 
-.total-bill-style .total-bill {
+.total-bill {
     font-weight: 500;
     font-size: 22px;
     color: #EE4D2D
 }
 
-.order-info .created-at {
+.created-at {
     color: grey;
     margin: 0;
 }

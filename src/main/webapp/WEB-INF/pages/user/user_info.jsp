@@ -193,32 +193,32 @@
                </div>
             </c:if>
             <div id="orders" class="orders"></div>
-               <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                           <span aria-hidden="true">&laquo;</span>
-                           <span class="sr-only">Previous</span>
-                        </a>
-                     </li>
-                     <c:if test="${total_page_orders != 0}">
-                        <c:forEach var="i" begin="1" end="${total_page_orders}">
-                           <li class="page-item"><a id="page-${i}" class="page-link"
-                                                    onclick="getOrdersData(${i})">${i}</a>
-                           </li>
-                        </c:forEach></c:if>
-                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                           <span aria-hidden="true">&raquo;</span>
-                           <span class="sr-only">Next</span>
-                        </a>
-                     </li>
-                  </ul>
-               </nav>
-               <%--Session--%>
-               <div id="sessiondathanhtoan"
-                    style="visibility: hidden;opacity: 0"><%=session.getAttribute("isdoneorder")%>
-               </div>
+            <nav aria-label="Page navigation example">
+               <ul class="pagination">
+                  <li class="page-item">
+                     <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                     </a>
+                  </li>
+                  <c:if test="${total_page_orders != 0}">
+                     <c:forEach var="i" begin="1" end="${total_page_orders}">
+                        <li class="page-item"><a id="page-${i}" class="page-link"
+                                                 onclick="getOrdersData(${i})">${i}</a>
+                        </li>
+                     </c:forEach></c:if>
+                  <li class="page-item">
+                     <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav>
+            <%--Session--%>
+            <div id="sessiondathanhtoan"
+                 style="visibility: hidden;opacity: 0"><%=session.getAttribute("isdoneorder")%>
+            </div>
          </div>
       </div>
    </div>
@@ -290,11 +290,11 @@
                    productName.classList.add("product-name")
 
                    let productPrice = document.createElement('p');
-                   productPrice.innerHTML = "đơn giá: " +product.price;
+                   productPrice.innerHTML = "đơn giá: " + product.price + "đ";
                    productPrice.classList.add("product-price")
 
                    let productQuantity = document.createElement('p');
-                   productQuantity.innerHTML = "Số lượng đặt: " +product.product_quantity;
+                   productQuantity.innerHTML = "Số lượng đặt: " + product.product_quantity;
                    productQuantity.classList.add("product-quantity")
 
                    let productInfoDiv = document.createElement("div")
@@ -315,7 +315,7 @@
                //order-info////////
                //total-bill//1
                let totalBill = document.createElement('span');
-               totalBill.innerText ="Tổng tiền:" +order_info.total_bill;
+               totalBill.innerText = "Tổng tiền: " + order_info.total_bill + "đ";
                totalBill.classList.add("total-bill")
 
                let totalBillStyle = document.createElement("p");
@@ -324,8 +324,13 @@
 
                //created-at//2
                let createdAt = document.createElement('p');
-               createdAt.innerHTML ="Thời gian: " +order_info.created_at;
-               createdAt.classList.add(".created-at")
+               const now = new Date(order_info.created_at);
+               const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+               const dateLocal = new Date(now.getTime() - offsetMs);
+               const dateString = dateLocal.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+
+               createdAt.innerHTML = "Thời gian: " + dateString;
+               createdAt.classList.add("created-at")
                //created-at//
 
                let orderInfoDiv = document.createElement("div")
