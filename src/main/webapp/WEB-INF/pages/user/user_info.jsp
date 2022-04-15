@@ -193,7 +193,7 @@
                </div>
             </c:if>
             <div id="orders" class="orders"></div>
-            <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation">
                <ul class="pagination">
                   <li class="page-item">
                      <a class="page-link" href="#" aria-label="Previous">
@@ -203,8 +203,8 @@
                   </li>
                   <c:if test="${total_page_orders != 0}">
                      <c:forEach var="i" begin="1" end="${total_page_orders}">
-                        <li class="page-item"><a id="page-${i}" class="page-link"
-                                                 onclick="getOrdersData(${i})">${i}</a>
+                        <li id="page-${i}" class="page-item">
+                           <a id="page-link" class="page-link" onclick="getOrdersData(${i})">${i}</a>
                         </li>
                      </c:forEach></c:if>
                   <li class="page-item">
@@ -266,6 +266,18 @@
                if (dataRes.user_orders) {
                    console.log(dataRes.user_orders)
                    renderOrders(dataRes.user_orders)
+
+                   // append active page-item
+                   let prevPageActivatedIndex = localStorage.getItem("pageActivatedIndex") ? JSON.parse(localStorage.getItem("pageActivatedIndex")) : "";
+                   if(prevPageActivatedIndex) {
+                       const pageItem = document.getElementById("page-" + prevPageActivatedIndex);
+                       pageItem.classList.remove("active")
+                   }
+
+                   const pageItem = document.getElementById("page-" + i);
+                   pageItem.classList.add("active");
+
+                   localStorage.setItem("pageActivatedIndex", JSON.stringify(i));
                }
            } catch (err) {
                console.log(err)
@@ -346,11 +358,12 @@
                orderDiv.appendChild(orderProductDiv);
                ///////
                orders_id.appendChild(orderDiv)
+
            })
        }
 
 
-       async function removeItemLocalStorage() {
+       function removeItemLocalStorage() {
            const session = document.getElementById('sessiondathanhtoan');
            if (session) {
                localStorage.removeItem("cart");
@@ -358,7 +371,6 @@
            }
        }
 
-       removeItemLocalStorage()
 
        function getCityId() {
            const city = document.getElementById('cities-options');
@@ -385,8 +397,6 @@
                }
            });
        }
-
-       getCityId();
 
        function getDistrictId() {
            const district = document.getElementById('districts-options');
@@ -507,5 +517,9 @@
        }
 
 
+       ////////// execute //////////
+       removeItemLocalStorage()
+       getCityId();
+       getOrdersData(1);
    </script>
    <%@include file="/WEB-INF/pages/template/footer.jsp" %>
