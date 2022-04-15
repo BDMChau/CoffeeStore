@@ -195,24 +195,24 @@
             <div id="orders" class="orders"></div>
             <nav aria-label="Page navigation">
                <ul class="pagination">
-                  <li class="page-item">
-                     <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                     </a>
-                  </li>
+<%--                  <li class="page-item">--%>
+<%--                     <a class="page-link" href="#" aria-label="Previous">--%>
+<%--                        <span aria-hidden="true">&laquo;</span>--%>
+<%--                        <span class="sr-only">Previous</span>--%>
+<%--                     </a>--%>
+<%--                  </li>--%>
                   <c:if test="${total_page_orders != 0}">
                      <c:forEach var="i" begin="1" end="${total_page_orders}">
                         <li id="page-${i}" class="page-item">
                            <a id="page-link" class="page-link" onclick="getOrdersData(${i})">${i}</a>
                         </li>
                      </c:forEach></c:if>
-                  <li class="page-item">
-                     <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                     </a>
-                  </li>
+<%--                  <li class="page-item">--%>
+<%--                     <a class="page-link" href="#" aria-label="Next">--%>
+<%--                        <span aria-hidden="true">&raquo;</span>--%>
+<%--                        <span class="sr-only">Next</span>--%>
+<%--                     </a>--%>
+<%--                  </li>--%>
                </ul>
             </nav>
             <%--Session--%>
@@ -253,9 +253,13 @@
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
    <script>
-       async function getOrdersData(i) {
+       function nextPrevBtnPagi(){
+
+       }
+
+       async function getOrdersData(i, stt) {
            const prevPageActivatedIndex = localStorage.getItem("pageActivatedIndex") ? JSON.parse(localStorage.getItem("pageActivatedIndex")) : "";
-           if (prevPageActivatedIndex && prevPageActivatedIndex === i) return;
+           if (prevPageActivatedIndex && (prevPageActivatedIndex === i && !stt)) return;
 
            const page = document.getElementById("page-" + i).textContent;
            try {
@@ -522,6 +526,6 @@
        ////////// execute //////////
        removeItemLocalStorage()
        getCityId();
-       getOrdersData(1);
+       getOrdersData(1, "init");
    </script>
    <%@include file="/WEB-INF/pages/template/footer.jsp" %>
