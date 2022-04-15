@@ -274,6 +274,7 @@
 
        function renderOrders(orders) {
            const orders_id = document.getElementById("orders"); //1st
+           orders_id.innerHTML ="";
            orders.forEach(order_info => {
                let orderDiv = document.createElement("div")
                orderDiv.classList.add("order");
