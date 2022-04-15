@@ -254,6 +254,9 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
    <script>
        async function getOrdersData(i) {
+           const prevPageActivatedIndex = localStorage.getItem("pageActivatedIndex") ? JSON.parse(localStorage.getItem("pageActivatedIndex")) : "";
+           if (prevPageActivatedIndex && prevPageActivatedIndex === i) return;
+
            const page = document.getElementById("page-" + i).textContent;
            try {
                const res = await fetch('/order/get_user_orders/' + page, {
@@ -268,8 +271,7 @@
                    renderOrders(dataRes.user_orders)
 
                    // append active page-item
-                   let prevPageActivatedIndex = localStorage.getItem("pageActivatedIndex") ? JSON.parse(localStorage.getItem("pageActivatedIndex")) : "";
-                   if(prevPageActivatedIndex) {
+                   if (prevPageActivatedIndex) {
                        const pageItem = document.getElementById("page-" + prevPageActivatedIndex);
                        pageItem.classList.remove("active")
                    }
