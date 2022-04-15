@@ -138,6 +138,10 @@ contact_form_area p_100 {
     display: unset;
 
 }
+.shipping-methods label{
+    width: 200px !important;
+    font-weight: 600;
+}
 
 .img-cart-product {
     width: 55px;

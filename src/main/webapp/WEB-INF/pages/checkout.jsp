@@ -84,7 +84,7 @@
                      <c:if test="${empty shipping_fee_err}">
                         <div class="shipping-fee" style="display: flex">
                            <label>Phí vận chuyển: </label>
-                           <p>${shipping_fee.total}đ</p>
+                           <p id="shipping-fee-total">${shipping_fee.total}</p><span>đ</span>
                         </div>
                         <div class="shipping-method" style="display: flex">
                            <label>Phương thức vận chuyển: </label>
@@ -96,6 +96,15 @@
                         </div>
                      </c:if>
                   </div>
+            </div>
+
+            <div class="total-order" style="margin:15px 0 0 10px " >
+               <h5>Tổng thanh toán</h5>
+               <div class="inner-total-order" style="display: flex">
+                  <label>Tổng hoá đơn: </label>
+                  <p id="total-order" style="font-weight:600"></p>
+                  <span style="font-weight: bold">đ</span>
+               </div>
             </div>
 
 
@@ -156,6 +165,20 @@
    </div>
    <script>
 
+       function countTotalOrder(){
+           const products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [];
+           const totalOrder =document.getElementById("total-order");
+           const shippingFee = document.getElementById("shipping-fee-total");
+           totalOrder.innerHTML ="";
+
+           let total = parseFloat(shippingFee.innerText);
+           for (let i = 0; i < products.length; i++) total += products[i].total;
+           totalOrder.innerHTML += total;
+           console.log(total)
+       }
+
+       countTotalOrder()
+
        function directToUserInfo() {
            console.log("line 165")
            window.location.href = "/user/user_info.jsp"
@@ -204,6 +227,7 @@
            const city = document.getElementById("city").innerHTML;
            const addres = document.getElementById("address").innerHTML;
 
+
            const products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [];
            if (!products.length) {
                alert("Đơn hàng trống!");
@@ -211,7 +235,6 @@
            }
            let total = shippingFee;
            for (let i = 0; i < products.length; i++) total += products[i].total;
-
            const paymentMethods = document.getElementsByName("payment-method");
            let method = null;
            for (let i = 0; i < paymentMethods.length; i++) {
