@@ -525,7 +525,7 @@
 
 
        ////////// execute //////////
-       removeItemLocalStorage()
+       // removeItemLocalStorage()
        getCityId();
        getOrdersData(1, "init");
    </script>
